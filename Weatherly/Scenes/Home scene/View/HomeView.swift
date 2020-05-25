@@ -11,8 +11,10 @@ import UIKit
 class HomeView: UIView {
   var cityNameLabel: UILabel!
   var temperatureLabel: UILabel!
+  var summaryLabel: UILabel!
   var headerImageView: UIImageView!
   var bodyImageView: UIImageView!
+  var stackView: UIStackView!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -28,30 +30,43 @@ class HomeView: UIView {
 private extension HomeView {
   func setupHomeView() {
     headerImageView = UIImageView()
-    headerImageView.backgroundColor = .green
+    //    headerImageView.backgroundColor = .green
     headerImageView.image = UIImage(named: "header_image-clear-day")
     headerImageView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(headerImageView)
     
     bodyImageView = UIImageView()
-    bodyImageView.backgroundColor = .systemPink
-    bodyImageView.image = UIImage(named: "header_image-clear-day")
+    //    bodyImageView.backgroundColor = .systemPink
+    bodyImageView.image = UIImage(named: "body_image-clear-day")
     bodyImageView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(bodyImageView)
     
     cityNameLabel = UILabel()
-    cityNameLabel.backgroundColor = .red
+    //    cityNameLabel.backgroundColor = .red
     cityNameLabel.text = "London"
+    cityNameLabel.textColor = .white
     cityNameLabel.textAlignment = .center
+    cityNameLabel.font = UIFont.systemFont(ofSize: 30)
     cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
     addSubview(cityNameLabel)
     
     temperatureLabel = UILabel()
-    temperatureLabel.backgroundColor = .yellow
-    temperatureLabel.text = "20"
+        temperatureLabel.backgroundColor = .yellow
+    temperatureLabel.text = "20℃"
+    temperatureLabel.textColor = .white
     temperatureLabel.textAlignment = .center
+    temperatureLabel.font = UIFont.systemFont(ofSize: 30)
     temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
     addSubview(temperatureLabel)
+    
+    summaryLabel = UILabel()
+        summaryLabel.backgroundColor = .purple
+    summaryLabel.text = "Sunny"
+    summaryLabel.textColor = .white
+    summaryLabel.textAlignment = .center
+    summaryLabel.font = UIFont.systemFont(ofSize: 30)
+    summaryLabel.translatesAutoresizingMaskIntoConstraints = false
+    addSubview(summaryLabel)
     
     let headerImageViewConstraints = [
       headerImageView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
@@ -72,15 +87,29 @@ private extension HomeView {
     NSLayoutConstraint.activate(bodyImageViewConstraints)
     
     let cityNameLabelConstraints = [
-      cityNameLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 40),
-      cityNameLabel.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -40),
-      cityNameLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -40)
+      cityNameLabel.topAnchor.constraint(equalTo: self.bodyImageView.topAnchor),
+      //      cityNameLabel.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -40),
+      cityNameLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor),
+      cityNameLabel.heightAnchor.constraint(equalToConstant: 100),
+      cityNameLabel.widthAnchor.constraint(equalToConstant: 100),
+      //      cityNameLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -40)
     ]
     NSLayoutConstraint.activate(cityNameLabelConstraints)
     
     let temperatureLabelConstraints = [
-      temperatureLabel.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 10)
+      temperatureLabel.bottomAnchor.constraint(equalTo: self.cityNameLabel.topAnchor, constant: 10),
+      temperatureLabel.heightAnchor.constraint(equalToConstant: 100),
+      temperatureLabel.widthAnchor.constraint(equalToConstant: 100),
+      temperatureLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor)
     ]
     NSLayoutConstraint.activate(temperatureLabelConstraints)
+    
+    let summaryLabelConstraints = [
+      summaryLabel.topAnchor.constraint(equalTo: self.temperatureLabel.bottomAnchor),
+      summaryLabel.heightAnchor.constraint(equalToConstant: 100),
+      summaryLabel.widthAnchor.constraint(equalToConstant: 100),
+      summaryLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor)
+    ]
+    NSLayoutConstraint.activate(summaryLabelConstraints)
   }
 }
