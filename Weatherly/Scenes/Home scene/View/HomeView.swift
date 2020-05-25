@@ -14,8 +14,13 @@ class HomeView: UIView {
   var summaryLabel: UILabel!
   var headerImageView: UIImageView!
   var bodyImageView: UIImageView!
-  var stackView: UIStackView!
+  var leftStackView: UIStackView!
+  var rightStackView: UIStackView!
+  var separatorView: UIView!
+  var lowTemperature: UILabel!
   var lowTemperatureLabel: UILabel!
+  var highTemperature: UILabel!
+  var highTemperatureLabel: UILabel!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -43,11 +48,11 @@ private extension HomeView {
     addSubview(bodyImageView)
     
     cityNameLabel = UILabel()
-    //    cityNameLabel.backgroundColor = .red
+//        cityNameLabel.backgroundColor = .red
     cityNameLabel.text = "London"
     cityNameLabel.textColor = .white
     cityNameLabel.textAlignment = .center
-    cityNameLabel.font = UIFont.systemFont(ofSize: 30)
+    cityNameLabel.font = UIFont.systemFont(ofSize: 50)
     cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
     addSubview(cityNameLabel)
     
@@ -69,71 +74,131 @@ private extension HomeView {
     summaryLabel.translatesAutoresizingMaskIntoConstraints = false
     addSubview(summaryLabel)
     
-    stackView = UIStackView()
-    stackView.translatesAutoresizingMaskIntoConstraints = false
-    stackView.backgroundColor = .gray
-    stackView.distribution = .fill
-    addSubview(stackView)
+    leftStackView = UIStackView()
+    leftStackView.translatesAutoresizingMaskIntoConstraints = false
+    leftStackView.distribution = .equalSpacing
+    leftStackView.axis = .vertical
+    leftStackView.alignment = .center
+    addSubview(leftStackView)
+    
+    rightStackView = UIStackView()
+    rightStackView.translatesAutoresizingMaskIntoConstraints = false
+    rightStackView.distribution = .equalCentering
+    rightStackView.axis = .vertical
+    rightStackView.alignment = .center
+    addSubview(rightStackView)
+    
+    separatorView = UIView()
+    separatorView.translatesAutoresizingMaskIntoConstraints = false
+    separatorView.backgroundColor = .white
+    addSubview(separatorView)
+    
+    lowTemperature = UILabel()
+    lowTemperature.translatesAutoresizingMaskIntoConstraints = false
+    lowTemperature.text = "89.3 F ℃"
+    lowTemperature.textAlignment = .center
+    lowTemperature.font = UIFont.systemFont(ofSize: 30)
+    lowTemperature.textColor = .white
+//    lowTemperature.backgroundColor = .gray
+    leftStackView.addArrangedSubview(lowTemperature)
     
     lowTemperatureLabel = UILabel()
     lowTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-    lowTemperatureLabel.backgroundColor = .gray
-    stackView.addArrangedSubview(lowTemperatureLabel)
+    lowTemperatureLabel.text = "Low"
+    lowTemperatureLabel.textColor = .white
+    lowTemperatureLabel.textAlignment = .center
+    lowTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
+//    lowTemperatureLabel.backgroundColor = .blue
+    leftStackView.addArrangedSubview(lowTemperatureLabel)
     
+    highTemperature = UILabel()
+    highTemperature.translatesAutoresizingMaskIntoConstraints = false
+    highTemperature.text = "95.4 F ℃"
+    highTemperature.textColor = .white
+    highTemperature.textAlignment = .center
+    highTemperature.font = UIFont.systemFont(ofSize: 30)
+//    highTemperature.backgroundColor = .red
+    rightStackView.addArrangedSubview(highTemperature)
     
+    highTemperatureLabel = UILabel()
+    highTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+    highTemperatureLabel.text = "High"
+    highTemperatureLabel.textColor = .white
+    highTemperatureLabel.textAlignment = .center
+    highTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
+//    highTemperatureLabel.backgroundColor = .yellow
+    rightStackView.addArrangedSubview(highTemperatureLabel)
     
     
 //    MARK: - constraints
     let headerImageViewConstraints = [
-      headerImageView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-      headerImageView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-      headerImageView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-      headerImageView.heightAnchor.constraint(equalTo: self.layoutMarginsGuide.heightAnchor, multiplier: 0.3, constant: 1),
-      headerImageView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor)
+      headerImageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+      headerImageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+      headerImageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+      headerImageView.heightAnchor.constraint(equalTo: layoutMarginsGuide.heightAnchor, multiplier: 0.3, constant: 1),
+      headerImageView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
     ]
     NSLayoutConstraint.activate(headerImageViewConstraints)
     
     let bodyImageViewConstraints = [
-      bodyImageView.topAnchor.constraint(equalTo: self.headerImageView.bottomAnchor),
-      bodyImageView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-      bodyImageView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-      bodyImageView.heightAnchor.constraint(equalTo: self.layoutMarginsGuide.heightAnchor, multiplier: 0.7, constant: 1),
-      bodyImageView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor)
+      bodyImageView.topAnchor.constraint(equalTo: headerImageView.bottomAnchor),
+      bodyImageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+      bodyImageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+      bodyImageView.heightAnchor.constraint(equalTo: layoutMarginsGuide.heightAnchor, multiplier: 0.7, constant: 1),
+      bodyImageView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
     ]
     NSLayoutConstraint.activate(bodyImageViewConstraints)
     
     let cityNameLabelConstraints = [
-      cityNameLabel.topAnchor.constraint(equalTo: self.bodyImageView.topAnchor),
+      cityNameLabel.topAnchor.constraint(equalTo: bodyImageView.topAnchor),
       //      cityNameLabel.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -40),
-      cityNameLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor),
+      cityNameLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
       cityNameLabel.heightAnchor.constraint(equalToConstant: 100),
-      cityNameLabel.widthAnchor.constraint(equalToConstant: 100),
+      cityNameLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
       //      cityNameLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -40)
     ]
     NSLayoutConstraint.activate(cityNameLabelConstraints)
     
     let temperatureLabelConstraints = [
-      temperatureLabel.bottomAnchor.constraint(equalTo: self.headerImageView.bottomAnchor, constant: -50),
+      temperatureLabel.bottomAnchor.constraint(equalTo: headerImageView.bottomAnchor, constant: -50),
       temperatureLabel.heightAnchor.constraint(equalToConstant: 50),
-      temperatureLabel.widthAnchor.constraint(equalTo: self.layoutMarginsGuide.widthAnchor, constant: -20),
-      temperatureLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor)
+      temperatureLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
+      temperatureLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
     ]
     NSLayoutConstraint.activate(temperatureLabelConstraints)
     
     let summaryLabelConstraints = [
-      summaryLabel.topAnchor.constraint(equalTo: self.temperatureLabel.bottomAnchor, constant: -20),
+      summaryLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: -20),
       summaryLabel.heightAnchor.constraint(equalToConstant: 50),
-      summaryLabel.widthAnchor.constraint(equalTo: self.layoutMarginsGuide.widthAnchor, constant: -20),
-      summaryLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor)
+      summaryLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
+      summaryLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
     ]
     NSLayoutConstraint.activate(summaryLabelConstraints)
     
-    let stackViewConstraings = [
-      stackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor),
-      stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5),
-      stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -5),
-      stackView.heightAnchor.constraint(equalToConstant: 100)
+    let leftStackViewConstraints = [
+      leftStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
+      leftStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 20),
+//      leftStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -5),
+      leftStackView.heightAnchor.constraint(equalToConstant: 75),
+      leftStackView.widthAnchor.constraint(equalToConstant: 150)
     ]
-    NSLayoutConstraint.activate(stackViewConstraings)
+    NSLayoutConstraint.activate(leftStackViewConstraints)
+    
+    let rightStackViewConstraints = [
+      rightStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
+      rightStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -20),
+      //      leftStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -5),
+      rightStackView.heightAnchor.constraint(equalToConstant: 75),
+      rightStackView.widthAnchor.constraint(equalToConstant: 150)
+    ]
+    NSLayoutConstraint.activate(rightStackViewConstraints)
+    
+    let separatorViewConstraints = [
+      separatorView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
+      separatorView.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
+      separatorView.widthAnchor.constraint(equalToConstant: 5),
+      separatorView.heightAnchor.constraint(equalTo: leftStackView.heightAnchor)
+    ]
+    NSLayoutConstraint.activate(separatorViewConstraints)
   }
 }
