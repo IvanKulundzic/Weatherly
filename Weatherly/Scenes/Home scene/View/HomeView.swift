@@ -9,25 +9,7 @@
 import Foundation
 import UIKit
 
-final class HomeView: UIView {  
-  var summaryLabel: UILabel!
-  var leftStackView: UIStackView!
-  var rightStackView: UIStackView!
-  var separatorView: UIView!
-  var lowTemperature: UILabel!
-  var lowTemperatureLabel: UILabel!
-  var highTemperature: UILabel!
-  var highTemperatureLabel: UILabel!
-  var bottomStackView: UIStackView!
-  var bottomLeftStackView: UIStackView!
-  var bottomMiddleStackView: UIStackView!
-  var bottomRightStackView: UIStackView!
-  var humidityIcon: UIImageView!
-  var humidityLabel: UILabel!
-  var windIcon: UIImageView!
-  var windLabel: UILabel!
-  var pressureIcon: UIImageView!
-  var pressureLabel: UILabel!
+final class HomeView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -38,13 +20,12 @@ final class HomeView: UIView {
     super.init(coder: aDecoder)
     setupHomeViewElements()
   }
-
-// MARK: - UI elements
+  
+  // MARK: - UI elements
   func setupHomeViewElements() {
     let headerImageView: UIImageView = {
       let headerImageView = UIImageView()
       headerImageView.image = UIImage(named: "header_image-clear-day")
-      headerImageView.translatesAutoresizingMaskIntoConstraints = false
       return headerImageView
     }()
     addSubview(headerImageView)
@@ -52,7 +33,6 @@ final class HomeView: UIView {
     let bodyImageView: UIImageView = {
       let bodyImageView = UIImageView()
       bodyImageView.image = UIImage(named: "body_image-clear-day")
-      bodyImageView.translatesAutoresizingMaskIntoConstraints = false
       return bodyImageView
     }()
     addSubview(bodyImageView)
@@ -63,7 +43,6 @@ final class HomeView: UIView {
       cityNameLabel.textColor = .white
       cityNameLabel.textAlignment = .center
       cityNameLabel.font = UIFont.systemFont(ofSize: 50)
-      cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
       return cityNameLabel
     }()
     addSubview(cityNameLabel)
@@ -74,7 +53,6 @@ final class HomeView: UIView {
       temperatureLabel.textColor = .white
       temperatureLabel.textAlignment = .center
       temperatureLabel.font = UIFont.systemFont(ofSize: 50)
-      temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
       return temperatureLabel
     }()
     addSubview(temperatureLabel)
@@ -85,134 +63,157 @@ final class HomeView: UIView {
       summaryLabel.textColor = .white
       summaryLabel.textAlignment = .center
       summaryLabel.font = UIFont.systemFont(ofSize: 20)
-      summaryLabel.translatesAutoresizingMaskIntoConstraints = false
       return summaryLabel
     }()
     addSubview(summaryLabel)
     
-    leftStackView = UIStackView()
-    leftStackView.translatesAutoresizingMaskIntoConstraints = false
-    leftStackView.distribution = .equalSpacing
-    leftStackView.axis = .vertical
-    leftStackView.alignment = .center
+    let leftStackView: UIStackView = {
+      let leftStackView = UIStackView()
+      leftStackView.distribution = .equalSpacing
+      leftStackView.axis = .vertical
+      leftStackView.alignment = .center
+      return leftStackView
+    }()
     addSubview(leftStackView)
     
-    rightStackView = UIStackView()
-    rightStackView.translatesAutoresizingMaskIntoConstraints = false
-    rightStackView.distribution = .equalCentering
-    rightStackView.axis = .vertical
-    rightStackView.alignment = .center
+    let rightStackView: UIStackView = {
+      let rightStackView = UIStackView()
+      rightStackView.distribution = .equalCentering
+      rightStackView.axis = .vertical
+      rightStackView.alignment = .center
+      return rightStackView
+    }()
     addSubview(rightStackView)
     
-    separatorView = UIView()
-    separatorView.translatesAutoresizingMaskIntoConstraints = false
-    separatorView.backgroundColor = .white
+    let separatorView: UIView = {
+      let separatorView = UIView()
+      separatorView.backgroundColor = .white
+      return separatorView
+    }()
     addSubview(separatorView)
     
-    lowTemperature = UILabel()
-    lowTemperature.translatesAutoresizingMaskIntoConstraints = false
-    lowTemperature.text = "89.3 F ℃"
-    lowTemperature.textAlignment = .center
-    lowTemperature.font = UIFont.systemFont(ofSize: 30)
-    lowTemperature.textColor = .white
-//    lowTemperature.backgroundColor = .gray
+    let lowTemperature: UILabel = {
+      let lowTemperature = UILabel()
+      lowTemperature.text = "89.3 F ℃"
+      lowTemperature.textAlignment = .center
+      lowTemperature.font = UIFont.systemFont(ofSize: 30)
+      lowTemperature.textColor = .white
+      return lowTemperature
+    }()
     leftStackView.addArrangedSubview(lowTemperature)
     
-    lowTemperatureLabel = UILabel()
-    lowTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-    lowTemperatureLabel.text = "Low"
-    lowTemperatureLabel.textColor = .white
-    lowTemperatureLabel.textAlignment = .center
-    lowTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
-//    lowTemperatureLabel.backgroundColor = .blue
+    let lowTemperatureLabel: UILabel = {
+      let lowTemperatureLabel = UILabel()
+      lowTemperatureLabel.text = "Low"
+      lowTemperatureLabel.textColor = .white
+      lowTemperatureLabel.textAlignment = .center
+      lowTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
+      return lowTemperatureLabel
+    }()
     leftStackView.addArrangedSubview(lowTemperatureLabel)
     
-    highTemperature = UILabel()
-    highTemperature.translatesAutoresizingMaskIntoConstraints = false
-    highTemperature.text = "95.4 F ℃"
-    highTemperature.textColor = .white
-    highTemperature.textAlignment = .center
-    highTemperature.font = UIFont.systemFont(ofSize: 30)
-//    highTemperature.backgroundColor = .red
+    let highTemperature: UILabel = {
+      let highTemperature = UILabel()
+      highTemperature.text = "95.4 F ℃"
+      highTemperature.textColor = .white
+      highTemperature.textAlignment = .center
+      highTemperature.font = UIFont.systemFont(ofSize: 30)
+      return highTemperature
+    }()
     rightStackView.addArrangedSubview(highTemperature)
     
-    highTemperatureLabel = UILabel()
-    highTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
-    highTemperatureLabel.text = "High"
-    highTemperatureLabel.textColor = .white
-    highTemperatureLabel.textAlignment = .center
-    highTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
-//    highTemperatureLabel.backgroundColor = .yellow
+    let highTemperatureLabel: UILabel = {
+      let highTemperatureLabel = UILabel()
+      highTemperatureLabel.text = "High"
+      highTemperatureLabel.textColor = .white
+      highTemperatureLabel.textAlignment = .center
+      highTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
+      return highTemperatureLabel
+    }()
     rightStackView.addArrangedSubview(highTemperatureLabel)
     
-    bottomStackView = UIStackView()
-    bottomStackView.translatesAutoresizingMaskIntoConstraints = false
-    bottomStackView.distribution = .fillEqually
-    bottomStackView.axis = .horizontal
-    bottomStackView.alignment = .center
+    let bottomStackView: UIStackView = {
+      let bottomStackView = UIStackView()
+      bottomStackView.distribution = .fillEqually
+      bottomStackView.axis = .horizontal
+      bottomStackView.alignment = .center
+      return bottomStackView
+    }()
     addSubview(bottomStackView)
     
-    bottomLeftStackView = UIStackView()
-    bottomLeftStackView.translatesAutoresizingMaskIntoConstraints = false
-    bottomLeftStackView.distribution = .equalCentering
-    bottomLeftStackView.axis = .vertical
-    bottomLeftStackView.alignment = .center
+    let bottomLeftStackView: UIStackView = {
+      let bottomLeftStackView = UIStackView()
+      bottomLeftStackView.distribution = .equalCentering
+      bottomLeftStackView.axis = .vertical
+      bottomLeftStackView.alignment = .center
+      return bottomLeftStackView
+    }()
     bottomStackView.addArrangedSubview(bottomLeftStackView)
     
-    bottomMiddleStackView = UIStackView()
-    bottomMiddleStackView.translatesAutoresizingMaskIntoConstraints = false
-    bottomMiddleStackView.distribution = .equalCentering
-    bottomMiddleStackView.axis = .vertical
-    bottomMiddleStackView.alignment = .center
+    let bottomMiddleStackView: UIStackView = {
+      let bottomMiddleStackView = UIStackView()
+      bottomMiddleStackView.axis = .vertical
+      bottomMiddleStackView.alignment = .center
+      bottomMiddleStackView.distribution = .equalCentering
+      return bottomMiddleStackView
+    }()
     bottomStackView.addArrangedSubview(bottomMiddleStackView)
     
-    bottomRightStackView = UIStackView()
-    bottomRightStackView.translatesAutoresizingMaskIntoConstraints = false
-    bottomRightStackView.distribution = .equalCentering
-    bottomRightStackView.axis = .vertical
-    bottomRightStackView.alignment = .center
+    let bottomRightStackView: UIStackView = {
+      let bottomRightStackView = UIStackView()
+      bottomRightStackView.distribution = .equalCentering
+      bottomRightStackView.axis = .vertical
+      bottomRightStackView.alignment = .center
+      return bottomRightStackView
+    }()
     bottomStackView.addArrangedSubview(bottomRightStackView)
     
-    humidityIcon = UIImageView()
-    humidityIcon.translatesAutoresizingMaskIntoConstraints = false
-    humidityIcon.image = UIImage(named: "humidity_icon")
-    humidityIcon.backgroundColor = .red
+    let humidityIcon: UIImageView = {
+      let humidityIcon = UIImageView()
+      humidityIcon.image = UIImage(named: "humidity_icon")
+      return humidityIcon
+    }()
     bottomLeftStackView.addArrangedSubview(humidityIcon)
     
-    windIcon = UIImageView()
-    windIcon.translatesAutoresizingMaskIntoConstraints = false
-    windIcon.image = UIImage(named: "wind_icon")
-    windIcon.backgroundColor = .red
-    bottomMiddleStackView.addArrangedSubview(windIcon)
-    
-    pressureIcon = UIImageView()
-    pressureIcon.translatesAutoresizingMaskIntoConstraints = false
-    pressureIcon.image = UIImage(named: "pressure_icon")
-    pressureIcon.backgroundColor = .red
-    bottomRightStackView.addArrangedSubview(pressureIcon)
-    
-    humidityLabel = UILabel()
-    humidityLabel.translatesAutoresizingMaskIntoConstraints = false
-    humidityLabel.text = "0.8%"
-    humidityLabel.textColor = .white
-    humidityLabel.font = UIFont.systemFont(ofSize: 25)
-    humidityLabel.backgroundColor = .red
+    let humidityLabel: UILabel = {
+      let humidityLabel = UILabel()
+      humidityLabel.text = "0.8%"
+      humidityLabel.textColor = .white
+      humidityLabel.font = UIFont.systemFont(ofSize: 25)
+      return humidityLabel
+    }()
     bottomLeftStackView.addArrangedSubview(humidityLabel)
     
-    windLabel = UILabel()
-    windLabel.translatesAutoresizingMaskIntoConstraints = false
-    windLabel.text = "1.2 mph"
-    windLabel.textColor = .white
-    windLabel.font = UIFont.systemFont(ofSize: 25)
-    windLabel.backgroundColor = .red
+    let windIcon: UIImageView = {
+      let windIcon = UIImageView()
+      windIcon.image = UIImage(named: "wind_icon")
+      return windIcon
+    }()
+    bottomMiddleStackView.addArrangedSubview(windIcon)
+    
+    let windLabel: UILabel = {
+      let windLabel = UILabel()
+      windLabel.text = "1.2 mph"
+      windLabel.textColor = .white
+      windLabel.font = UIFont.systemFont(ofSize: 25)
+      return windLabel
+    }()
     bottomMiddleStackView.addArrangedSubview(windLabel)
     
-    pressureLabel = UILabel()
-    pressureLabel.translatesAutoresizingMaskIntoConstraints = false
-    pressureLabel.text = "1009 hpa"
-    pressureLabel.textColor = .white
-    pressureLabel.font = UIFont.systemFont(ofSize: 25)
-    pressureLabel.backgroundColor = .red
+    let pressureIcon: UIImageView = {
+      let pressureIcon = UIImageView()
+      pressureIcon.image = UIImage(named: "pressure_icon")
+      return pressureIcon
+    }()
+    bottomRightStackView.addArrangedSubview(pressureIcon)
+    
+    let pressureLabel: UILabel = {
+      let pressureLabel = UILabel()
+      pressureLabel.text = "1009 hpa"
+      pressureLabel.textColor = .white
+      pressureLabel.font = UIFont.systemFont(ofSize: 25)
+      return pressureLabel
+    }()
     bottomRightStackView.addArrangedSubview(pressureLabel)
     
     let settingsButton: UIButton = {
@@ -234,14 +235,14 @@ final class HomeView: UIView {
     }()
     addSubview(searchBar)
     
-//    MARK: - constraints
+    //    MARK: - constraints
     let headerImageViewConstraints = [
       headerImageView.topAnchor.constraint(equalTo: topAnchor),
       headerImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
       headerImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
       headerImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4, constant: 1)
     ]
-    NSLayoutConstraint.activate(headerImageViewConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: headerImageViewConstraints)
     
     let bodyImageViewConstraints = [
       bodyImageView.topAnchor.constraint(equalTo: headerImageView.bottomAnchor),
@@ -249,17 +250,15 @@ final class HomeView: UIView {
       bodyImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
       bodyImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 50)
     ]
-    NSLayoutConstraint.activate(bodyImageViewConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: bodyImageViewConstraints)
     
     let cityNameLabelConstraints = [
       cityNameLabel.topAnchor.constraint(equalTo: bodyImageView.topAnchor),
-      //      cityNameLabel.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -40),
       cityNameLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
       cityNameLabel.heightAnchor.constraint(equalToConstant: 100),
-      cityNameLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
-      //      cityNameLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -40)
+      cityNameLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20)
     ]
-    NSLayoutConstraint.activate(cityNameLabelConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: cityNameLabelConstraints)
     
     let temperatureLabelConstraints = [
       temperatureLabel.bottomAnchor.constraint(equalTo: headerImageView.bottomAnchor, constant: -50),
@@ -267,7 +266,7 @@ final class HomeView: UIView {
       temperatureLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
       temperatureLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
     ]
-    NSLayoutConstraint.activate(temperatureLabelConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: temperatureLabelConstraints)
     
     let summaryLabelConstraints = [
       summaryLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: -20),
@@ -275,25 +274,23 @@ final class HomeView: UIView {
       summaryLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
       summaryLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
     ]
-    NSLayoutConstraint.activate(summaryLabelConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: summaryLabelConstraints)
     
     let leftStackViewConstraints = [
       leftStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
       leftStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 20),
-//      leftStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -5),
       leftStackView.heightAnchor.constraint(equalToConstant: 75),
       leftStackView.widthAnchor.constraint(equalToConstant: 150)
     ]
-    NSLayoutConstraint.activate(leftStackViewConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: leftStackViewConstraints)
     
     let rightStackViewConstraints = [
       rightStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
       rightStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -20),
-      //      leftStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -5),
       rightStackView.heightAnchor.constraint(equalToConstant: 75),
       rightStackView.widthAnchor.constraint(equalToConstant: 150)
     ]
-    NSLayoutConstraint.activate(rightStackViewConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: rightStackViewConstraints)
     
     let separatorViewConstraints = [
       separatorView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
@@ -301,16 +298,15 @@ final class HomeView: UIView {
       separatorView.widthAnchor.constraint(equalToConstant: 5),
       separatorView.heightAnchor.constraint(equalTo: leftStackView.heightAnchor)
     ]
-    NSLayoutConstraint.activate(separatorViewConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: separatorViewConstraints)
     
     let bottomStackViewConstraints = [
       bottomStackView.topAnchor.constraint(equalTo: leftStackView.bottomAnchor, constant: 50),
       bottomStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
       bottomRightStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-      bottomStackView.heightAnchor.constraint(equalToConstant: 75),
-//      bottomStackView.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor)
+      bottomStackView.heightAnchor.constraint(equalToConstant: 75)
     ]
-    NSLayoutConstraint.activate(bottomStackViewConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: bottomStackViewConstraints)
     
     let settingsButtonConstraints = [
       settingsButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
@@ -318,7 +314,7 @@ final class HomeView: UIView {
       settingsButton.heightAnchor.constraint(equalToConstant: 75),
       settingsButton.widthAnchor.constraint(equalToConstant: 75)
     ]
-    NSLayoutConstraint.activate(settingsButtonConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: settingsButtonConstraints)
     
     let searchBarConstraints = [
       searchBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
@@ -326,6 +322,6 @@ final class HomeView: UIView {
       searchBar.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -25),
       searchBar.heightAnchor.constraint(equalToConstant: 75)
     ]
-    NSLayoutConstraint.activate(searchBarConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: searchBarConstraints)
   }
 }
