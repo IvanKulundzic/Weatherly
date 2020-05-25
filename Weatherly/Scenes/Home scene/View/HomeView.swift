@@ -6,14 +6,11 @@
 //  Copyright © 2020 Ivan Kulundzic. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class HomeView: UIView {
-  var cityNameLabel: UILabel!
-  var temperatureLabel: UILabel!
+final class HomeView: UIView {  
   var summaryLabel: UILabel!
-  var headerImageView: UIImageView!
-//  var bodyImageView: UIImageView!
   var leftStackView: UIStackView!
   var rightStackView: UIStackView!
   var separatorView: UIView!
@@ -34,27 +31,18 @@ class HomeView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupHomeView()
+    setupHomeViewElements()
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    setupHomeView()
+    setupHomeViewElements()
   }
-}
 
-// MARK: - View settup
-private extension HomeView {
-  func setupHomeView() {
-//    headerImageView = UIImageView()
-//        headerImageView.backgroundColor = .green
-////    headerImageView.image = UIImage(named: "header_image-clear-day")
-//    headerImageView.translatesAutoresizingMaskIntoConstraints = false
-//    addSubview(headerImageView)
-    
+// MARK: - UI elements
+  func setupHomeViewElements() {
     let headerImageView: UIImageView = {
       let headerImageView = UIImageView()
-      //       headerImageView.backgroundColor = .green
       headerImageView.image = UIImage(named: "header_image-clear-day")
       headerImageView.translatesAutoresizingMaskIntoConstraints = false
       return headerImageView
@@ -69,31 +57,37 @@ private extension HomeView {
     }()
     addSubview(bodyImageView)
     
-    cityNameLabel = UILabel()
-//        cityNameLabel.backgroundColor = .red
-    cityNameLabel.text = "London"
-    cityNameLabel.textColor = .white
-    cityNameLabel.textAlignment = .center
-    cityNameLabel.font = UIFont.systemFont(ofSize: 50)
-    cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
+    let cityNameLabel: UILabel = {
+      let cityNameLabel = UILabel()
+      cityNameLabel.text = "London"
+      cityNameLabel.textColor = .white
+      cityNameLabel.textAlignment = .center
+      cityNameLabel.font = UIFont.systemFont(ofSize: 50)
+      cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
+      return cityNameLabel
+    }()
     addSubview(cityNameLabel)
     
-    temperatureLabel = UILabel()
-//        temperatureLabel.backgroundColor = .yellow
-    temperatureLabel.text = "20℃"
-    temperatureLabel.textColor = .white
-    temperatureLabel.textAlignment = .center
-    temperatureLabel.font = UIFont.systemFont(ofSize: 50)
-    temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+    let temperatureLabel: UILabel = {
+      let temperatureLabel = UILabel()
+      temperatureLabel.text = "20℃"
+      temperatureLabel.textColor = .white
+      temperatureLabel.textAlignment = .center
+      temperatureLabel.font = UIFont.systemFont(ofSize: 50)
+      temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+      return temperatureLabel
+    }()
     addSubview(temperatureLabel)
     
-    summaryLabel = UILabel()
-//        summaryLabel.backgroundColor = .purple
-    summaryLabel.text = "Sunny"
-    summaryLabel.textColor = .white
-    summaryLabel.textAlignment = .center
-    summaryLabel.font = UIFont.systemFont(ofSize: 20)
-    summaryLabel.translatesAutoresizingMaskIntoConstraints = false
+    let summaryLabel: UILabel = {
+      let summaryLabel = UILabel()
+      summaryLabel.text = "Sunny"
+      summaryLabel.textColor = .white
+      summaryLabel.textAlignment = .center
+      summaryLabel.font = UIFont.systemFont(ofSize: 20)
+      summaryLabel.translatesAutoresizingMaskIntoConstraints = false
+      return summaryLabel
+    }()
     addSubview(summaryLabel)
     
     leftStackView = UIStackView()
@@ -239,7 +233,6 @@ private extension HomeView {
       return searchBar
     }()
     addSubview(searchBar)
-    
     
 //    MARK: - constraints
     let headerImageViewConstraints = [
