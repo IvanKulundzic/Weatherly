@@ -21,6 +21,18 @@ class HomeView: UIView {
   var lowTemperatureLabel: UILabel!
   var highTemperature: UILabel!
   var highTemperatureLabel: UILabel!
+  var bottomStackView: UIStackView!
+  var bottomLeftStackView: UIStackView!
+  var bottomMiddleStackView: UIStackView!
+  var bottomRightStackView: UIStackView!
+  var humidityIcon: UIImageView!
+  var humidityLabel: UILabel!
+  var windIcon: UIImageView!
+  var windLabel: UILabel!
+  var pressureIcon: UIImageView!
+  var pressureLabel: UILabel!
+  var settingsButton: UIButton!
+//  var searchBar: UISearchBar!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -36,14 +48,14 @@ class HomeView: UIView {
 private extension HomeView {
   func setupHomeView() {
     headerImageView = UIImageView()
-    //    headerImageView.backgroundColor = .green
-    headerImageView.image = UIImage(named: "header_image-clear-day")
+        headerImageView.backgroundColor = .green
+//    headerImageView.image = UIImage(named: "header_image-clear-day")
     headerImageView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(headerImageView)
     
     bodyImageView = UIImageView()
-    //    bodyImageView.backgroundColor = .systemPink
-    bodyImageView.image = UIImage(named: "body_image-clear-day")
+        bodyImageView.backgroundColor = .systemPink
+//    bodyImageView.image = UIImage(named: "body_image-clear-day")
     bodyImageView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(bodyImageView)
     
@@ -129,23 +141,111 @@ private extension HomeView {
 //    highTemperatureLabel.backgroundColor = .yellow
     rightStackView.addArrangedSubview(highTemperatureLabel)
     
+    bottomStackView = UIStackView()
+    bottomStackView.translatesAutoresizingMaskIntoConstraints = false
+    bottomStackView.distribution = .fillEqually
+    bottomStackView.axis = .horizontal
+    bottomStackView.alignment = .center
+    addSubview(bottomStackView)
+    
+    bottomLeftStackView = UIStackView()
+    bottomLeftStackView.translatesAutoresizingMaskIntoConstraints = false
+    bottomLeftStackView.distribution = .equalCentering
+    bottomLeftStackView.axis = .vertical
+    bottomLeftStackView.alignment = .center
+    bottomStackView.addArrangedSubview(bottomLeftStackView)
+    
+    bottomMiddleStackView = UIStackView()
+    bottomMiddleStackView.translatesAutoresizingMaskIntoConstraints = false
+    bottomMiddleStackView.distribution = .equalCentering
+    bottomMiddleStackView.axis = .vertical
+    bottomMiddleStackView.alignment = .center
+    bottomStackView.addArrangedSubview(bottomMiddleStackView)
+    
+    bottomRightStackView = UIStackView()
+    bottomRightStackView.translatesAutoresizingMaskIntoConstraints = false
+    bottomRightStackView.distribution = .equalCentering
+    bottomRightStackView.axis = .vertical
+    bottomRightStackView.alignment = .center
+    bottomStackView.addArrangedSubview(bottomRightStackView)
+    
+    humidityIcon = UIImageView()
+    humidityIcon.translatesAutoresizingMaskIntoConstraints = false
+    humidityIcon.image = UIImage(named: "humidity_icon")
+    humidityIcon.backgroundColor = .red
+    bottomLeftStackView.addArrangedSubview(humidityIcon)
+    
+    windIcon = UIImageView()
+    windIcon.translatesAutoresizingMaskIntoConstraints = false
+    windIcon.image = UIImage(named: "wind_icon")
+    windIcon.backgroundColor = .red
+    bottomMiddleStackView.addArrangedSubview(windIcon)
+    
+    pressureIcon = UIImageView()
+    pressureIcon.translatesAutoresizingMaskIntoConstraints = false
+    pressureIcon.image = UIImage(named: "pressure_icon")
+    pressureIcon.backgroundColor = .red
+    bottomRightStackView.addArrangedSubview(pressureIcon)
+    
+    humidityLabel = UILabel()
+    humidityLabel.translatesAutoresizingMaskIntoConstraints = false
+    humidityLabel.text = "0.8%"
+    humidityLabel.textColor = .white
+    humidityLabel.font = UIFont.systemFont(ofSize: 25)
+    humidityLabel.backgroundColor = .red
+    bottomLeftStackView.addArrangedSubview(humidityLabel)
+    
+    windLabel = UILabel()
+    windLabel.translatesAutoresizingMaskIntoConstraints = false
+    windLabel.text = "1.2 mph"
+    windLabel.textColor = .white
+    windLabel.font = UIFont.systemFont(ofSize: 25)
+    windLabel.backgroundColor = .red
+    bottomMiddleStackView.addArrangedSubview(windLabel)
+    
+    pressureLabel = UILabel()
+    pressureLabel.translatesAutoresizingMaskIntoConstraints = false
+    pressureLabel.text = "1009 hpa"
+    pressureLabel.textColor = .white
+    pressureLabel.font = UIFont.systemFont(ofSize: 25)
+    pressureLabel.backgroundColor = .red
+    bottomRightStackView.addArrangedSubview(pressureLabel)
+    
+    settingsButton = UIButton()
+    settingsButton.translatesAutoresizingMaskIntoConstraints = false
+    guard let buttonImage = UIImage(named: "settings_icon") else { return }
+    settingsButton.setImage(buttonImage, for: .normal)
+    addSubview(settingsButton)
+    
+    private let searchBar
+    
+    searchBar = UISearchBar()
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    searchBar.placeholder = "Search"
+    searchBar.searchBarStyle = .minimal
+    searchBar.searchTextField.backgroundColor = .white
+    let image: UIImage = UIImage(named: "search_icon")!
+    let imageView: UIImageView = UIImageView.init(image: image)
+    searchBar.searchTextField.rightView = imageView
+    searchBar.searchTextField.rightViewMode = .unlessEditing
+    
+    addSubview(searchBar)
+    
     
 //    MARK: - constraints
     let headerImageViewConstraints = [
-      headerImageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-      headerImageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-      headerImageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-      headerImageView.heightAnchor.constraint(equalTo: layoutMarginsGuide.heightAnchor, multiplier: 0.3, constant: 1),
-      headerImageView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+      headerImageView.topAnchor.constraint(equalTo: topAnchor),
+      headerImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+      headerImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+      headerImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4, constant: 1)
     ]
     NSLayoutConstraint.activate(headerImageViewConstraints)
     
     let bodyImageViewConstraints = [
       bodyImageView.topAnchor.constraint(equalTo: headerImageView.bottomAnchor),
-      bodyImageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-      bodyImageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-      bodyImageView.heightAnchor.constraint(equalTo: layoutMarginsGuide.heightAnchor, multiplier: 0.7, constant: 1),
-      bodyImageView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+      bodyImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+      bodyImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+      bodyImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 50)
     ]
     NSLayoutConstraint.activate(bodyImageViewConstraints)
     
@@ -200,5 +300,30 @@ private extension HomeView {
       separatorView.heightAnchor.constraint(equalTo: leftStackView.heightAnchor)
     ]
     NSLayoutConstraint.activate(separatorViewConstraints)
+    
+    let bottomStackViewConstraints = [
+      bottomStackView.topAnchor.constraint(equalTo: leftStackView.bottomAnchor, constant: 50),
+      bottomStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+      bottomRightStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+      bottomStackView.heightAnchor.constraint(equalToConstant: 75),
+//      bottomStackView.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor)
+    ]
+    NSLayoutConstraint.activate(bottomStackViewConstraints)
+    
+    let settingsButtonConstraints = [
+      settingsButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
+      settingsButton.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 15),
+      settingsButton.heightAnchor.constraint(equalToConstant: 75),
+      settingsButton.widthAnchor.constraint(equalToConstant: 75)
+    ]
+    NSLayoutConstraint.activate(settingsButtonConstraints)
+    
+    let searchBarConstraints = [
+      searchBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
+      searchBar.leadingAnchor.constraint(equalTo: settingsButton.leadingAnchor, constant: 50),
+      searchBar.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -25),
+      searchBar.heightAnchor.constraint(equalToConstant: 75)
+    ]
+    NSLayoutConstraint.activate(searchBarConstraints)
   }
 }
