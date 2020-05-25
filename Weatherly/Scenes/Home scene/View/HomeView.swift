@@ -15,6 +15,7 @@ class HomeView: UIView {
   var headerImageView: UIImageView!
   var bodyImageView: UIImageView!
   var stackView: UIStackView!
+  var lowTemperatureLabel: UILabel!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -51,23 +52,38 @@ private extension HomeView {
     addSubview(cityNameLabel)
     
     temperatureLabel = UILabel()
-        temperatureLabel.backgroundColor = .yellow
+//        temperatureLabel.backgroundColor = .yellow
     temperatureLabel.text = "20℃"
     temperatureLabel.textColor = .white
     temperatureLabel.textAlignment = .center
-    temperatureLabel.font = UIFont.systemFont(ofSize: 30)
+    temperatureLabel.font = UIFont.systemFont(ofSize: 50)
     temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
     addSubview(temperatureLabel)
     
     summaryLabel = UILabel()
-        summaryLabel.backgroundColor = .purple
+//        summaryLabel.backgroundColor = .purple
     summaryLabel.text = "Sunny"
     summaryLabel.textColor = .white
     summaryLabel.textAlignment = .center
-    summaryLabel.font = UIFont.systemFont(ofSize: 30)
+    summaryLabel.font = UIFont.systemFont(ofSize: 20)
     summaryLabel.translatesAutoresizingMaskIntoConstraints = false
     addSubview(summaryLabel)
     
+    stackView = UIStackView()
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.backgroundColor = .gray
+    stackView.distribution = .fill
+    addSubview(stackView)
+    
+    lowTemperatureLabel = UILabel()
+    lowTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
+    lowTemperatureLabel.backgroundColor = .gray
+    stackView.addArrangedSubview(lowTemperatureLabel)
+    
+    
+    
+    
+//    MARK: - constraints
     let headerImageViewConstraints = [
       headerImageView.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
       headerImageView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
@@ -97,19 +113,27 @@ private extension HomeView {
     NSLayoutConstraint.activate(cityNameLabelConstraints)
     
     let temperatureLabelConstraints = [
-      temperatureLabel.bottomAnchor.constraint(equalTo: self.cityNameLabel.topAnchor, constant: 10),
-      temperatureLabel.heightAnchor.constraint(equalToConstant: 100),
-      temperatureLabel.widthAnchor.constraint(equalToConstant: 100),
+      temperatureLabel.bottomAnchor.constraint(equalTo: self.headerImageView.bottomAnchor, constant: -50),
+      temperatureLabel.heightAnchor.constraint(equalToConstant: 50),
+      temperatureLabel.widthAnchor.constraint(equalTo: self.layoutMarginsGuide.widthAnchor, constant: -20),
       temperatureLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor)
     ]
     NSLayoutConstraint.activate(temperatureLabelConstraints)
     
     let summaryLabelConstraints = [
-      summaryLabel.topAnchor.constraint(equalTo: self.temperatureLabel.bottomAnchor),
-      summaryLabel.heightAnchor.constraint(equalToConstant: 100),
-      summaryLabel.widthAnchor.constraint(equalToConstant: 100),
+      summaryLabel.topAnchor.constraint(equalTo: self.temperatureLabel.bottomAnchor, constant: -20),
+      summaryLabel.heightAnchor.constraint(equalToConstant: 50),
+      summaryLabel.widthAnchor.constraint(equalTo: self.layoutMarginsGuide.widthAnchor, constant: -20),
       summaryLabel.centerXAnchor.constraint(equalTo: self.layoutMarginsGuide.centerXAnchor)
     ]
     NSLayoutConstraint.activate(summaryLabelConstraints)
+    
+    let stackViewConstraings = [
+      stackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor),
+      stackView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5),
+      stackView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -5),
+      stackView.heightAnchor.constraint(equalToConstant: 100)
+    ]
+    NSLayoutConstraint.activate(stackViewConstraings)
   }
 }
