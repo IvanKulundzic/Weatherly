@@ -13,7 +13,7 @@ class HomeView: UIView {
   var temperatureLabel: UILabel!
   var summaryLabel: UILabel!
   var headerImageView: UIImageView!
-  var bodyImageView: UIImageView!
+//  var bodyImageView: UIImageView!
   var leftStackView: UIStackView!
   var rightStackView: UIStackView!
   var separatorView: UIView!
@@ -31,8 +31,6 @@ class HomeView: UIView {
   var windLabel: UILabel!
   var pressureIcon: UIImageView!
   var pressureLabel: UILabel!
-  var settingsButton: UIButton!
-//  var searchBar: UISearchBar!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -45,18 +43,30 @@ class HomeView: UIView {
   }
 }
 
+// MARK: - View settup
 private extension HomeView {
   func setupHomeView() {
-    headerImageView = UIImageView()
-        headerImageView.backgroundColor = .green
-//    headerImageView.image = UIImage(named: "header_image-clear-day")
-    headerImageView.translatesAutoresizingMaskIntoConstraints = false
+//    headerImageView = UIImageView()
+//        headerImageView.backgroundColor = .green
+////    headerImageView.image = UIImage(named: "header_image-clear-day")
+//    headerImageView.translatesAutoresizingMaskIntoConstraints = false
+//    addSubview(headerImageView)
+    
+    let headerImageView: UIImageView = {
+      let headerImageView = UIImageView()
+      //       headerImageView.backgroundColor = .green
+      headerImageView.image = UIImage(named: "header_image-clear-day")
+      headerImageView.translatesAutoresizingMaskIntoConstraints = false
+      return headerImageView
+    }()
     addSubview(headerImageView)
     
-    bodyImageView = UIImageView()
-        bodyImageView.backgroundColor = .systemPink
-//    bodyImageView.image = UIImage(named: "body_image-clear-day")
-    bodyImageView.translatesAutoresizingMaskIntoConstraints = false
+    let bodyImageView: UIImageView = {
+      let bodyImageView = UIImageView()
+      bodyImageView.image = UIImage(named: "body_image-clear-day")
+      bodyImageView.translatesAutoresizingMaskIntoConstraints = false
+      return bodyImageView
+    }()
     addSubview(bodyImageView)
     
     cityNameLabel = UILabel()
@@ -211,24 +221,23 @@ private extension HomeView {
     pressureLabel.backgroundColor = .red
     bottomRightStackView.addArrangedSubview(pressureLabel)
     
-    settingsButton = UIButton()
-    settingsButton.translatesAutoresizingMaskIntoConstraints = false
-    guard let buttonImage = UIImage(named: "settings_icon") else { return }
-    settingsButton.setImage(buttonImage, for: .normal)
+    let settingsButton: UIButton = {
+      let settingsButton = UIButton()
+      settingsButton.translatesAutoresizingMaskIntoConstraints = false
+      let image = UIImage(named: "settings_icon")
+      settingsButton.setImage(image, for: .normal)
+      return settingsButton
+    }()
     addSubview(settingsButton)
     
-    private let searchBar
-    
-    searchBar = UISearchBar()
-    searchBar.translatesAutoresizingMaskIntoConstraints = false
-    searchBar.placeholder = "Search"
-    searchBar.searchBarStyle = .minimal
-    searchBar.searchTextField.backgroundColor = .white
-    let image: UIImage = UIImage(named: "search_icon")!
-    let imageView: UIImageView = UIImageView.init(image: image)
-    searchBar.searchTextField.rightView = imageView
-    searchBar.searchTextField.rightViewMode = .unlessEditing
-    
+    let searchBar: UISearchBar = {
+      let searchBar = UISearchBar()
+      searchBar.translatesAutoresizingMaskIntoConstraints = false
+      searchBar.placeholder = "Search"
+      searchBar.searchBarStyle = .minimal
+      searchBar.searchTextField.backgroundColor = .white
+      return searchBar
+    }()
     addSubview(searchBar)
     
     
