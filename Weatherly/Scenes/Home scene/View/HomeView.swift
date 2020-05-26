@@ -10,30 +10,30 @@ import Foundation
 import UIKit
 
 final class HomeView: UIView {
-  private(set) lazy var headerImageView = UIImageView()
-  private(set) lazy var bodyImageView = UIImageView()
-  private(set) lazy var cityNameLabel = UILabel()
-  private(set) lazy var temperatureLabel = UILabel()
-  private(set) lazy var summaryLabel = UILabel()
-  private(set) lazy var leftStackView = UIStackView()
-  private(set) lazy var rightStackView = UIStackView()
-  private(set) lazy var separatorView = UIView()
-  private(set) lazy var lowTemperature = UILabel()
-  private(set) lazy var lowTemperatureLabel = UILabel()
-  private(set) lazy var highTemperature = UILabel()
-  private(set) lazy var highTemperatureLabel = UILabel()
-  private(set) lazy var bottomStackView = UIStackView()
-  private(set) lazy var bottomLeftStackView = UIStackView()
-  private(set) lazy var bottomMiddleStackView = UIStackView()
-  private(set) lazy var bottomRightStackView = UIStackView()
-  private(set) lazy var humidityIcon = UIImageView()
-  private(set) lazy var humidityLabel = UILabel()
-  private(set) lazy var windIcon = UIImageView()
-  private(set) lazy var windLabel = UILabel()
-  private(set) lazy var pressureIcon = UIImageView()
-  private(set) lazy var pressureLabel = UILabel()
-  private(set) lazy var settingsButton = UIButton()
-  private(set) lazy var searchBar = UISearchBar()
+  private lazy var headerImageView = UIImageView()
+  private lazy var bodyImageView = UIImageView()
+  private lazy var cityNameLabel = UILabel()
+  private lazy var temperatureLabel = UILabel()
+  private lazy var summaryLabel = UILabel()
+  private lazy var leftStackView = UIStackView()
+  private lazy var rightStackView = UIStackView()
+  private lazy var separatorView = UIView()
+  private lazy var lowTemperature = UILabel()
+  private lazy var lowTemperatureLabel = UILabel()
+  private lazy var highTemperature = UILabel()
+  private lazy var highTemperatureLabel = UILabel()
+  private lazy var bottomStackView = UIStackView()
+  private lazy var bottomLeftStackView = UIStackView()
+  private lazy var bottomMiddleStackView = UIStackView()
+  private lazy var bottomRightStackView = UIStackView()
+  private lazy var humidityIcon = UIImageView()
+  private lazy var humidityLabel = UILabel()
+  private lazy var windIcon = UIImageView()
+  private lazy var windLabel = UILabel()
+  private lazy var pressureIcon = UIImageView()
+  private lazy var pressureLabel = UILabel()
+  private lazy var settingsButton = UIButton()
+  private lazy var searchBar = UISearchBar()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -43,6 +43,59 @@ final class HomeView: UIView {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setupHomeView()
+  }
+}
+
+// MARK: - view properties
+extension HomeView {
+  var headerImage: UIImage? {
+    get { headerImageView.image }
+    set { headerImageView.image = newValue }
+  }
+  
+  var bodyImage: UIImage? {
+    get { bodyImageView.image }
+    set { bodyImageView.image = newValue }
+  }
+  
+  var cityName: String? {
+    get { cityNameLabel.text }
+    set { cityNameLabel.text = newValue }
+  }
+  
+  var temperature: String? {
+    get { temperatureLabel.text }
+    set { temperatureLabel.text = newValue }
+  }
+  
+  var summary: String? {
+    get { summaryLabel.text }
+    set { summaryLabel.text = newValue }
+  }
+  
+  var lowTemperatureValue: String? {
+    get { lowTemperatureLabel.text }
+    set { lowTemperatureLabel.text = newValue }
+  }
+  
+  var highTemperatureValue: String? {
+    get { highTemperatureLabel.text }
+    set { highTemperatureLabel.text = newValue }
+  }
+  
+  var humidity: String? {
+    get { humidityLabel.text }
+    set { humidityLabel.text = newValue }
+  }
+  
+  var wind: String? {
+    get { windLabel.text }
+    set { windLabel.text = newValue }
+  }
+  
+  var pressure: String? {
+    get { pressureLabel.text }
+    set { pressureLabel.text = newValue }
   }
 }
 
