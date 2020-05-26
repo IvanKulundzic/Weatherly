@@ -26,6 +26,7 @@ final class HomeView: UIView {
     let headerImageView: UIImageView = {
       let headerImageView = UIImageView()
       headerImageView.image = UIImage(named: "header_image-clear-day")
+      headerImageView.contentMode = .scaleAspectFit
       return headerImageView
     }()
     addSubview(headerImageView)
@@ -49,10 +50,10 @@ final class HomeView: UIView {
     
     let temperatureLabel: UILabel = {
       let temperatureLabel = UILabel()
-      temperatureLabel.text = "20℃"
+      temperatureLabel.text = "20°"
       temperatureLabel.textColor = .white
       temperatureLabel.textAlignment = .center
-      temperatureLabel.font = UIFont.systemFont(ofSize: 50)
+      temperatureLabel.font = UIFont.systemFont(ofSize: 60)
       return temperatureLabel
     }()
     addSubview(temperatureLabel)
@@ -94,7 +95,7 @@ final class HomeView: UIView {
     
     let lowTemperature: UILabel = {
       let lowTemperature = UILabel()
-      lowTemperature.text = "89.3 F ℃"
+      lowTemperature.text = "89.3° F"
       lowTemperature.textAlignment = .center
       lowTemperature.font = UIFont.systemFont(ofSize: 30)
       lowTemperature.textColor = .white
@@ -114,7 +115,7 @@ final class HomeView: UIView {
     
     let highTemperature: UILabel = {
       let highTemperature = UILabel()
-      highTemperature.text = "95.4 F ℃"
+      highTemperature.text = "95.4° F"
       highTemperature.textColor = .white
       highTemperature.textAlignment = .center
       highTemperature.font = UIFont.systemFont(ofSize: 30)
@@ -218,7 +219,6 @@ final class HomeView: UIView {
     
     let settingsButton: UIButton = {
       let settingsButton = UIButton()
-      settingsButton.translatesAutoresizingMaskIntoConstraints = false
       let image = UIImage(named: "settings_icon")
       settingsButton.setImage(image, for: .normal)
       return settingsButton
@@ -227,7 +227,6 @@ final class HomeView: UIView {
     
     let searchBar: UISearchBar = {
       let searchBar = UISearchBar()
-      searchBar.translatesAutoresizingMaskIntoConstraints = false
       searchBar.placeholder = "Search"
       searchBar.searchBarStyle = .minimal
       searchBar.searchTextField.backgroundColor = .white
@@ -253,9 +252,9 @@ final class HomeView: UIView {
     NSLayoutConstraint.useAndActivateConstraints(constraints: bodyImageViewConstraints)
     
     let cityNameLabelConstraints = [
-      cityNameLabel.topAnchor.constraint(equalTo: bodyImageView.topAnchor),
+      cityNameLabel.topAnchor.constraint(equalTo: bodyImageView.topAnchor, constant: 40),
       cityNameLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
-      cityNameLabel.heightAnchor.constraint(equalToConstant: 100),
+//      cityNameLabel.heightAnchor.constraint(equalToConstant: 100),
       cityNameLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: cityNameLabelConstraints)
@@ -269,7 +268,7 @@ final class HomeView: UIView {
     NSLayoutConstraint.useAndActivateConstraints(constraints: temperatureLabelConstraints)
     
     let summaryLabelConstraints = [
-      summaryLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: -20),
+      summaryLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: -10),
       summaryLabel.heightAnchor.constraint(equalToConstant: 50),
       summaryLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
       summaryLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
@@ -304,7 +303,8 @@ final class HomeView: UIView {
       bottomStackView.topAnchor.constraint(equalTo: leftStackView.bottomAnchor, constant: 50),
       bottomStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
       bottomRightStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-      bottomStackView.heightAnchor.constraint(equalToConstant: 75)
+      bottomStackView.heightAnchor.constraint(equalToConstant: 75),
+      bottomStackView.bottomAnchor.constraint(equalTo: searchBar.topAnchor, constant: -30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: bottomStackViewConstraints)
     
