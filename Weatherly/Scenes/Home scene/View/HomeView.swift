@@ -103,7 +103,6 @@ extension HomeView {
 // MARK: - settings button tapped
 extension HomeView {
   @objc func settingButtonTapped() {
-    print("Button tapped")
     settingsButtonActionHandler?()
   }
 }
