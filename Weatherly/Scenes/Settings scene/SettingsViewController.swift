@@ -10,7 +10,6 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
   private lazy var settingsView = SettingsView()
-//  private lazy var visualView = UIVisualEffectView()
   
   override func loadView() {
     view = settingsView
@@ -24,14 +23,12 @@ final class SettingsViewController: UIViewController {
     blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
     ])
     
-//    UIView.animate(withDuration: 5) { [weak self] in
-//      self?.visualView.effect = UIBlurEffect(style: .dark)
-//    }
+    settingsViewDoneButtonTapped()
   }
   
-//  override func viewDidLoad() {
-//    super.viewDidLoad()
-//  }
-  
-//  
+  func settingsViewDoneButtonTapped() {
+    settingsView.doneButtonActionHandler = { [weak self] in
+      self?.dismiss(animated: true, completion: nil)
+    }
+  }
 }

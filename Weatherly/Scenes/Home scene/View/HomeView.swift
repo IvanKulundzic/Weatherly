@@ -100,14 +100,14 @@ extension HomeView {
   }
 }
 
-// MARK: - settings button tapped
+// MARK: - settingsButton tapped
 extension HomeView {
   @objc func settingButtonTapped() {
     settingsButtonActionHandler?()
   }
 }
 
-// MARK: - setup views and their constraints
+// MARK: - view setup
 private extension HomeView {
   func setupHomeView() {
      setupHeaderImageView()

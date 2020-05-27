@@ -9,6 +9,7 @@
 import UIKit
 
 final class SettingsView: UIView {
+  var doneButtonActionHandler: Action?
   private lazy var locationsLabel = UILabel()
   private lazy var locationsListTableView = UITableView()
   private lazy var unitsLabel = UILabel()
@@ -41,6 +42,14 @@ final class SettingsView: UIView {
   }
 }
 
+// MARK: - doneButton tapped
+extension SettingsView {
+  @objc func doneButtonTapped() {
+    doneButtonActionHandler?()
+  }
+}
+
+// MARK: - view setup
 private extension SettingsView {
   func setupView() {
     backgroundColor = .clear
@@ -62,6 +71,7 @@ private extension SettingsView {
     setupWindButton()
     setupPressureIcon()
     setupPressureButton()
+    setupDoneButton()
   }
 
   func setupLocationsLabel() {
@@ -267,5 +277,25 @@ private extension SettingsView {
     
     let image = UIImage(named: "checkmark_check")
     pressureButton.setImage(image, for: .normal)
+  }
+  
+  func setupDoneButton() {
+    addSubview(doneButton)
+    let doneButtonConstraints = [
+//      doneButton.topAnchor.constraint(equalTo: bottomStackView.bottomAnchor, constant: 50),
+      doneButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
+      doneButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
+      doneButton.widthAnchor.constraint(equalToConstant: 100),
+      doneButton.heightAnchor.constraint(equalToConstant: 50)
+    ]
+    NSLayoutConstraint.useAndActivateConstraints(constraints: doneButtonConstraints)
+    
+    doneButton.setTitle("Done", for: .normal)
+    doneButton.setTitleColor(.systemGreen, for: .normal)
+    doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+    doneButton.backgroundColor = .white
+    doneButton.layer.cornerRadius = 25
+    
+    doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
   }
 }
