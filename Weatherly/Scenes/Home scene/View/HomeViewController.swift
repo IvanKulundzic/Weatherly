@@ -22,6 +22,7 @@ final class HomeViewController: UIViewController {
   
   func homeViewSettingsButtonTapped () {
       homeView.settingsButtonActionHandler = { [weak self] in
+        print("Action called")
         let vc = SettingsViewController()
         self?.present(vc, animated: true, completion: nil)
   

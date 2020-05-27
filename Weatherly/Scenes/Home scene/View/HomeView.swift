@@ -101,8 +101,9 @@ extension HomeView {
 }
 
 // MARK: - settings button tapped
-private extension HomeView {
+extension HomeView {
   @objc func settingButtonTapped() {
+    print("Button tapped")
     settingsButtonActionHandler?()
   }
 }
