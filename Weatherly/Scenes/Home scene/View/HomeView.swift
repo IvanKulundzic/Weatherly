@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 final class HomeView: UIView {
+  var settingsButtonActionHandler: Action?
   private lazy var headerImageView = UIImageView()
   private lazy var bodyImageView = UIImageView()
   private lazy var cityNameLabel = UILabel()
@@ -96,6 +97,13 @@ extension HomeView {
   var pressure: String? {
     get { pressureLabel.text }
     set { pressureLabel.text = newValue }
+  }
+}
+
+// MARK: - settings button tapped
+private extension HomeView {
+  @objc func settingButtonTapped() {
+    settingsButtonActionHandler?()
   }
 }
 
@@ -376,6 +384,8 @@ private extension HomeView {
     
     let image = UIImage(named: "settings_icon")
     settingsButton.setImage(image, for: .normal)
+    
+    settingsButton.addTarget(self, action: #selector(settingButtonTapped), for: .touchUpInside)
   }
   
   func setupSearchBar() {

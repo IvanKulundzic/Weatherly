@@ -9,7 +9,7 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-  var homeView = HomeView()
+  private lazy var homeView = HomeView()
   
 //  override func viewDidLoad() {
 //    super.viewDidLoad()
@@ -17,8 +17,15 @@ final class HomeViewController: UIViewController {
 //  }
   override func loadView() {
     view = homeView
+    homeViewSettingsButtonTapped()
   }
   
+  func homeViewSettingsButtonTapped () {
+      homeView.settingsButtonActionHandler = { [weak self] in
+        let vc = SettingsViewController()
+        self?.present(vc, animated: true, completion: nil)
+  
+      }
+    }
   
 }
-

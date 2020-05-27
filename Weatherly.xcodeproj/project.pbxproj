@@ -15,6 +15,9 @@
 		EB8CF0A5246B2D930070EC54 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0A4246B2D930070EC54 /* HomeView.swift */; };
 		EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0A7247C63710070EC54 /* Helpers.swift */; };
 		EB8CF0AA247C665D0070EC54 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0A9247C665D0070EC54 /* Extensions.swift */; };
+		EB8CF0AD247ED4CF0070EC54 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0AC247ED4CF0070EC54 /* TypeAlias.swift */; };
+		EB8CF0B1247ED5860070EC54 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0B0247ED5860070EC54 /* SettingsView.swift */; };
+		EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		EB8CF0A4246B2D930070EC54 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EB8CF0A7247C63710070EC54 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		EB8CF0A9247C665D0070EC54 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EB8CF0AC247ED4CF0070EC54 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
+		EB8CF0B0247ED5860070EC54 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,7 @@
 		EB8CF09E246B2C790070EC54 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				EB8CF0AF247ED5710070EC54 /* Settings scene */,
 				EB8CF09F246B2C850070EC54 /* Home scene */,
 			);
 			path = Scenes;
@@ -119,8 +126,18 @@
 			children = (
 				EB8CF0A7247C63710070EC54 /* Helpers.swift */,
 				EB8CF0A9247C665D0070EC54 /* Extensions.swift */,
+				EB8CF0AC247ED4CF0070EC54 /* TypeAlias.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		EB8CF0AF247ED5710070EC54 /* Settings scene */ = {
+			isa = PBXGroup;
+			children = (
+				EB8CF0B0247ED5860070EC54 /* SettingsView.swift */,
+				EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */,
+			);
+			path = "Settings scene";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,11 +211,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB8CF08F243672E60070EC54 /* HomeViewController.swift in Sources */,
+				EB8CF0B1247ED5860070EC54 /* SettingsView.swift in Sources */,
 				EB8CF0AA247C665D0070EC54 /* Extensions.swift in Sources */,
+				EB8CF0AD247ED4CF0070EC54 /* TypeAlias.swift in Sources */,
 				EB8CF0A5246B2D930070EC54 /* HomeView.swift in Sources */,
 				EB8CF08B243672E60070EC54 /* AppDelegate.swift in Sources */,
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
 				EB8CF08D243672E60070EC54 /* SceneDelegate.swift in Sources */,
+				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
