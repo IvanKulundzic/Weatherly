@@ -9,6 +9,7 @@
 import UIKit
 
 final class SearchView: UIView {
+  var dismissButtonActionHandler: Action?
   private lazy var searchTableView = UITableView()
   private lazy var searchBar = UISearchBar()
   private lazy var dismissButton = UIButton()
@@ -21,6 +22,10 @@ final class SearchView: UIView {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setupView()
+  }
+  
+  @objc func dismissButtonTapped() {
+    dismissButtonActionHandler?()
   }
 }
 
@@ -65,15 +70,16 @@ private extension SearchView {
   func setupDismissButton() {
     addSubview(dismissButton)
     let dismissButtonConstraints = [
-      dismissButton.topAnchor.constraint(equalTo: topAnchor, constant: 2),
-//      dismissButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
-      dismissButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -2),
-      dismissButton.heightAnchor.constraint(equalToConstant: 25),
-      dismissButton.widthAnchor.constraint(equalToConstant: 25)
+      dismissButton.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+      //      dismissButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2),
+      dismissButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+      dismissButton.heightAnchor.constraint(equalToConstant: 30),
+      dismissButton.widthAnchor.constraint(equalToConstant: 30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: dismissButtonConstraints)
     
+    dismissButton.backgroundColor = .blue
     
-      dismissButton.backgroundColor = .blue
+    dismissButton.addTarget(self, action: #selector(dismissButtonTapped), for: .touchUpInside)
   }
 }

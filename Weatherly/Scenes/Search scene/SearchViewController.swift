@@ -20,6 +20,15 @@ final class SearchViewController: UIViewController {
   override func loadView() {
     view = searchView
     setupBlurView()
+    searchViewDismissButtonTapped()
+  }
+}
+
+private extension SearchViewController {
+  func searchViewDismissButtonTapped() {
+    searchView.dismissButtonActionHandler = { [weak self] in
+      self?.dismiss(animated: true, completion: nil)
+    }
   }
 }
 
