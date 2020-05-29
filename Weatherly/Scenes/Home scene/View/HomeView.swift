@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-final class HomeView: UIView {
+final class HomeView: UIView, UISearchBarDelegate {
   var settingsButtonActionHandler: Action?
+  var searchBarActionHandler: Action?
   private lazy var headerImageView = UIImageView()
   private lazy var bodyImageView = UIImageView()
   private lazy var cityNameLabel = UILabel()
@@ -38,12 +39,19 @@ final class HomeView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupHomeView()
+    searchBar.delegate = self
+    setupView()
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    setupHomeView()
+    searchBar.delegate = self
+    setupView()
+  }
+  
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    searchBar.showsCancelButton = true
+    searchBarActionHandler?()
   }
 }
 
@@ -109,32 +117,33 @@ extension HomeView {
 
 // MARK: - view setup
 private extension HomeView {
-  func setupHomeView() {
-     setupHeaderImageView()
-     setupBodyImageView()
-     setupCityNameLabel()
-     setupTemperatureLabel()
-     setupSummaryLabel()
-     setupLeftStackView()
-     setupRightStackView()
-     setupSeparatorView()
-     setupLowTemperature()
-     setupLowTemperatureLabel()
-     setupHighTemperature()
-     setupHighTemperatureLabel()
-     setupSettingsButton()
-     setupSearchBar()
-     setupBottomStackView()
-     setupBottomLeftStackView()
-     setupBottomMiddleStackView()
-     setupBottomRightStackView()
-     setupHumidityIcon()
-     setupHumidityLabel()
-     setupWindIcon()
-     setupWindLabel()
-     setupPressureIcon()
-     setupPressureLabel()
-   }
+  func setupView() {
+    searchBar.delegate = self
+    setupHeaderImageView()
+    setupBodyImageView()
+    setupCityNameLabel()
+    setupTemperatureLabel()
+    setupSummaryLabel()
+    setupLeftStackView()
+    setupRightStackView()
+    setupSeparatorView()
+    setupLowTemperature()
+    setupLowTemperatureLabel()
+    setupHighTemperature()
+    setupHighTemperatureLabel()
+    setupSettingsButton()
+    setupSearchBar()
+    setupBottomStackView()
+    setupBottomLeftStackView()
+    setupBottomMiddleStackView()
+    setupBottomRightStackView()
+    setupHumidityIcon()
+    setupHumidityLabel()
+    setupWindIcon()
+    setupWindLabel()
+    setupPressureIcon()
+    setupPressureLabel()
+  }
   
   func setupHeaderImageView() {
     addSubview(headerImageView)

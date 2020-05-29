@@ -14,6 +14,7 @@ final class HomeViewController: UIViewController {
   override func loadView() {
     view = homeView
     homeViewSettingsButtonTapped()
+    homeViewSearchBarTapped()
   }
   
   func homeViewSettingsButtonTapped () {
@@ -22,4 +23,13 @@ final class HomeViewController: UIViewController {
       self?.present(vc, animated: true, completion: nil)
     }
   }
+  
+  func homeViewSearchBarTapped() {
+    homeView.searchBarActionHandler = { [weak self] in
+      print("Present")
+      let vc = SearchViewController()
+      self?.present(vc, animated: true, completion: nil)
+    }
+  }
 }
+
