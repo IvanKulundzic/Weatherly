@@ -45,12 +45,10 @@ final class HomeView: UIView, UISearchBarDelegate {
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    searchBar.delegate = self
     setupView()
   }
   
   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    searchBar.showsCancelButton = true
     searchBarActionHandler?()
   }
 }
@@ -119,6 +117,7 @@ extension HomeView {
 private extension HomeView {
   func setupView() {
     searchBar.delegate = self
+    
     setupHeaderImageView()
     setupBodyImageView()
     setupCityNameLabel()

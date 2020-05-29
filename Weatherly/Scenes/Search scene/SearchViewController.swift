@@ -10,6 +10,7 @@ import UIKit
 
 final class SearchViewController: UIViewController {
   private lazy var searchView = SearchView()
+  private lazy var blurView = UIVisualEffectView()
   
 //  override func viewDidLoad() {
 //    super.viewDidLoad()
@@ -18,6 +19,19 @@ final class SearchViewController: UIViewController {
   
   override func loadView() {
     view = searchView
-    print("loadView")
+    setupBlurView()
+  }
+}
+
+private extension SearchViewController {
+  func setupBlurView() {
+    view.insertSubview(blurView, at: 0)
+    let blurViewConstraints = [
+      blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
+      blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
+    ]
+    NSLayoutConstraint.useAndActivateConstraints(constraints: blurViewConstraints)
+    
+    blurView.effect = UIBlurEffect(style: .light)
   }
 }
