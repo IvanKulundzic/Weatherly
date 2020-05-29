@@ -10,25 +10,34 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
   private lazy var settingsView = SettingsView()
+  private lazy var blurView = UIVisualEffectView()
   
   override func loadView() {
     view = settingsView
-    let blurEffect = UIBlurEffect(style: .light)
-    let blurView = UIVisualEffectView(effect: blurEffect)
-    blurView.translatesAutoresizingMaskIntoConstraints = false
-    view.insertSubview(blurView, at: 0)
-    
-    NSLayoutConstraint.activate([
-    blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
-    blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
-    ])
-    
     settingsViewDoneButtonTapped()
+    addBlurEffect()
   }
-  
+}
+
+// MARK: - settings button tapped
+private extension SettingsViewController {
   func settingsViewDoneButtonTapped() {
     settingsView.doneButtonActionHandler = { [weak self] in
       self?.dismiss(animated: true, completion: nil)
     }
+  }
+}
+
+// MARK: - blur effect
+private extension SettingsViewController {
+  func addBlurEffect() {
+    view.insertSubview(blurView, at: 0)
+    let blurViewConstraints = [
+      blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
+      blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
+    ]
+    NSLayoutConstraint.useAndActivateConstraints(constraints: blurViewConstraints)
+    
+    blurView.effect = UIBlurEffect(style: .light)
   }
 }
