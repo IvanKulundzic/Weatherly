@@ -134,10 +134,34 @@
 		EB8CF0AF247ED5710070EC54 /* Settings scene */ = {
 			isa = PBXGroup;
 			children = (
-				EB8CF0B0247ED5860070EC54 /* SettingsView.swift */,
-				EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */,
+				EB8CF0B62481215D0070EC54 /* Model */,
+				EB8CF0B52481215A0070EC54 /* View */,
+				EB8CF0B4248121540070EC54 /* ViewModel */,
 			);
 			path = "Settings scene";
+			sourceTree = "<group>";
+		};
+		EB8CF0B4248121540070EC54 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EB8CF0B52481215A0070EC54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */,
+				EB8CF0B0247ED5860070EC54 /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EB8CF0B62481215D0070EC54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
