@@ -47,10 +47,6 @@ final class HomeView: UIView, UISearchBarDelegate {
     super.init(coder: aDecoder)
     setupView()
   }
-  
-  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    searchBarActionHandler?()
-  }
 }
 
 // MARK: - view properties
@@ -106,8 +102,15 @@ extension HomeView {
   }
 }
 
-// MARK: - settingsButton tapped
+// MARK: - searchBar tapped
 extension HomeView {
+  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    searchBarActionHandler?()
+  }
+}
+
+// MARK: - settingsButton tapped
+private extension HomeView {
   @objc func settingButtonTapped() {
     settingsButtonActionHandler?()
   }
@@ -384,7 +387,7 @@ private extension HomeView {
     addSubview(settingsButton)
     let settingsButtonConstraints = [
       settingsButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
-      settingsButton.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 15),
+      settingsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
       settingsButton.heightAnchor.constraint(equalToConstant: 75),
       settingsButton.widthAnchor.constraint(equalToConstant: 75)
     ]
@@ -401,7 +404,7 @@ private extension HomeView {
     let searchBarConstraints = [
       searchBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
       searchBar.leadingAnchor.constraint(equalTo: settingsButton.leadingAnchor, constant: 50),
-      searchBar.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -25),
+      searchBar.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
       searchBar.heightAnchor.constraint(equalToConstant: 75)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: searchBarConstraints)
