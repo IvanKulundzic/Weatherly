@@ -11,7 +11,7 @@ import UIKit
 final class SearchView: UIView {
   var dismissButtonActionHandler: Action?
   private lazy var searchTableView = UITableView()
-  private lazy var searchBar = UISearchBar()
+  private(set) lazy var searchBar = UISearchBar()
   private lazy var dismissButton = UIButton()
   
   override init(frame: CGRect) {
