@@ -20,6 +20,10 @@
 		EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */; };
 		EB8CF0B9248121F60070EC54 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0B8248121F60070EC54 /* SearchViewController.swift */; };
 		EB8CF0BB248122090070EC54 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0BA248122090070EC54 /* SearchView.swift */; };
+		EB8CF0BD24841AF10070EC54 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0BC24841AF10070EC54 /* HomeViewModel.swift */; };
+		EB8CF0BF24841BC50070EC54 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0BE24841BC50070EC54 /* City.swift */; };
+		EB8CF0C124841C4F0070EC54 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C024841C4F0070EC54 /* NetworkingManager.swift */; };
+		EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C224841C8B0070EC54 /* JSONParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EB8CF0B8248121F60070EC54 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EB8CF0BA248122090070EC54 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		EB8CF0BC24841AF10070EC54 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		EB8CF0BE24841BC50070EC54 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		EB8CF0C024841C4F0070EC54 /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		EB8CF0C224841C8B0070EC54 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,7 @@
 		EB8CF0A0246B2C8E0070EC54 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EB8CF0BC24841AF10070EC54 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -122,6 +131,7 @@
 		EB8CF0A3246B2CAF0070EC54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EB8CF0BE24841BC50070EC54 /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -132,6 +142,8 @@
 				EB8CF0A7247C63710070EC54 /* Helpers.swift */,
 				EB8CF0A9247C665D0070EC54 /* Extensions.swift */,
 				EB8CF0AC247ED4CF0070EC54 /* TypeAlias.swift */,
+				EB8CF0C024841C4F0070EC54 /* NetworkingManager.swift */,
+				EB8CF0C224841C8B0070EC54 /* JSONParser.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -255,10 +267,14 @@
 				EB8CF0AD247ED4CF0070EC54 /* TypeAlias.swift in Sources */,
 				EB8CF0A5246B2D930070EC54 /* HomeView.swift in Sources */,
 				EB8CF08B243672E60070EC54 /* AppDelegate.swift in Sources */,
+				EB8CF0BD24841AF10070EC54 /* HomeViewModel.swift in Sources */,
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
 				EB8CF08D243672E60070EC54 /* SceneDelegate.swift in Sources */,
 				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
+				EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */,
+				EB8CF0BF24841BC50070EC54 /* City.swift in Sources */,
 				EB8CF0BB248122090070EC54 /* SearchView.swift in Sources */,
+				EB8CF0C124841C4F0070EC54 /* NetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
