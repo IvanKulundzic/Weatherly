@@ -77,13 +77,13 @@ extension HomeView {
   }
   
   var lowTemperatureValue: String? {
-    get { lowTemperatureLabel.text }
-    set { lowTemperatureLabel.text = newValue }
+    get { lowTemperature.text }
+    set { lowTemperature.text = newValue }
   }
   
   var highTemperatureValue: String? {
-    get { highTemperatureLabel.text }
-    set { highTemperatureLabel.text = newValue }
+    get { highTemperature.text }
+    set { highTemperature.text = newValue }
   }
   
   var humidity: String? {
@@ -183,7 +183,7 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: cityNameLabelConstraints)
     
-    cityNameLabel.text = "London"
+//    cityNameLabel.text = "London"
     cityNameLabel.textColor = .white
     cityNameLabel.textAlignment = .center
     cityNameLabel.font = UIFont.systemFont(ofSize: 50)
@@ -267,7 +267,7 @@ private extension HomeView {
   func setupLowTemperature() {
     leftStackView.addArrangedSubview(lowTemperature)
     
-    lowTemperature.text = "89.3° F"
+//    lowTemperature.text = "89.3° F"
     lowTemperature.textAlignment = .center
     lowTemperature.font = UIFont.systemFont(ofSize: 30)
     lowTemperature.textColor = .white

@@ -10,13 +10,13 @@ import Foundation
 
 struct City: Codable {
   let name: String
-  let latitude: Double
-  let longitude: Double
+  let latitude: Float
+  let longitude: Float
   let currentWeather: CurrentWeatherData
   let dailyWeather: DailyWeather
   let flags: Flags
   
-  init(name: String, latitude: Double, longitude: Double, currentWeather: CurrentWeatherData, dailyWeather: DailyWeather, flags: Flags) {
+  init(name: String, latitude: Float, longitude: Float, currentWeather: CurrentWeatherData, dailyWeather: DailyWeather, flags: Flags) {
     self.name = name
     self.latitude = latitude
     self.longitude = longitude
@@ -36,6 +36,7 @@ struct City: Codable {
 }
 
 struct CurrentWeatherData: Codable {
+  let time: Int
   let summary: String
   let temperature: Double
   let windSpeed: Double
@@ -57,6 +58,7 @@ struct CurrentWeatherData: Codable {
   }
   
   enum CodingKeys: String, CodingKey {
+    case time = "time"
     case summary = "summary"
     case temperature = "temperature"
     case windSpeed = "windSpeed"
@@ -67,7 +69,7 @@ struct CurrentWeatherData: Codable {
 }
 
 struct DailyWeather: Codable {
-  let data: DailyData
+  let data: [DailyData]
   
   enum CodingKeys: String, CodingKey {
     case data = "data"
@@ -75,10 +77,12 @@ struct DailyWeather: Codable {
 }
 
 struct DailyData: Codable {
-  let temperatureMin: Double
-  let temperatureMax: Double
+  let time: Int
+  let temperatureMin: Float
+  let temperatureMax: Float
   
   enum CodingKeys: String, CodingKey {
+    case time = "time"
     case temperatureMin = "temperatureMin"
     case temperatureMax = "temperatureMax"
   }

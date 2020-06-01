@@ -12,16 +12,85 @@ import UIKit
 
 final class HomeViewModel: NSObject {
   var cityChangedHandler: Action?
-  private var city: City? {
+  var city: City? {
     didSet {
       cityChangedHandler?()
     }
   }
   private let coreLocationManager = CLLocationManager()
   private let networkingManager = NetworkingManager()
+  private let dateFormatter = DateFormatter()
   
   init(city: City? = nil) {
-    self.city = city
+    self.city = city    
+  }
+}
+
+extension HomeViewModel {
+  var time: Int {
+    return city?.currentWeather.time ?? 0
+  }
+  
+  var cityName: String? {
+    return city?.name
+  }
+  
+  var cityTemperature: String? {
+    return "\(String(describing: round(((city?.currentWeather.temperature ?? 0.0) - 32) / 2))) ℃"
+  }
+  
+  var cityCondition: String? {
+    return city?.currentWeather.summary
+  }
+  
+  var cityWindSpeed: String? {
+    return "\(city?.currentWeather.windSpeed ?? 0.0) km/h"
+  }
+  
+  var cityHumidity: String? {
+    return "\(city?.currentWeather.humidity ?? 0.0)%"
+  }
+  
+  var cityPressure: String? {
+    return "\(city?.currentWeather.pressure ?? 0.0) hpa"
+  }
+  
+  var cityMinTemp: String? {
+    let currentTimeTimestamp: TimeInterval = Double(time)
+    let currentDate = Date(timeIntervalSince1970: currentTimeTimestamp)
+    
+    let dailyArray = city?.dailyWeather.data
+    
+    guard let matchingArrayElement = dailyArray?.first(where: {
+      let dailyTime: TimeInterval = Double($0.time)
+      let dailyDate = Date(timeIntervalSince1970: dailyTime)
+      return Calendar.current.isDate(currentDate, inSameDayAs: dailyDate)
+    }) else { return nil }
+    return "\(matchingArrayElement.temperatureMin)°"
+  }
+  
+  var cityMaxTemp: String? {
+    let currentTimeTimestamp: TimeInterval = Double(time)
+    let currentDate = Date(timeIntervalSince1970: currentTimeTimestamp)
+    
+    let dailyArray = city?.dailyWeather.data
+    
+    guard let matchingArrayElement = dailyArray?.first(where: {
+      let dailyTime: TimeInterval = Double($0.time)
+      let dailyDate = Date(timeIntervalSince1970: dailyTime)
+      return Calendar.current.isDate(currentDate, inSameDayAs: dailyDate)
+    }) else { return nil }
+    return "\(matchingArrayElement.temperatureMax)°"
+  }
+  
+  var cityBodyImage: UIImage? {
+    guard let cityBodyImageString = city?.currentWeather.icon.rawValue else { return nil }
+    return UIImage(named: "body_image-\(cityBodyImageString)")
+  }
+  
+  var cityHeaderImage: UIImage? {
+    guard let cityHeaderImageString = city?.currentWeather.icon.rawValue else { return nil }
+    return UIImage(named: "header_image-\(cityHeaderImageString)")
   }
 }
 
