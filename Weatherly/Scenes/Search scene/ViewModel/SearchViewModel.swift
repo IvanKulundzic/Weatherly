@@ -16,7 +16,22 @@ final class SearchViewModel: NSObject {
     }
   }
   
+  private lazy var networkingManager = NetworkingManager()
+  
   init(location: Location? = nil) {
     self.location = location
+  }
+}
+
+extension SearchViewModel {
+  func searchLocation() {
+    let userName = "ivanKulundzic"
+    let urlToUse = "https://api.geonames.org/searchJSON?q=london&maxRows=10&username=ivanKulundzic"
+    print(urlToUse)
+    guard let url = URL(string: urlToUse) else { return }
+    networkingManager.getApiData(url: url) { [weak self] (location: Location) in
+      self?.location = location
+      self?.searchActionHandler?()
+    }
   }
 }

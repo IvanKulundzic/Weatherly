@@ -8,16 +8,18 @@
 	<string>We need your location to provide you you current weather conditions.</string>
   <key>NSAppTransportSecurity</key>
   <dict>
-    <key>NSExceptionDomains</key>
-    <dict>
-      <key>openweathermap.org</key>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+      <key>NSExceptionDomains</key>
       <dict>
-        <key>NSIncludesSubdomains</key>
-        <true/>
-        <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
+          <key>example.com</key>
+          <dict>
+              <key>NSExceptionAllowsInsecureHTTPLoads</key>
+              <true/>
+              <key>NSIncludesSubdomains</key>
+              <true/>
+          </dict>
       </dict>
-    </dict>
   </dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

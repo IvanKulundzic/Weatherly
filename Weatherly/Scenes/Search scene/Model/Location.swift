@@ -9,10 +9,19 @@
 import Foundation
 
 struct Location: Codable {
-  let name: String
+  var totalResultsCount: Int
+  var geonames: [Geonames]
+  
+  init(totalResultsCount: Int, geonames: [Geonames]) {
+    self.totalResultsCount = totalResultsCount
+    self.geonames = geonames
+  }
+}
+
+struct Geonames: Codable {
+  var name: String
   
   init(name: String) {
     self.name = name
   }
-  
 }

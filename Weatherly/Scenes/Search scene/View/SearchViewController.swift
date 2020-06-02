@@ -6,11 +6,13 @@
 //  Copyright © 2020 Ivan Kulundzic. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 final class SearchViewController: UIViewController {
   private lazy var searchView = SearchView()
   private lazy var blurView = UIVisualEffectView()
+  private lazy var searchViewModel = SearchViewModel()
   
   
 //  override func viewDidLoad() {
@@ -23,6 +25,8 @@ final class SearchViewController: UIViewController {
     setupBlurView()
     searchViewDismissButtonTapped()
     addKeyboardObservers()
+    searchViewModel.searchLocation()
+    
   }
 }
 
