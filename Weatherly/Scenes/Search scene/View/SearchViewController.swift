@@ -14,19 +14,12 @@ final class SearchViewController: UIViewController {
   private lazy var blurView = UIVisualEffectView()
   private lazy var searchViewModel = SearchViewModel()
   
-  
-//  override func viewDidLoad() {
-//    super.viewDidLoad()
-//    
-//  }
-  
   override func loadView() {
     view = searchView
     setupBlurView()
     searchViewDismissButtonTapped()
     addKeyboardObservers()
-    searchViewModel.searchLocation()
-    
+    searchViewModel.searchLocation()    
   }
 }
 

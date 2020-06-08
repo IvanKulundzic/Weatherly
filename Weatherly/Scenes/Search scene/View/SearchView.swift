@@ -63,8 +63,8 @@ private extension SearchView {
     NSLayoutConstraint.useAndActivateConstraints(constraints: searchBarConstraints)
     
     searchBar.placeholder = "Search"
-    searchBar.searchBarStyle = .minimal
-    searchBar.searchTextField.backgroundColor = .white
+    //searchBar.searchBarStyle = .minimal
+    //searchBar.searchTextField.backgroundColor = .white
   }
   
   func setupDismissButton() {

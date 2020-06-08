@@ -37,9 +37,9 @@ final class HomeView: UIView, UISearchBarDelegate {
   private lazy var settingsButton = UIButton()
   private lazy var searchBar = UISearchBar()
   
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
-    searchBar.delegate = self
     setupView()
   }
   
@@ -47,6 +47,13 @@ final class HomeView: UIView, UISearchBarDelegate {
     super.init(coder: aDecoder)
     setupView()
   }
+  
+  @objc func textFieldTapped() {
+    print("Tap")
+    //searchBarActionHandler?()
+    
+  }
+  
 }
 
 // MARK: - view properties
@@ -105,6 +112,7 @@ extension HomeView {
 // MARK: - searchBar tapped
 extension HomeView {
   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    print("Tap")
     searchBarActionHandler?()
   }
 }
@@ -202,7 +210,7 @@ private extension HomeView {
     temperatureLabel.text = "20°"
     temperatureLabel.textColor = .white
     temperatureLabel.textAlignment = .center
-    temperatureLabel.font = UIFont.systemFont(ofSize: 60)
+    temperatureLabel.font = UIFont(name: "Gotham Rounded - Light", size: 72)
   }
   
   func setupSummaryLabel() {
@@ -307,7 +315,7 @@ private extension HomeView {
       bottomStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
       bottomStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
       bottomStackView.heightAnchor.constraint(equalToConstant: 75),
-      bottomStackView.bottomAnchor.constraint(equalTo: searchBar.topAnchor, constant: -30)
+      //bottomStackView.bottomAnchor.constraint(equalTo: searchBar.topAnchor, constant: -30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: bottomStackViewConstraints)
     
@@ -408,9 +416,12 @@ private extension HomeView {
       searchBar.heightAnchor.constraint(equalToConstant: 75)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: searchBarConstraints)
-    
+
     searchBar.placeholder = "Search"
-    searchBar.searchBarStyle = .minimal
-    searchBar.searchTextField.backgroundColor = .white
+    //searchBar.searchBarStyle = .minimal
+    //searchBar.searchTextField.backgroundColor = .white
+    let textField = UITextField()
+    searchBar.addSubview(textField)
+    textField.addTarget(self, action: #selector(textFieldTapped), for: .editingDidBegin)
   }
 }
