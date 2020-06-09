@@ -34,7 +34,6 @@ final class HomeViewController: UIViewController {
   func viewModelHandler() {
     homeViewModel.cityChangedHandler = { [weak self] in
       self?.updateUI()
-      
     }
   }
   
@@ -52,4 +51,3 @@ final class HomeViewController: UIViewController {
     }
   }
 }
-

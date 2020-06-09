@@ -406,8 +406,8 @@ private extension HomeView {
   func setupTextField() {
     addSubview(textField)
     let textFieldConstraints = [
-      textField.topAnchor.constraint(equalTo: settingsButton.topAnchor, constant: 5),
-      textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -20),
+      textField.topAnchor.constraint(equalTo: settingsButton.topAnchor, constant: 15),
+      //textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -20),
       textField.leadingAnchor.constraint(equalTo: settingsButton.trailingAnchor, constant: 5),
       textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
       textField.heightAnchor.constraint(equalToConstant: 40)

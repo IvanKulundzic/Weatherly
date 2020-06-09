@@ -26,7 +26,7 @@ final class SearchViewModel: NSObject {
 extension SearchViewModel {
   func searchLocation() {
     let userName = "ivanKulundzic"
-    let urlToUse = "http://api.geonames.org/searchJSON?q=london&maxRows=10&username=ivanKulundzic"
+    let urlToUse = "http://api.geonames.org/searchJSON?q=london&maxRows=10&username=\(userName)"
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (location: Location) in
       self?.location = location

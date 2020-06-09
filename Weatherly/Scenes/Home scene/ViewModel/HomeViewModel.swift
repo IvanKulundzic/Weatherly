@@ -26,6 +26,7 @@ final class HomeViewModel: NSObject {
   }
 }
 
+// MARK: - viewModel properties
 extension HomeViewModel {
   var time: Int {
     return city?.currentWeather.time ?? 0
@@ -58,7 +59,6 @@ extension HomeViewModel {
   var cityMinTemp: String? {
     let currentTimeTimestamp: TimeInterval = Double(time)
     let currentDate = Date(timeIntervalSince1970: currentTimeTimestamp)
-    
     let dailyArray = city?.dailyWeather.data
     
     guard let matchingArrayElement = dailyArray?.first(where: {
@@ -72,7 +72,6 @@ extension HomeViewModel {
   var cityMaxTemp: String? {
     let currentTimeTimestamp: TimeInterval = Double(time)
     let currentDate = Date(timeIntervalSince1970: currentTimeTimestamp)
-    
     let dailyArray = city?.dailyWeather.data
     
     guard let matchingArrayElement = dailyArray?.first(where: {
@@ -94,16 +93,15 @@ extension HomeViewModel {
   }
 }
 
-extension HomeViewModel {
+// MARK: - get your current location
+extension HomeViewModel: CLLocationManagerDelegate {
   func getCurrentLocation() {
     coreLocationManager.delegate = self
     coreLocationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     coreLocationManager.requestWhenInUseAuthorization()
     coreLocationManager.startUpdatingLocation()
   }
-}
 
-extension HomeViewModel: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let location = locations.last else { return }
     // When horizontal accuracy is over 0, a location has been found so the location manager can stop updating
@@ -114,6 +112,7 @@ extension HomeViewModel: CLLocationManagerDelegate {
   }
 }
 
+// MARK: - fetch city
 private extension HomeViewModel {
   func fetchCity(location: CLLocation) {
     let latitude = String(location.coordinate.latitude)

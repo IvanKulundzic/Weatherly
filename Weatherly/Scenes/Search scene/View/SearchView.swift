@@ -11,7 +11,7 @@ import UIKit
 final class SearchView: UIView {
   var dismissButtonActionHandler: Action?
   private lazy var searchTableView = UITableView()
-  private(set) lazy var searchBar = UISearchBar()
+  var textField = UITextField()
   private lazy var dismissButton = UIButton()
   
   override init(frame: CGRect) {
@@ -30,12 +30,12 @@ final class SearchView: UIView {
 }
 
 //MARK: - setup view
-private extension SearchView {
+extension SearchView: UITextFieldDelegate {
   func setupView() {
+    textField.delegate = self
     backgroundColor = .clear
-    
     setupSearchTableView()
-    setupSearchBar()
+    setupTextField()
     setupDismissButton()
   }
   
@@ -52,19 +52,24 @@ private extension SearchView {
     searchTableView.backgroundColor = .white
   }
   
-  func setupSearchBar() {
-    addSubview(searchBar)
-    let searchBarConstraints = [
-      searchBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
-      searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-      searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-      searchBar.heightAnchor.constraint(equalToConstant: 50)
+  func setupTextField() {
+    addSubview(textField)
+    let textFieldConstraints = [
+      textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),      //textField.topAnchor.constraint(equalTo: searchTableView.bottomAnchor, constant: 50),
+      textField.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
+      textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
+      textField.heightAnchor.constraint(equalToConstant: 40)
+//
+//      textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+//      textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+//      textField.heightAnchor.constraint(equalToConstant: 40)
     ]
-    NSLayoutConstraint.useAndActivateConstraints(constraints: searchBarConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
     
-    searchBar.placeholder = "Search"
-    //searchBar.searchBarStyle = .minimal
-    //searchBar.searchTextField.backgroundColor = .white
+    textField.placeholder = "Search"
+    textField.backgroundColor = .white
+    textField.layer.cornerRadius = 20.0//textField.frame.size.height / 3
+    textField.layer.masksToBounds = true    
   }
   
   func setupDismissButton() {

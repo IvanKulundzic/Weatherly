@@ -34,9 +34,9 @@ private extension SearchViewController {
     guard let userInfo = notification.userInfo else { return }
     guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
     let keyboardFrame = keyboardSize.cgRectValue
-    let searchBarInitialPosition = searchView.searchBar.frame.origin.y
-    if self.searchView.searchBar.frame.origin.y == searchBarInitialPosition {
-      self.searchView.searchBar.frame.origin.y -= keyboardFrame.height
+    let searchBarInitialPosition = searchView.textField.frame.origin.y
+    if self.searchView.textField.frame.origin.y == searchBarInitialPosition {
+      self.searchView.textField.frame.origin.y -= keyboardFrame.height
     }
     else {
       print("Else block")
@@ -47,10 +47,10 @@ private extension SearchViewController {
     guard let userInfo = notification.userInfo else { return }
     guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
     let keyboardFrame = keyboardSize.cgRectValue
-    let searchBarInitialPosition = searchView.searchBar.frame.origin.y
+    let searchBarInitialPosition = searchView.textField.frame.origin.y
     print("Search bar position: ", searchBarInitialPosition)
-    if self.searchView.searchBar.frame.origin.y != searchBarInitialPosition + keyboardFrame.height {
-      self.searchView.searchBar.frame.origin.y = 748.0
+    if self.searchView.textField.frame.origin.y != searchBarInitialPosition + keyboardFrame.height {
+      self.searchView.textField.frame.origin.y = 748.0
     }
   }
 }
