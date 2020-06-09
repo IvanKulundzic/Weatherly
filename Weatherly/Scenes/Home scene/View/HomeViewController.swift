@@ -46,7 +46,7 @@ final class HomeViewController: UIViewController {
   }
   
   func homeViewSearchBarTapped() {
-    homeView.searchBarActionHandler = { [weak self] in
+    homeView.textFieldActionHandler = { [weak self] in
       let vc = SearchViewController()
       self?.present(vc, animated: true, completion: nil)
     }

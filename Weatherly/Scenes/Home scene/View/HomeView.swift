@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-final class HomeView: UIView, UISearchBarDelegate {
+final class HomeView: UIView {
   var settingsButtonActionHandler: Action?
-  var searchBarActionHandler: Action?
+  var textFieldActionHandler: Action?
   private lazy var headerImageView = UIImageView()
   private lazy var bodyImageView = UIImageView()
   private lazy var cityNameLabel = UILabel()
@@ -35,8 +35,7 @@ final class HomeView: UIView, UISearchBarDelegate {
   private lazy var pressureIcon = UIImageView()
   private lazy var pressureLabel = UILabel()
   private lazy var settingsButton = UIButton()
-  private lazy var searchBar = UISearchBar()
-  
+  private lazy var textField = UITextField()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -50,10 +49,8 @@ final class HomeView: UIView, UISearchBarDelegate {
   
   @objc func textFieldTapped() {
     print("Tap")
-    //searchBarActionHandler?()
-    
+    textFieldActionHandler?()
   }
-  
 }
 
 // MARK: - view properties
@@ -110,10 +107,10 @@ extension HomeView {
 }
 
 // MARK: - searchBar tapped
-extension HomeView {
+extension HomeView: UITextFieldDelegate {
   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
     print("Tap")
-    searchBarActionHandler?()
+    textFieldActionHandler?()
   }
 }
 
@@ -127,7 +124,7 @@ private extension HomeView {
 // MARK: - view setup
 private extension HomeView {
   func setupView() {
-    searchBar.delegate = self
+    textField.delegate = self
     
     setupHeaderImageView()
     setupBodyImageView()
@@ -142,7 +139,7 @@ private extension HomeView {
     setupHighTemperature()
     setupHighTemperatureLabel()
     setupSettingsButton()
-    setupSearchBar()
+    setupTextField()
     setupBottomStackView()
     setupBottomLeftStackView()
     setupBottomMiddleStackView()
@@ -403,25 +400,25 @@ private extension HomeView {
     
     let image = UIImage(named: "settings_icon")
     settingsButton.setImage(image, for: .normal)
-    
     settingsButton.addTarget(self, action: #selector(settingButtonTapped), for: .touchUpInside)
   }
   
-  func setupSearchBar() {
-    addSubview(searchBar)
-    let searchBarConstraints = [
-      searchBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
-      searchBar.leadingAnchor.constraint(equalTo: settingsButton.leadingAnchor, constant: 50),
-      searchBar.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
-      searchBar.heightAnchor.constraint(equalToConstant: 75)
+  func setupTextField() {
+    addSubview(textField)
+    let textFieldConstraints = [
+      textField.topAnchor.constraint(equalTo: settingsButton.topAnchor, constant: 5),
+      textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -20),
+      textField.leadingAnchor.constraint(equalTo: settingsButton.trailingAnchor, constant: 5),
+      textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
+      textField.heightAnchor.constraint(equalToConstant: 40)
     ]
-    NSLayoutConstraint.useAndActivateConstraints(constraints: searchBarConstraints)
+    NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
 
-    searchBar.placeholder = "Search"
-    //searchBar.searchBarStyle = .minimal
-    //searchBar.searchTextField.backgroundColor = .white
-    let textField = UITextField()
-    searchBar.addSubview(textField)
+    textField.placeholder = "Search"
+    textField.backgroundColor = .white
+    textField.layer.cornerRadius = 20.0//textField.frame.size.height / 3
+    textField.layer.masksToBounds = true
+    
     textField.addTarget(self, action: #selector(textFieldTapped), for: .editingDidBegin)
   }
 }

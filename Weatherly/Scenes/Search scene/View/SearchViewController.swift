@@ -19,7 +19,7 @@ final class SearchViewController: UIViewController {
     setupBlurView()
     searchViewDismissButtonTapped()
     addKeyboardObservers()
-    searchViewModel.searchLocation()    
+    searchViewModel.searchLocation()
   }
 }
 
@@ -35,7 +35,6 @@ private extension SearchViewController {
     guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
     let keyboardFrame = keyboardSize.cgRectValue
     let searchBarInitialPosition = searchView.searchBar.frame.origin.y
-    print("Search bar position: ", searchBarInitialPosition)
     if self.searchView.searchBar.frame.origin.y == searchBarInitialPosition {
       self.searchView.searchBar.frame.origin.y -= keyboardFrame.height
     }
