@@ -37,12 +37,13 @@ final class SearchViewController: UIViewController {
 // MARK: - tableView data source
 extension SearchViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    guard let locationsCount = locations?.count else { return 0 }
+    return locationsCount
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    cell.backgroundColor = .blue
+    cell.backgroundColor = .clear
     cell.textLabel?.text = locations?[indexPath.row].name
     return cell
   }

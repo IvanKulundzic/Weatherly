@@ -70,11 +70,11 @@ extension SearchView {
       searchTableView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 5),
       searchTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
       searchTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100),
-      searchTableView.heightAnchor.constraint(equalToConstant: 150)
+      searchTableView.heightAnchor.constraint(equalToConstant: 300)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: searchTableViewConstraints)
     
-    searchTableView.backgroundColor = .white
+    searchTableView.backgroundColor = .clear
     searchTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
   }
   
