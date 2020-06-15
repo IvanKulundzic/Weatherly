@@ -12,10 +12,9 @@ final class SearchViewModel: NSObject {
   var searchActionHandler: Action?
   var location: Location? {
     didSet {
-      searchActionHandler?()
+      searchActionHandler?()      
     }
   }
-  
   private lazy var networkingManager = NetworkingManager()
   
   init(location: Location? = nil) {
@@ -23,15 +22,21 @@ final class SearchViewModel: NSObject {
   }
 }
 
+//extension SearchViewModel {
+//  var textArray: String? {
+//    return location?.geonames[0].name
+//  }
+//}
+
 extension SearchViewModel {
-  func searchLocation() {
+  func searchLocation(input: String) {
+    let input = input
     let userName = "ivanKulundzic"
-    let urlToUse = "http://api.geonames.org/searchJSON?q=london&maxRows=10&username=\(userName)"
+    let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (location: Location) in
       self?.location = location
-      print(location.geonames[0].name)
-      self?.searchActionHandler?()
+      //self?.searchActionHandler?()
     }
   }
 }

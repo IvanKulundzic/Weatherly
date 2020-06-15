@@ -14,12 +14,37 @@ final class SearchViewController: UIViewController {
   private lazy var blurView = UIVisualEffectView()
   private lazy var searchViewModel = SearchViewModel()
   
+  var locations: [Geonames]?
+  
   override func loadView() {
     view = searchView
+  }
+  
+  override func viewDidLoad() {
+    searchView.searchTableView.dataSource = self
     setupBlurView()
-    searchViewDismissButtonTapped()
     addKeyboardObservers()
-    searchViewModel.searchLocation()
+    searchViewDismissButtonTapped()
+    handleTextFieldUserInput()
+  }
+  
+  func updateUI() {
+    print("Array: \(String(describing: locations))")
+    
+  }
+}
+
+// MARK: - tableView data source
+extension SearchViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 3
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+    cell.backgroundColor = .blue
+    cell.textLabel?.text = locations?[indexPath.row].name
+    return cell
   }
 }
 
@@ -48,9 +73,22 @@ private extension SearchViewController {
     guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
     let keyboardFrame = keyboardSize.cgRectValue
     let searchBarInitialPosition = searchView.textField.frame.origin.y
-    print("Search bar position: ", searchBarInitialPosition)
     if self.searchView.textField.frame.origin.y != searchBarInitialPosition + keyboardFrame.height {
       self.searchView.textField.frame.origin.y = 748.0
+    }
+  }
+}
+
+// MARK: - textField output
+private extension SearchViewController {
+  func handleTextFieldUserInput() {
+    searchView.textFieldActionHandler = { [weak self] output in
+      self?.searchViewModel.searchLocation(input: output)
+    }
+    
+    searchViewModel.searchActionHandler = { [weak self] in
+      self?.locations = self?.searchViewModel.location?.geonames
+      self?.searchView.searchTableView.reloadData()
     }
   }
 }

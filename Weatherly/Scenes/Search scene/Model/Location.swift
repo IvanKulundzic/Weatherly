@@ -9,12 +9,14 @@
 import Foundation
 
 struct Location: Codable {
-  var totalResultsCount: Int
   var geonames: [Geonames]
   
-  init(totalResultsCount: Int, geonames: [Geonames]) {
-    self.totalResultsCount = totalResultsCount
+  init(geonames: [Geonames]) {
     self.geonames = geonames
+  }
+  
+  enum CodingKeys: String, CodingKey {
+    case geonames = "geonames"
   }
 }
 
@@ -23,5 +25,9 @@ struct Geonames: Codable {
   
   init(name: String) {
     self.name = name
+  }
+  
+  enum CodingKeys: String, CodingKey {
+    case name = "name"
   }
 }

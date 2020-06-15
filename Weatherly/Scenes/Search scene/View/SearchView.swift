@@ -10,13 +10,17 @@ import UIKit
 
 final class SearchView: UIView {
   var dismissButtonActionHandler: Action?
-  private lazy var searchTableView = UITableView()
+  var textFieldActionHandler: ((String) -> Void)?
+  var searchTableView = UITableView()
   var textField = UITextField()
   private lazy var dismissButton = UIButton()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupView()
+    
+    //    let tapGesture = UITapGestureRecognizer()
+    //    tapGesture.de
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -29,8 +33,29 @@ final class SearchView: UIView {
   }
 }
 
-//MARK: - setup view
+//// MARK: - view properties
+//extension SearchView {
+//  var tableViewObject: String {
+//    get { print("TableViewObject get") }
+//    set { searchTableView.cellForRow(at: <#T##IndexPath#>)}
+//  }
+//}
+
+// MARK: - textField delegate
 extension SearchView: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    guard let output = textField.text else { print("No textField text"); return }
+    textFieldActionHandler?(output)
+  }
+}
+
+//MARK: - setup view
+extension SearchView {
   func setupView() {
     textField.delegate = self
     backgroundColor = .clear
@@ -50,6 +75,7 @@ extension SearchView: UITextFieldDelegate {
     NSLayoutConstraint.useAndActivateConstraints(constraints: searchTableViewConstraints)
     
     searchTableView.backgroundColor = .white
+    searchTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
   }
   
   func setupTextField() {
@@ -59,10 +85,10 @@ extension SearchView: UITextFieldDelegate {
       textField.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
       textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
       textField.heightAnchor.constraint(equalToConstant: 40)
-//
-//      textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-//      textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-//      textField.heightAnchor.constraint(equalToConstant: 40)
+      //
+      //      textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+      //      textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+      //      textField.heightAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
     

@@ -48,7 +48,6 @@ final class HomeView: UIView {
   }
   
   @objc func textFieldTapped() {
-    print("Tap")
     textFieldActionHandler?()
   }
 }
