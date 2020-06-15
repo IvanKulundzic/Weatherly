@@ -16,8 +16,12 @@ final class SearchViewController: UIViewController {
   
   var locations: [Geonames]?
   
+  let cellId = "cellId"
+  
   override func loadView() {
     view = searchView
+    
+    searchView.searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: cellId)
   }
   
   override func viewDidLoad() {
@@ -26,6 +30,8 @@ final class SearchViewController: UIViewController {
     addKeyboardObservers()
     searchViewDismissButtonTapped()
     handleTextFieldUserInput()
+    
+    
   }
   
   func updateUI() {
@@ -42,9 +48,14 @@ extension SearchViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SearchTableViewCell
     cell.backgroundColor = .clear
-    cell.textLabel?.text = locations?[indexPath.row].name
+    let array = locations?[indexPath.row].name
+    let firstLetter = array.map { $0.prefix(1) }
+    if let safeFirstLetter = firstLetter {
+      cell.locationFirstLetterLabel.text = "\(safeFirstLetter)"
+    }
+    cell.locationNameLabel.text = locations?[indexPath.row].name
     return cell
   }
 }

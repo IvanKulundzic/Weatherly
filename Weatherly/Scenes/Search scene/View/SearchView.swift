@@ -20,7 +20,7 @@ final class SearchView: UIView {
     setupView()
     
     //    let tapGesture = UITapGestureRecognizer()
-    //    tapGesture.de
+    //    tapGesture.
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -70,12 +70,13 @@ extension SearchView {
       searchTableView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 5),
       searchTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
       searchTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100),
-      searchTableView.heightAnchor.constraint(equalToConstant: 300)
+      searchTableView.heightAnchor.constraint(equalToConstant: 500)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: searchTableViewConstraints)
     
     searchTableView.backgroundColor = .clear
-    searchTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    searchTableView.estimatedRowHeight = 30
+    searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "cellId")
   }
   
   func setupTextField() {
