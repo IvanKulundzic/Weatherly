@@ -33,6 +33,7 @@ extension SearchViewModel {
     let input = input
     let userName = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"
+    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (location: Location) in
       self?.location = location

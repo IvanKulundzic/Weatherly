@@ -30,13 +30,10 @@ final class SearchViewController: UIViewController {
     addKeyboardObservers()
     searchViewDismissButtonTapped()
     handleTextFieldUserInput()
-    
-    
   }
   
   func updateUI() {
-    print("Array: \(String(describing: locations))")
-    
+    print("Array: \(String(describing: locations))")    
   }
 }
 
@@ -55,7 +52,14 @@ extension SearchViewController: UITableViewDataSource {
     if let safeFirstLetter = firstLetter {
       cell.locationFirstLetterLabel.text = "\(safeFirstLetter)"
     }
-    cell.locationNameLabel.text = locations?[indexPath.row].name
+    if let locationName = locations?[indexPath.row].name,
+      let locationCountry = locations?[indexPath.row].countryCode {
+      cell.locationNameLabel.text = "\(locationName), \(locationCountry)"
+      
+    }
+    
+    
+    //cell.locationNameLabel.text = locations?[indexPath.row].name + ", " + locations?[indexPath.row].country
     return cell
   }
 }
