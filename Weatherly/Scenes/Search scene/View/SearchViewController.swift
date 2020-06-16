@@ -106,11 +106,14 @@ private extension SearchViewController {
   func handleTextFieldUserInput() {
     searchView.textFieldActionHandler = { [weak self] output in
       self?.searchViewModel.searchLocation(input: output)
+      self?.searchView.activityIndicatorView.startAnimating()
     }
     
     searchViewModel.searchActionHandler = { [weak self] in
       self?.locations = self?.searchViewModel.location?.geonames
+      //self?.searchView.activityIndicatorView.startAnimating()
       self?.searchView.searchTableView.reloadData()
+      self?.searchView.activityIndicatorView.stopAnimating()
     }
   }
 }

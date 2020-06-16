@@ -36,6 +36,7 @@ final class HomeView: UIView {
   private lazy var pressureLabel = UILabel()
   private lazy var settingsButton = UIButton()
   private lazy var textField = UITextField()
+  private(set) lazy var activityIndicatorView = UIActivityIndicatorView()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -149,6 +150,7 @@ private extension HomeView {
     setupWindLabel()
     setupPressureIcon()
     setupPressureLabel()
+    setupActivityIndicator()
   }
   
   func setupHeaderImageView() {
@@ -187,7 +189,6 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: cityNameLabelConstraints)
     
-//    cityNameLabel.text = "London"
     cityNameLabel.textColor = .white
     cityNameLabel.textAlignment = .center
     cityNameLabel.font = UIFont.systemFont(ofSize: 50)
@@ -270,8 +271,7 @@ private extension HomeView {
   
   func setupLowTemperature() {
     leftStackView.addArrangedSubview(lowTemperature)
-    
-//    lowTemperature.text = "89.3° F"
+
     lowTemperature.textAlignment = .center
     lowTemperature.font = UIFont.systemFont(ofSize: 30)
     lowTemperature.textColor = .white
@@ -310,8 +310,7 @@ private extension HomeView {
       bottomStackView.topAnchor.constraint(equalTo: leftStackView.bottomAnchor, constant: 50),
       bottomStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
       bottomStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-      bottomStackView.heightAnchor.constraint(equalToConstant: 75),
-      //bottomStackView.bottomAnchor.constraint(equalTo: searchBar.topAnchor, constant: -30)
+      bottomStackView.heightAnchor.constraint(equalToConstant: 75)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: bottomStackViewConstraints)
     
@@ -406,7 +405,6 @@ private extension HomeView {
     addSubview(textField)
     let textFieldConstraints = [
       textField.topAnchor.constraint(equalTo: settingsButton.topAnchor, constant: 15),
-      //textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -20),
       textField.leadingAnchor.constraint(equalTo: settingsButton.trailingAnchor, constant: 5),
       textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
       textField.heightAnchor.constraint(equalToConstant: 40)
@@ -415,9 +413,22 @@ private extension HomeView {
 
     textField.placeholder = "Search"
     textField.backgroundColor = .white
-    textField.layer.cornerRadius = 20.0//textField.frame.size.height / 3
+    textField.layer.cornerRadius = 20.0
     textField.layer.masksToBounds = true
     
     textField.addTarget(self, action: #selector(textFieldTapped), for: .editingDidBegin)
+  }
+  
+  func setupActivityIndicator() {
+    addSubview(activityIndicatorView)
+    let activityIndicatorConstraints = [
+      activityIndicatorView.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
+      activityIndicatorView.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor),
+      activityIndicatorView.heightAnchor.constraint(equalToConstant: 40),
+      activityIndicatorView.widthAnchor.constraint(equalToConstant: 40)
+    ]
+    NSLayoutConstraint.useAndActivateConstraints(constraints: activityIndicatorConstraints)
+    
+    activityIndicatorView.style = .whiteLarge
   }
 }

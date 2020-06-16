@@ -13,14 +13,12 @@ final class SearchView: UIView {
   var textFieldActionHandler: ((String) -> Void)?
   private(set) lazy var searchTableView = UITableView()
   private(set) lazy var textField = UITextField()
+  private(set) lazy var activityIndicatorView = UIActivityIndicatorView()
   private lazy var dismissButton = UIButton()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupView()
-    
-    //    let tapGesture = UITapGestureRecognizer()
-    //    tapGesture.
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -51,6 +49,7 @@ extension SearchView {
     setupSearchTableView()
     setupTextField()
     setupDismissButton()
+    setupActivityIndicatorView()
     //setupTapGesture()
   }
   
@@ -101,6 +100,19 @@ extension SearchView {
     dismissButton.layer.cornerRadius = 15
     
     dismissButton.addTarget(self, action: #selector(dismissButtonTapped), for: .touchUpInside)
+  }
+  
+  func setupActivityIndicatorView() {
+    addSubview(activityIndicatorView)
+    let activityIndicatorConstraints = [
+      activityIndicatorView.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
+      activityIndicatorView.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor),
+      activityIndicatorView.heightAnchor.constraint(equalToConstant: 40),
+      activityIndicatorView.widthAnchor.constraint(equalToConstant: 40)
+    ]
+    NSLayoutConstraint.useAndActivateConstraints(constraints: activityIndicatorConstraints)
+    
+    activityIndicatorView.style = .whiteLarge
   }
   
   @objc func dismissButtonTapped() {

@@ -14,6 +14,11 @@ final class HomeViewController: UIViewController {
   
   override func loadView() {
     view = homeView
+    homeView.activityIndicatorView.startAnimating()
+  }
+  
+  override func viewDidLoad() {
+    
     homeViewSettingsButtonTapped()
     homeViewSearchBarTapped()
     homeViewModel.getCurrentLocation()
@@ -29,10 +34,11 @@ final class HomeViewController: UIViewController {
     homeView.pressure = homeViewModel.cityPressure
     homeView.lowTemperatureValue = homeViewModel.cityMinTemp
     homeView.highTemperatureValue = homeViewModel.cityMaxTemp
+    homeView.activityIndicatorView.stopAnimating()
   }
   
   func viewModelHandler() {
-    homeViewModel.cityChangedHandler = { [weak self] in
+    homeViewModel.cityChangedHandler = { [weak self] in      
       self?.updateUI()
     }
   }
