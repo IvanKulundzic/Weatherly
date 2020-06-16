@@ -14,7 +14,6 @@ class SearchTableViewCell: UITableViewCell {
       print("Location in cell set")
     }
   }
-  
   private(set) lazy var locationNameLabel = UILabel()
   private(set) lazy var locationFirstLetterLabel = UILabel()
   
@@ -26,7 +25,6 @@ class SearchTableViewCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     
-    // Configure the view for the selected state
   }
   
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -39,6 +37,7 @@ class SearchTableViewCell: UITableViewCell {
   }
 }
 
+// MARK: - setup cell and subviews
 private extension SearchTableViewCell {
   func setupCell() {
     setupLocationFirstLetterLabel()
@@ -56,7 +55,6 @@ private extension SearchTableViewCell {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationFirstLetterLabelConstraints)
     
-//    locationFirstLetterLabel.text = "R"
     locationFirstLetterLabel.backgroundColor = .gray
     locationFirstLetterLabel.textColor = .white
     locationFirstLetterLabel.textAlignment = .center
@@ -74,7 +72,7 @@ private extension SearchTableViewCell {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationNameLabelConstraints)
     
-//    locationNameLabel.backgroundColor = .black
+    locationNameLabel.backgroundColor = .clear
     locationNameLabel.textColor = .white
     locationNameLabel.textAlignment = .left
     locationNameLabel.font = UIFont.systemFont(ofSize: 20)

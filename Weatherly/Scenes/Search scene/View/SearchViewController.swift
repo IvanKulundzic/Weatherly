@@ -26,6 +26,8 @@ final class SearchViewController: UIViewController {
   
   override func viewDidLoad() {
     searchView.searchTableView.dataSource = self
+    searchView.searchTableView.delegate = self
+    
     setupBlurView()
     addKeyboardObservers()
     searchViewDismissButtonTapped()
@@ -34,6 +36,14 @@ final class SearchViewController: UIViewController {
   
   func updateUI() {
     print("Array: \(String(describing: locations))")    
+  }
+}
+
+// MARK: - tableView delegate
+extension SearchViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let selectedCell = locations?[indexPath.row].name else { return }
+    print(selectedCell)
   }
 }
 
@@ -55,11 +65,7 @@ extension SearchViewController: UITableViewDataSource {
     if let locationName = locations?[indexPath.row].name,
       let locationCountry = locations?[indexPath.row].countryCode {
       cell.locationNameLabel.text = "\(locationName), \(locationCountry)"
-      
     }
-    
-    
-    //cell.locationNameLabel.text = locations?[indexPath.row].name + ", " + locations?[indexPath.row].country
     return cell
   }
 }
