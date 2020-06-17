@@ -117,10 +117,9 @@ extension HomeViewModel {
   func fetchCity(location: CLLocation) {
     let latitude = String(location.coordinate.latitude)
     let longitude = String(location.coordinate.longitude)
-    
     let key = "4b208159f61d43a3a3505ce608eb359d"
     let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)"
-    
+    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (city: City) in
       self?.city = city

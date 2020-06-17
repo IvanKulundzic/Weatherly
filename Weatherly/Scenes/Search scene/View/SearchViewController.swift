@@ -9,31 +9,25 @@
 import Foundation
 import UIKit
 
-protocol SearchViewControllerDelegate: class {
-  
-}
+protocol SearchViewControllerDelegate: class { }
 
 final class SearchViewController: UIViewController {
+  var locations: [Geonames]?
+  let cellId = "cellId"
   var delegate: SearchViewControllerDelegate?
-  //var closure: (() -> Void)?
   private lazy var searchView = SearchView()
   private lazy var searchViewModel = SearchViewModel()
   private lazy var blurView = UIVisualEffectView()
   
-  var locations: [Geonames]?
-  
-  let cellId = "cellId"
-  
   override func loadView() {
     view = searchView
     
-    searchView.searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: cellId)
   }
   
   override func viewDidLoad() {
     searchView.searchTableView.dataSource = self
     searchView.searchTableView.delegate = self
-    
+    searchView.searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: cellId)
     setupBlurView()
     addKeyboardObservers()
     searchViewDismissButtonTapped()
@@ -53,7 +47,6 @@ extension SearchViewController: UITableViewDelegate {
       }
       self?.dismiss(animated: true, completion: nil)
     }
-    
   }
 }
 

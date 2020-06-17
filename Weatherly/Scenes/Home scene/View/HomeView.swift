@@ -12,6 +12,7 @@ import UIKit
 final class HomeView: UIView {
   var settingsButtonActionHandler: Action?
   var textFieldActionHandler: Action?
+  private(set) lazy var activityIndicatorView = UIActivityIndicatorView()
   private lazy var headerImageView = UIImageView()
   private lazy var bodyImageView = UIImageView()
   private lazy var cityNameLabel = UILabel()
@@ -36,7 +37,6 @@ final class HomeView: UIView {
   private lazy var pressureLabel = UILabel()
   private lazy var settingsButton = UIButton()
   private lazy var textField = UITextField()
-  private(set) lazy var activityIndicatorView = UIActivityIndicatorView()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -46,10 +46,6 @@ final class HomeView: UIView {
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setupView()
-  }
-  
-  @objc func textFieldTapped() {
-    textFieldActionHandler?()
   }
 }
 
@@ -125,7 +121,6 @@ private extension HomeView {
 private extension HomeView {
   func setupView() {
     textField.delegate = self
-    
     setupHeaderImageView()
     setupBodyImageView()
     setupCityNameLabel()
@@ -204,10 +199,9 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: temperatureLabelConstraints)
     
-    temperatureLabel.text = "20°"
     temperatureLabel.textColor = .white
     temperatureLabel.textAlignment = .center
-    temperatureLabel.font = UIFont(name: "Gotham Rounded - Light", size: 72)
+    temperatureLabel.font = UIFont.systemFont(ofSize: 50)
   }
   
   func setupSummaryLabel() {
@@ -220,7 +214,6 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: summaryLabelConstraints)
     
-    summaryLabel.text = "Sunny"
     summaryLabel.textColor = .white
     summaryLabel.textAlignment = .center
     summaryLabel.font = UIFont.systemFont(ofSize: 20)
@@ -289,7 +282,6 @@ private extension HomeView {
   func setupHighTemperature() {
     rightStackView.addArrangedSubview(highTemperature)
     
-    highTemperature.text = "95.4° F"
     highTemperature.textColor = .white
     highTemperature.textAlignment = .center
     highTemperature.font = UIFont.systemFont(ofSize: 30)
@@ -333,7 +325,6 @@ private extension HomeView {
     bottomMiddleStackView.axis = .vertical
     bottomMiddleStackView.alignment = .center
     bottomMiddleStackView.distribution = .equalCentering
-    
   }
   
   func setupBottomRightStackView() {
@@ -353,7 +344,6 @@ private extension HomeView {
   func setupHumidityLabel() {
     bottomLeftStackView.addArrangedSubview(humidityLabel)
     
-    humidityLabel.text = "0.8%"
     humidityLabel.textColor = .white
     humidityLabel.font = UIFont.systemFont(ofSize: 25)
   }
@@ -367,7 +357,6 @@ private extension HomeView {
   func setupWindLabel() {
     bottomMiddleStackView.addArrangedSubview(windLabel)
     
-    windLabel.text = "1.2 mph"
     windLabel.textColor = .white
     windLabel.font = UIFont.systemFont(ofSize: 25)
   }
@@ -381,7 +370,6 @@ private extension HomeView {
   func setupPressureLabel() {
     bottomRightStackView.addArrangedSubview(pressureLabel)
     
-    pressureLabel.text = "1009 hpa"
     pressureLabel.textColor = .white
     pressureLabel.font = UIFont.systemFont(ofSize: 25)
   }
@@ -417,6 +405,10 @@ private extension HomeView {
     textField.layer.masksToBounds = true
     
     textField.addTarget(self, action: #selector(textFieldTapped), for: .editingDidBegin)
+  }
+  
+  @objc func textFieldTapped() {
+    textFieldActionHandler?()
   }
   
   func setupActivityIndicator() {
