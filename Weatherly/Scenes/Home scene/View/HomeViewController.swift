@@ -60,7 +60,5 @@ final class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: SearchViewControllerDelegate {
-  func test(city: City) {
-    
-  }
+  
 }

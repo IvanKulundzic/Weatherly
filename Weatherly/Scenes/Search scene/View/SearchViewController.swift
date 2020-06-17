@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SearchViewControllerDelegate: class {
-  func test(city: City)
+  
 }
 
 final class SearchViewController: UIViewController {
@@ -46,8 +46,6 @@ extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
     guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
-    
-    
     searchViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
     searchViewModel.searchActionHandler = { [weak self] in
       if let presenter = self?.presentingViewController as? HomeViewController {
