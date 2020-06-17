@@ -9,8 +9,8 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-  private lazy var homeView = HomeView()
   private(set) lazy var homeViewModel = HomeViewModel()
+  private lazy var homeView = HomeView()
   
   override func loadView() {
     view = homeView
@@ -18,14 +18,18 @@ final class HomeViewController: UIViewController {
   }
   
   override func viewDidLoad() {
-    
-    
     homeViewSettingsButtonTapped()
     homeViewSearchBarTapped()
     homeViewModel.getCurrentLocation()
     viewModelHandler()
   }
-  
+}
+
+// MARK: - conform to searchViewControllerDelegate
+extension HomeViewController: SearchViewControllerDelegate { }
+
+// MARK: - update UI with model data
+private extension HomeViewController {
   func updateUI() {
     homeView.cityName = homeViewModel.cityName
     homeView.temperature = homeViewModel.cityTemperature
@@ -39,26 +43,25 @@ final class HomeViewController: UIViewController {
   }
   
   func viewModelHandler() {
-    homeViewModel.cityChangedHandler = { [weak self] in      
+    homeViewModel.cityChangedHandler = { [weak self] in
       self?.updateUI()
+    }
+  }
+}
+
+// MARK: - buttons tapped
+private extension HomeViewController {
+  func homeViewSearchBarTapped() {
+    homeView.textFieldActionHandler = { [weak self] in
+      let vc = SearchViewController()
+      self?.present(vc, animated: true)
     }
   }
   
   func homeViewSettingsButtonTapped () {
     homeView.settingsButtonActionHandler = { [weak self] in
       let vc = SettingsViewController()
-      self?.present(vc, animated: true, completion: nil)
+      self?.present(vc, animated: true)
     }
   }
-  
-  func homeViewSearchBarTapped() {
-    homeView.textFieldActionHandler = { [weak self] in
-      let vc = SearchViewController()
-      self?.present(vc, animated: true, completion: nil)
-    }
-  }
-}
-
-extension HomeViewController: SearchViewControllerDelegate {
-  
 }
