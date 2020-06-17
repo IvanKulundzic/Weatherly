@@ -23,14 +23,20 @@ struct Location: Codable {
 struct Geonames: Codable {
   var name: String
   var countryCode: String
+  var longitude: String
+  var latitude: String
   
-  init(name: String, countryCode: String) {
+  init(name: String, countryCode: String, longitude: String, latitude: String) {
     self.name = name
     self.countryCode = countryCode
+    self.longitude = longitude
+    self.latitude = latitude
   }
   
   enum CodingKeys: String, CodingKey {
     case name = "name"
     case countryCode = "countryCode"
+    case longitude = "lng"
+    case latitude = "lat"
   }
 }

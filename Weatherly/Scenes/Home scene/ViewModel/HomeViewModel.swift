@@ -113,7 +113,7 @@ extension HomeViewModel: CLLocationManagerDelegate {
 }
 
 // MARK: - fetch city
-private extension HomeViewModel {
+extension HomeViewModel {
   func fetchCity(location: CLLocation) {
     let latitude = String(location.coordinate.latitude)
     let longitude = String(location.coordinate.longitude)

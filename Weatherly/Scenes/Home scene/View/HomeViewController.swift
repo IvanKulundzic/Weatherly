@@ -10,7 +10,7 @@ import UIKit
 
 final class HomeViewController: UIViewController {
   private lazy var homeView = HomeView()
-  private lazy var homeViewModel = HomeViewModel()
+  private(set) lazy var homeViewModel = HomeViewModel()
   
   override func loadView() {
     view = homeView
@@ -18,6 +18,7 @@ final class HomeViewController: UIViewController {
   }
   
   override func viewDidLoad() {
+    
     
     homeViewSettingsButtonTapped()
     homeViewSearchBarTapped()
@@ -55,5 +56,11 @@ final class HomeViewController: UIViewController {
       let vc = SearchViewController()
       self?.present(vc, animated: true, completion: nil)
     }
+  }
+}
+
+extension HomeViewController: SearchViewControllerDelegate {
+  func test(city: City) {
+    
   }
 }

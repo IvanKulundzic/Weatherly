@@ -9,10 +9,16 @@
 import Foundation
 import UIKit
 
+protocol SearchViewControllerDelegate: class {
+  func test(city: City)
+}
+
 final class SearchViewController: UIViewController {
+  var delegate: SearchViewControllerDelegate?
+  //var closure: (() -> Void)?
   private lazy var searchView = SearchView()
-  private lazy var blurView = UIVisualEffectView()
   private lazy var searchViewModel = SearchViewModel()
+  private lazy var blurView = UIVisualEffectView()
   
   var locations: [Geonames]?
   
@@ -33,19 +39,26 @@ final class SearchViewController: UIViewController {
     searchViewDismissButtonTapped()
     handleTextFieldUserInput()
   }
-  
-  func updateUI() {
-    print("Array: \(String(describing: locations))")    
-  }
 }
 
 // MARK: - tableView delegate
 extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let selectedCell = locations?[indexPath.row].name else { return }
-    print(selectedCell)
+    guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
+    guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
+    
+    
+    searchViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+    searchViewModel.searchActionHandler = { [weak self] in
+      if let presenter = self?.presentingViewController as? HomeViewController {
+        presenter.homeViewModel.city = self?.searchViewModel.city
+      }
+      self?.dismiss(animated: true, completion: nil)
+    }
+    
   }
 }
+
 
 // MARK: - tableView data source
 extension SearchViewController: UITableViewDataSource {
@@ -111,7 +124,6 @@ private extension SearchViewController {
     
     searchViewModel.searchActionHandler = { [weak self] in
       self?.locations = self?.searchViewModel.location?.geonames
-      //self?.searchView.activityIndicatorView.startAnimating()
       self?.searchView.searchTableView.reloadData()
       self?.searchView.activityIndicatorView.stopAnimating()
     }
