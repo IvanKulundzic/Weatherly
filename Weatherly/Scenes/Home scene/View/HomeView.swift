@@ -104,6 +104,7 @@ extension HomeView {
 // MARK: - textField tapped
 extension HomeView: UITextFieldDelegate {
   @objc func textFieldTapped() {
+    textField.delegate = self
     textFieldActionHandler?()
   }
 }
@@ -118,7 +119,6 @@ private extension HomeView {
 // MARK: - view setup
 private extension HomeView {
   func setupView() {
-    textField.delegate = self
     setupHeaderImageView()
     setupBodyImageView()
     setupCityNameLabel()
@@ -156,7 +156,6 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: headerImageViewConstraints)
     
-    headerImageView.image = UIImage(named: "header_image-clear-day")
     headerImageView.contentMode = .scaleAspectFit
   }
   
@@ -168,9 +167,7 @@ private extension HomeView {
       bodyImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
       bodyImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 50)
     ]
-    NSLayoutConstraint.useAndActivateConstraints(constraints: bodyImageViewConstraints)
-    
-    bodyImageView.image = UIImage(named: "body_image-clear-day")
+    NSLayoutConstraint.useAndActivateConstraints(constraints: bodyImageViewConstraints)  
   }
   
   func setupCityNameLabel() {

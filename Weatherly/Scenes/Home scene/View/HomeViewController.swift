@@ -48,6 +48,8 @@ private extension HomeViewController {
     homeView.pressure = homeViewModel.cityPressure
     homeView.lowTemperatureValue = homeViewModel.cityMinTemp
     homeView.highTemperatureValue = homeViewModel.cityMaxTemp
+    homeView.bodyImage = homeViewModel.cityBodyImage
+    homeView.headerImage = homeViewModel.cityHeaderImage
     homeView.activityIndicatorView.stopAnimating()
   }
   

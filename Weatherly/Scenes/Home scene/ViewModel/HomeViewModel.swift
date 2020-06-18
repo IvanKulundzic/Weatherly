@@ -125,14 +125,13 @@ extension HomeViewModel {
       self?.geoReverse(long: longitude, lat: latitude)
       self?.cityChangedHandler?()
     }
-    
   }
   
   func geoReverse(long: String, lat: String) {
     let longitude = long
     let latitude = lat
-    let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=ivanKulundzic"
-    print(urlToUse)
+    let username = "ivanKulundzic"
+    let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=\(username)"
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
         self?.city?.name = geoName.geoname[0].name 
