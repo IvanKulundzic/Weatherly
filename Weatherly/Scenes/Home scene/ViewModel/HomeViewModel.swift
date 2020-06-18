@@ -91,6 +91,24 @@ extension HomeViewModel {
     guard let cityHeaderImageString = city?.currentWeather.icon.rawValue else { return nil }
     return UIImage(named: "header_image-\(cityHeaderImageString)")
   }
+  
+  var gradient: UIColor? {
+    guard let cityBodyImageString = city?.currentWeather.icon.rawValue else { return nil }
+    switch cityBodyImageString {
+    case "clear-day", "partly-cloudy-day":
+      return .blue
+    case "clear-night", "partly-cloudy-night":
+      return .gray
+    case "rain", "wind", "thunderstorm", "tornado", "hail":
+      return .green
+    case "snow", "sleet":
+      return .blue
+    case "fog", "cloudy":
+      return .orange
+    default:
+      return .red
+    }
+  }
 }
 
 // MARK: - get your current location
@@ -119,6 +137,7 @@ extension HomeViewModel {
     let longitude = String(location.coordinate.longitude)
     let key = "4b208159f61d43a3a3505ce608eb359d"
     let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)"
+    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (city: City) in
       self?.city = city

@@ -50,6 +50,7 @@ private extension HomeViewController {
     homeView.highTemperatureValue = homeViewModel.cityMaxTemp
     homeView.bodyImage = homeViewModel.cityBodyImage
     homeView.headerImage = homeViewModel.cityHeaderImage
+    homeView.gradient = homeViewModel.gradient
     homeView.activityIndicatorView.stopAnimating()
   }
   

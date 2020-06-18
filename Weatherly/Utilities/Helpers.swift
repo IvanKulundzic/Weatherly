@@ -22,3 +22,12 @@ public struct UsesAutoLayout<T: UIView> {
     wrappedValue.translatesAutoresizingMaskIntoConstraints = false
   }
 }
+
+
+enum GradientColors {
+  case day
+  case night
+  case rain
+  case snow
+  case fog
+}
