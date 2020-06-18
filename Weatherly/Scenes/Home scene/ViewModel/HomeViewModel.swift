@@ -119,11 +119,24 @@ extension HomeViewModel {
     let longitude = String(location.coordinate.longitude)
     let key = "4b208159f61d43a3a3505ce608eb359d"
     let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)"
-    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (city: City) in
       self?.city = city
+      self?.geoReverse(long: longitude, lat: latitude)
       self?.cityChangedHandler?()
+    }
+    
+  }
+  
+  func geoReverse(long: String, lat: String) {
+    let longitude = long
+    let latitude = lat
+    let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=ivanKulundzic"
+    print(urlToUse)
+    if let url = URL(string: urlToUse) {
+      networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
+        self?.city?.name = geoName.geoname[0].name 
+      }
     }
   }
 }

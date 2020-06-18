@@ -31,11 +31,11 @@ extension SearchViewModel {
   func searchLocation(input: String) {
     let input = input
     let userName = "ivanKulundzic"
-    let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"
+    let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"    
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (location: Location) in
       self?.location = location
-      //self?.searchActionHandler?()
+      
     }
   }
   
@@ -48,9 +48,21 @@ extension SearchViewModel {
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (city: City) in
         self?.city = city
-        //self?.searchActionHandler?()
+        self?.geoReverse(long: long, lat: lat)
       }
     }
-    
+  }
+  
+  func geoReverse(long: String, lat: String) {
+    let longitude = long
+    let latitude = lat
+    let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=ivanKulundzic"
+    print(urlToUse)
+    if let url = URL(string: urlToUse) {
+      networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
+        self?.city?.name = geoName.geoname[0].name
+      }
+    }
   }
 }
+

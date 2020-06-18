@@ -26,7 +26,16 @@ final class HomeViewController: UIViewController {
 }
 
 // MARK: - conform to searchViewControllerDelegate
-extension HomeViewController: SearchViewControllerDelegate { }
+extension HomeViewController: SearchViewControllerDelegate {
+  var city: City? {
+    get {
+      return self.city
+    }
+    set {
+      homeViewModel.city = newValue
+    }
+  }
+}
 
 // MARK: - update UI with model data
 private extension HomeViewController {
@@ -54,6 +63,7 @@ private extension HomeViewController {
   func homeViewSearchBarTapped() {
     homeView.textFieldActionHandler = { [weak self] in
       let vc = SearchViewController()
+      vc.delegate = self
       self?.present(vc, animated: true)
     }
   }

@@ -25,6 +25,7 @@
 		EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C224841C8B0070EC54 /* JSONParser.swift */; };
 		EB8CF0C824854AEE0070EC54 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C724854AEE0070EC54 /* Location.swift */; };
 		EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */; };
+		EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE8AC71249A94D600F0491D /* Geoname.swift */; };
 		EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		EB8CF0C224841C8B0070EC54 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		EB8CF0C724854AEE0070EC54 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		EBE8AC71249A94D600F0491D /* Geoname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geoname.swift; sourceTree = "<group>"; };
 		EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				EB8CF0C724854AEE0070EC54 /* Location.swift */,
+				EBE8AC71249A94D600F0491D /* Geoname.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
 				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
 				EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */,
+				EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */,
 				EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */,
 				EB8CF0BF24841BC50070EC54 /* City.swift in Sources */,
 				EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */,

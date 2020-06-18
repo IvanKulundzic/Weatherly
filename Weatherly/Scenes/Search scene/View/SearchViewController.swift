@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-protocol SearchViewControllerDelegate: class { }
+protocol SearchViewControllerDelegate: class {
+  var city: City? { get set }
+}
 
 final class SearchViewController: UIViewController {
   var locations: [Geonames]?
@@ -40,16 +42,16 @@ extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
     guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
+    
+    
     searchViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+    searchViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
     searchViewModel.searchActionHandler = { [weak self] in
-      if let presenter = self?.presentingViewController as? HomeViewController {
-        presenter.homeViewModel.city = self?.searchViewModel.city
-      }
+      self?.delegate?.city = self?.searchViewModel.city
       self?.dismiss(animated: true, completion: nil)
     }
   }
 }
-
 
 // MARK: - tableView data source
 extension SearchViewController: UITableViewDataSource {

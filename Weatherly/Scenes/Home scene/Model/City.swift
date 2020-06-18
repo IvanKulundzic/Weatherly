@@ -9,7 +9,7 @@
 import Foundation
 
 struct City: Codable {
-  let name: String
+  var name: String
   let latitude: Float
   let longitude: Float
   let currentWeather: CurrentWeatherData
