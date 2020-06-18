@@ -45,7 +45,6 @@ final class HomeView: UIView {
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    setupView()
   }
 }
 
@@ -102,10 +101,9 @@ extension HomeView {
   }
 }
 
-// MARK: - searchBar tapped
+// MARK: - textField tapped
 extension HomeView: UITextFieldDelegate {
-  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    print("Tap")
+  @objc func textFieldTapped() {
     textFieldActionHandler?()
   }
 }
@@ -405,10 +403,6 @@ private extension HomeView {
     textField.layer.masksToBounds = true
     
     textField.addTarget(self, action: #selector(textFieldTapped), for: .editingDidBegin)
-  }
-  
-  @objc func textFieldTapped() {
-    textFieldActionHandler?()
   }
   
   func setupActivityIndicator() {
