@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Hue
 
 final class HomeView: UIView {
   var settingsButtonActionHandler: Action?
@@ -15,7 +16,7 @@ final class HomeView: UIView {
   private(set) lazy var activityIndicatorView = UIActivityIndicatorView()
   private lazy var headerImageView = UIImageView()
   private lazy var bodyImageView = UIImageView()
-  private lazy var gradientView = UIView()
+  private lazy var gradientView = GradientView()
   private lazy var cityNameLabel = UILabel()
   private lazy var temperatureLabel = UILabel()
   private lazy var summaryLabel = UILabel()
@@ -46,6 +47,7 @@ final class HomeView: UIView {
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+    setupView()
   }
 }
 
@@ -61,9 +63,12 @@ extension HomeView {
     set { bodyImageView.image = newValue }
   }
   
-  var gradient: UIColor? {
-    get { gradientView.backgroundColor }
-    set { gradientView.backgroundColor = newValue }
+  var gradient: [UIColor]? {
+    get { return [.red, .blue] }
+    set {
+      guard let colorOne = newValue?[0] else { return }
+      guard let colorTwo = newValue?[1] else { return }
+      gradientView.setupView(colorOne: colorOne, colorTwo: colorTwo) }
   }
   
   var cityName: String? {
@@ -127,7 +132,6 @@ private extension HomeView {
   func setupView() {
     setupHeaderImageView()
     setupBodyImageView()
-    setupGradientView()
     setupCityNameLabel()
     setupTemperatureLabel()
     setupSummaryLabel()
@@ -164,6 +168,16 @@ private extension HomeView {
     NSLayoutConstraint.useAndActivateConstraints(constraints: headerImageViewConstraints)
     
     headerImageView.contentMode = .scaleAspectFit
+    headerImageView.backgroundColor = .clear
+    
+    insertSubview(gradientView, at: 0)
+    let gradientViewConstraints = [
+      gradientView.topAnchor.constraint(equalTo: topAnchor),
+      gradientView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+      gradientView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+      gradientView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.6, constant: 1)
+    ]
+    NSLayoutConstraint.useAndActivateConstraints(constraints: gradientViewConstraints)
   }
   
   func setupBodyImageView() {
@@ -175,20 +189,6 @@ private extension HomeView {
       bodyImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 50)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: bodyImageViewConstraints)  
-  }
-  
-  func setupGradientView() {
-    addSubview(gradientView)
-    let gradientViewConstrainsts = [
-      gradientView.topAnchor.constraint(equalTo: topAnchor),
-      gradientView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-      gradientView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-      gradientView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4, constant: 1)
-    ]
-    NSLayoutConstraint.useAndActivateConstraints(constraints: gradientViewConstrainsts)
-    
-    gradientView.backgroundColor = .yellow
-    gradientView.addSubview(headerImageView)
   }
   
   func setupCityNameLabel() {

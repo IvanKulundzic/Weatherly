@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,10 @@
 		EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C224841C8B0070EC54 /* JSONParser.swift */; };
 		EB8CF0C824854AEE0070EC54 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C724854AEE0070EC54 /* Location.swift */; };
 		EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */; };
+		EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */; };
+		EBE69D2A249CAF05001BD576 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */; };
 		EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE8AC71249A94D600F0491D /* Geoname.swift */; };
+		EBE8AC75249B974E00F0491D /* Hue in Frameworks */ = {isa = PBXBuildFile; productRef = EBE8AC74249B974E00F0491D /* Hue */; };
 		EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,8 @@
 		EB8CF0C224841C8B0070EC54 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		EB8CF0C724854AEE0070EC54 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		EBE8AC71249A94D600F0491D /* Geoname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geoname.swift; sourceTree = "<group>"; };
 		EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE8AC75249B974E00F0491D /* Hue in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +94,7 @@
 			children = (
 				EB8CF08A243672E60070EC54 /* AppDelegate.swift */,
 				EB8CF09E246B2C790070EC54 /* Scenes */,
+				EBE69D26249BE24C001BD576 /* Extensions */,
 				EB8CF0A6247C63420070EC54 /* Utilities */,
 				EB8CF093243672E70070EC54 /* Assets.xcassets */,
 				EB8CF095243672E70070EC54 /* LaunchScreen.storyboard */,
@@ -223,6 +230,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		EBE69D26249BE24C001BD576 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */,
+				EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +255,9 @@
 			dependencies = (
 			);
 			name = Weatherly;
+			packageProductDependencies = (
+				EBE8AC74249B974E00F0491D /* Hue */,
+			);
 			productName = Weatherly;
 			productReference = EB8CF087243672E60070EC54 /* Weatherly.app */;
 			productType = "com.apple.product-type.application";
@@ -267,6 +286,9 @@
 				Base,
 			);
 			mainGroup = EB8CF07E243672E60070EC54;
+			packageReferences = (
+				EBE8AC73249B974E00F0491D /* XCRemoteSwiftPackageReference "Hue" */,
+			);
 			productRefGroup = EB8CF088243672E60070EC54 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -305,12 +327,14 @@
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
 				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
 				EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */,
+				EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */,
 				EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */,
 				EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */,
 				EB8CF0BF24841BC50070EC54 /* City.swift in Sources */,
 				EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */,
 				EB8CF0BB248122090070EC54 /* SearchView.swift in Sources */,
 				EB8CF0C124841C4F0070EC54 /* NetworkingManager.swift in Sources */,
+				EBE69D2A249CAF05001BD576 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +526,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EBE8AC73249B974E00F0491D /* XCRemoteSwiftPackageReference "Hue" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/zenangst/Hue.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EBE8AC74249B974E00F0491D /* Hue */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBE8AC73249B974E00F0491D /* XCRemoteSwiftPackageReference "Hue" */;
+			productName = Hue;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EB8CF07F243672E60070EC54 /* Project object */;
 }

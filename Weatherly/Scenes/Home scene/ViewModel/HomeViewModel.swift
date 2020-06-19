@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import UIKit
+import Hue
 
 final class HomeViewModel: NSObject {
   var cityChangedHandler: Action?
@@ -92,21 +93,39 @@ extension HomeViewModel {
     return UIImage(named: "header_image-\(cityHeaderImageString)")
   }
   
-  var gradient: UIColor? {
+  var gradient: [UIColor]? {
     guard let cityBodyImageString = city?.currentWeather.icon.rawValue else { return nil }
     switch cityBodyImageString {
     case "clear-day", "partly-cloudy-day":
-      return .blue
+      print("day")
+      let colorOne = UIColor(hex: "#D8D8D8")
+      let colorTwo = UIColor(hex: "#59B7E0")
+      return [colorOne, colorTwo]
     case "clear-night", "partly-cloudy-night":
-      return .gray
+      print("night")
+      let colorOne = UIColor(hex: "#044663")
+      let colorTwo = UIColor(hex: "#234880")
+      return [colorOne, colorTwo]
     case "rain", "wind", "thunderstorm", "tornado", "hail":
-      return .green
+      print("rain")
+      let colorOne = UIColor(hex: "#15587B")
+      let colorTwo = UIColor(hex: "#4A75A2")
+      return [colorOne, colorTwo]
     case "snow", "sleet":
-      return .blue
+      print("snow")
+      let colorOne = UIColor(hex: "#0B3A4E")
+      let colorTwo = UIColor(hex: "#80D5F3")
+      return [colorOne, colorTwo]
     case "fog", "cloudy":
-      return .orange
+      print("fog")
+      let colorOne = UIColor(hex: "#ABD6E9")
+      let colorTwo = UIColor(hex: "#D8D8D8")
+      return [colorOne, colorTwo]
     default:
-      return .red
+      print("default")
+      let colorOne = UIColor(hex: "#D8D8D8")
+      let colorTwo = UIColor(hex: "#59B7E0")
+      return [colorOne, colorTwo]
     }
   }
 }
