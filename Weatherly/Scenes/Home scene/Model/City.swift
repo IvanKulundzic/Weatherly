@@ -44,19 +44,6 @@ struct CurrentWeatherData: Codable {
   let pressure: Double
   let icon: Icon
   
-  enum Icon: String, Codable {
-    case clearDay = "clear-day"
-    case clearNight = "clear-night"
-    case rain = "rain"
-    case snow = "snow"
-    case sleet = "sleet"
-    case wind = "wind"
-    case fog = "fog"
-    case cloudy = "cloudy"
-    case partlyCloudyDay = "partly-cloudy-day"
-    case partlyCloudyNight = "partly-cloudy-night"
-  }
-  
   enum CodingKeys: String, CodingKey {
     case time = "time"
     case summary = "summary"
@@ -66,6 +53,22 @@ struct CurrentWeatherData: Codable {
     case pressure = "pressure"
     case icon = "icon"
   }
+}
+
+enum Icon: String, Codable {
+  case clearDay = "clear-day"
+  case clearNight = "clear-night"
+  case rain = "rain"
+  case snow = "snow"
+  case sleet = "sleet"
+  case wind = "wind"
+  case fog = "fog"
+  case cloudy = "cloudy"
+  case partlyCloudyDay = "partly-cloudy-day"
+  case partlyCloudyNight = "partly-cloudy-night"
+  case thunderstorm = "thunderstorm"
+  case tornado = "tornado"
+  case hail = "hail"
 }
 
 struct DailyWeather: Codable {
@@ -91,4 +94,3 @@ struct DailyData: Codable {
 struct Flags: Codable {
   let units: String
 }
-

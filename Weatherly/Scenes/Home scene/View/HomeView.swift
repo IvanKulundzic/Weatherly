@@ -68,7 +68,7 @@ extension HomeView {
     set {
       guard let colorOne = newValue?[0] else { return }
       guard let colorTwo = newValue?[1] else { return }
-      gradientView.setupView(colorOne: colorOne, colorTwo: colorTwo) }
+      gradientView.setupViewAndGradientLayer(colorOne: colorOne, colorTwo: colorTwo) }
   }
   
   var cityName: String? {
@@ -415,7 +415,7 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
 
-    textField.placeholder = "Search"
+    textField.placeholder = "   Search"
     textField.backgroundColor = .white
     textField.layer.cornerRadius = 20.0
     textField.layer.masksToBounds = true

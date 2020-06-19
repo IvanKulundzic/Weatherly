@@ -96,36 +96,18 @@ extension HomeViewModel {
   var gradient: [UIColor]? {
     guard let cityBodyImageString = city?.currentWeather.icon.rawValue else { return nil }
     switch cityBodyImageString {
-    case "clear-day", "partly-cloudy-day":
-      print("day")
-      let colorOne = UIColor(hex: "#D8D8D8")
-      let colorTwo = UIColor(hex: "#59B7E0")
-      return [colorOne, colorTwo]
-    case "clear-night", "partly-cloudy-night":
-      print("night")
-      let colorOne = UIColor(hex: "#044663")
-      let colorTwo = UIColor(hex: "#234880")
-      return [colorOne, colorTwo]
-    case "rain", "wind", "thunderstorm", "tornado", "hail":
-      print("rain")
-      let colorOne = UIColor(hex: "#15587B")
-      let colorTwo = UIColor(hex: "#4A75A2")
-      return [colorOne, colorTwo]
-    case "snow", "sleet":
-      print("snow")
-      let colorOne = UIColor(hex: "#0B3A4E")
-      let colorTwo = UIColor(hex: "#80D5F3")
-      return [colorOne, colorTwo]
-    case "fog", "cloudy":
-      print("fog")
-      let colorOne = UIColor(hex: "#ABD6E9")
-      let colorTwo = UIColor(hex: "#D8D8D8")
-      return [colorOne, colorTwo]
+    case Icon.clearDay.rawValue, Icon.partlyCloudyDay.rawValue:
+      return [UIColor.dayColorOne, UIColor.dayColorTwo]
+    case Icon.clearNight.rawValue, Icon.partlyCloudyNight.rawValue:
+      return [UIColor.nightColorOne, UIColor.nightColorTwo]
+    case Icon.rain.rawValue, Icon.wind.rawValue, Icon.thunderstorm.rawValue, Icon.tornado.rawValue, Icon.hail.rawValue:
+      return [UIColor.rainColorOne, UIColor.rainColorTwo]
+    case Icon.snow.rawValue, Icon.sleet.rawValue:
+      return [UIColor.snowColorOne, UIColor.snowColorTwo]
+    case Icon.fog.rawValue, Icon.cloudy.rawValue:
+      return [UIColor.fogColorOne, UIColor.fogColorTwo]
     default:
-      print("default")
-      let colorOne = UIColor(hex: "#D8D8D8")
-      let colorTwo = UIColor(hex: "#59B7E0")
-      return [colorOne, colorTwo]
+      return [UIColor.defaultColorOne, UIColor.defaultColorTwo]
     }
   }
 }

@@ -17,7 +17,6 @@ extension UIView {
     gradientLayer.locations = [0.0, 1.0]
     gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
     gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
-    
     layer.insertSublayer(gradientLayer, at: 0)
   }
 }
@@ -25,26 +24,20 @@ extension UIView {
 class GradientView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
-    //setupView()
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    //setupView()
   }
   
-  func setupView(colorOne: UIColor, colorTwo: UIColor) {
+  func setupViewAndGradientLayer(colorOne: UIColor, colorTwo: UIColor) {
     autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    //backgroundColor = .yellow
-    
-    
-    
     guard let theLayer = self.layer as? CAGradientLayer else {
       return;
     }
     theLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
-    theLayer.locations = [0.0, 0.4]
-    theLayer.frame = self.bounds
+    //theLayer.locations = [0.0, 0.4]
+    //theLayer.frame = self.bounds
   }
   
   override class var layerClass: AnyClass {
