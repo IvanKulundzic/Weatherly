@@ -38,7 +38,7 @@ final class HomeView: UIView {
   private lazy var pressureIcon = UIImageView()
   private lazy var pressureLabel = UILabel()
   private lazy var settingsButton = UIButton()
-  private lazy var textField = UITextField()
+  private lazy var textField = CustomTextField()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -415,7 +415,8 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
 
-    textField.placeholder = "   Search"
+    textField.placeholder = "Search"
+    
     textField.backgroundColor = .white
     textField.layer.cornerRadius = 20.0
     textField.layer.masksToBounds = true

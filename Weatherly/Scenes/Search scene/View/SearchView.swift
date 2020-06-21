@@ -12,7 +12,7 @@ final class SearchView: UIView {
   var dismissButtonActionHandler: Action?
   var textFieldActionHandler: ((String) -> Void)?
   private(set) lazy var searchTableView = UITableView()
-  private(set) lazy var textField = UITextField()
+  private(set) lazy var textField = CustomTextField()
   private(set) lazy var activityIndicatorView = UIActivityIndicatorView()
   private lazy var dismissButton = UIButton()
   
