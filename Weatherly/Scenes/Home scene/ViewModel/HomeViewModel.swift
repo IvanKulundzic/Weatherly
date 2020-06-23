@@ -38,7 +38,7 @@ extension HomeViewModel {
   }
   
   var cityTemperature: String? {
-    return "\(String(describing: round(((city?.currentWeather.temperature ?? 0.0) - 32) / 2))) ℃"
+    return "\(String(describing: round(((city?.currentWeather.temperature ?? 0.0) - 32) / 2))) "
   }
   
   var cityCondition: String? {
