@@ -201,7 +201,7 @@ private extension HomeView {
     
     cityNameLabel.textColor = .white
     cityNameLabel.textAlignment = .center
-    cityNameLabel.font = UIFont.systemFont(ofSize: 50)
+    cityNameLabel.font = .getGothamFont(size: 36, weight: .book)
   }
   
   func setupTemperatureLabel() {
@@ -216,7 +216,7 @@ private extension HomeView {
     
     temperatureLabel.textColor = .white
     temperatureLabel.textAlignment = .center
-    temperatureLabel.font = UIFont.systemFont(ofSize: 80)
+    temperatureLabel.font = .getGothamFont(size: 72, weight: .light)
   }
   
   func setupSummaryLabel() {
@@ -231,7 +231,7 @@ private extension HomeView {
     
     summaryLabel.textColor = .white
     summaryLabel.textAlignment = .center
-    summaryLabel.font = UIFont.systemFont(ofSize: 30)
+    summaryLabel.font = .getGothamFont(size: 24, weight: .light)
   }
   
   func setupLeftStackView() {
@@ -281,7 +281,7 @@ private extension HomeView {
     leftStackView.addArrangedSubview(lowTemperature)
 
     lowTemperature.textAlignment = .center
-    lowTemperature.font = UIFont.systemFont(ofSize: 30)
+    lowTemperature.font = .getGothamFont(size: 24, weight: .light)
     lowTemperature.textColor = .white
   }
   
@@ -291,7 +291,7 @@ private extension HomeView {
     lowTemperatureLabel.text = "Low"
     lowTemperatureLabel.textColor = .white
     lowTemperatureLabel.textAlignment = .center
-    lowTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
+    lowTemperatureLabel.font = .getGothamFont(size: 20, weight: .light)
   }
   
   func setupHighTemperature() {
@@ -299,7 +299,7 @@ private extension HomeView {
     
     highTemperature.textColor = .white
     highTemperature.textAlignment = .center
-    highTemperature.font = UIFont.systemFont(ofSize: 30)
+    highTemperature.font = .getGothamFont(size: 24, weight: .light)
   }
   
   func setupHighTemperatureLabel() {
@@ -308,7 +308,7 @@ private extension HomeView {
     highTemperatureLabel.text = "High"
     highTemperatureLabel.textColor = .white
     highTemperatureLabel.textAlignment = .center
-    highTemperatureLabel.font = UIFont.systemFont(ofSize: 30)
+    highTemperatureLabel.font = .getGothamFont(size: 20, weight: .light)
   }
   
   func setupBottomStackView() {

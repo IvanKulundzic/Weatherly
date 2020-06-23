@@ -26,6 +26,9 @@
 		EB8CF0C824854AEE0070EC54 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C724854AEE0070EC54 /* Location.swift */; };
 		EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */; };
 		EBE61F6C249E52A00021E8AC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE61F6B249E52A00021E8AC /* GradientView.swift */; };
+		EBE61F9324A209DC0021E8AC /* Gotham Rounded Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBE61F9224A209DC0021E8AC /* Gotham Rounded Book.otf */; };
+		EBE61F9524A209EF0021E8AC /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBE61F9424A209EF0021E8AC /* Gotham Rounded Light.otf */; };
+		EBE61F9724A20AE50021E8AC /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */; };
 		EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */; };
 		EBE69D2A249CAF05001BD576 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */; };
 		EBE69D2D249CBB81001BD576 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D2C249CBB81001BD576 /* Icon.swift */; };
@@ -58,6 +61,9 @@
 		EB8CF0C724854AEE0070EC54 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		EBE61F6B249E52A00021E8AC /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		EBE61F9224A209DC0021E8AC /* Gotham Rounded Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham Rounded Book.otf"; path = "../../../../Downloads/Gotham Rounded Book/Gotham Rounded Book.otf"; sourceTree = "<group>"; };
+		EBE61F9424A209EF0021E8AC /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham Rounded Light.otf"; path = "../../../../Downloads/Gotham Rounded Light/Gotham Rounded Light.otf"; sourceTree = "<group>"; };
+		EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D2C249CBB81001BD576 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
@@ -105,6 +111,7 @@
 				EBE69D2B249CBB5D001BD576 /* Enums */,
 				EBE69D26249BE24C001BD576 /* Extensions */,
 				EBE61F69249E525A0021E8AC /* Common */,
+				EBE61F9124A209BE0021E8AC /* Fonts */,
 				EB8CF0A6247C63420070EC54 /* Utilities */,
 				EB8CF093243672E70070EC54 /* Assets.xcassets */,
 				EB8CF095243672E70070EC54 /* LaunchScreen.storyboard */,
@@ -258,11 +265,21 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		EBE61F9124A209BE0021E8AC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EBE61F9424A209EF0021E8AC /* Gotham Rounded Light.otf */,
+				EBE61F9224A209DC0021E8AC /* Gotham Rounded Book.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		EBE69D26249BE24C001BD576 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */,
 				EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */,
+				EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,7 +356,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE61F9524A209EF0021E8AC /* Gotham Rounded Light.otf in Resources */,
 				EB8CF097243672E70070EC54 /* LaunchScreen.storyboard in Resources */,
+				EBE61F9324A209DC0021E8AC /* Gotham Rounded Book.otf in Resources */,
 				EB8CF094243672E70070EC54 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +388,7 @@
 				EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */,
 				EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */,
 				EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */,
+				EBE61F9724A20AE50021E8AC /* UIFont+Extension.swift in Sources */,
 				EB8CF0BF24841BC50070EC54 /* City.swift in Sources */,
 				EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */,
 				EBE69D2F249CD340001BD576 /* CustomButton.swift in Sources */,
