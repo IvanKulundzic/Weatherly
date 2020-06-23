@@ -131,9 +131,9 @@ private extension HomeView {
   func setupView() {
     setupHeaderImageView()
     setupBodyImageView()
-    setupCityNameLabel()
     setupTemperatureLabel()
     setupSummaryLabel()
+    setupCityNameLabel()
     setupLeftStackView()
     setupRightStackView()
     setupSeparatorView()
@@ -162,7 +162,7 @@ private extension HomeView {
       headerImageView.topAnchor.constraint(equalTo: topAnchor),
       headerImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
       headerImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-      headerImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4, constant: 1)
+      headerImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3, constant: 1)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: headerImageViewConstraints)
     
@@ -174,7 +174,7 @@ private extension HomeView {
       gradientView.topAnchor.constraint(equalTo: topAnchor),
       gradientView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
       gradientView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-      gradientView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.6, constant: 1)
+      gradientView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.7, constant: 1)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: gradientViewConstraints)
   }
@@ -193,7 +193,8 @@ private extension HomeView {
   func setupCityNameLabel() {
     addSubview(cityNameLabel)
     let cityNameLabelConstraints = [
-      cityNameLabel.topAnchor.constraint(equalTo: bodyImageView.topAnchor, constant: 30),
+      //cityNameLabel.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 100),
+      cityNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -10),
       cityNameLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
       cityNameLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20)
     ]
@@ -207,7 +208,7 @@ private extension HomeView {
   func setupTemperatureLabel() {
     addSubview(temperatureLabel)
     let temperatureLabelConstraints = [
-      temperatureLabel.bottomAnchor.constraint(equalTo: headerImageView.bottomAnchor, constant: -50),
+      temperatureLabel.bottomAnchor.constraint(equalTo: headerImageView.bottomAnchor, constant: 10),
       temperatureLabel.heightAnchor.constraint(equalToConstant: 60),
       temperatureLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor, constant: -20),
       temperatureLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
@@ -237,37 +238,38 @@ private extension HomeView {
   func setupLeftStackView() {
     addSubview(leftStackView)
     let leftStackViewConstraints = [
-      leftStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
+      leftStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 30),
+      //leftStackView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: 15),
       leftStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 20),
-      leftStackView.heightAnchor.constraint(equalToConstant: 75),
+      leftStackView.heightAnchor.constraint(equalToConstant: 60),
       leftStackView.widthAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: leftStackViewConstraints)
     
-    leftStackView.distribution = .equalSpacing
+    leftStackView.distribution = .equalCentering
     leftStackView.axis = .vertical
-    leftStackView.alignment = .center
+    leftStackView.alignment = .fill
   }
   
   func setupRightStackView() {
     addSubview(rightStackView)
     let rightStackViewConstraints = [
-      rightStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
+      rightStackView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 30),
       rightStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -20),
-      rightStackView.heightAnchor.constraint(equalToConstant: 75),
+      rightStackView.heightAnchor.constraint(equalToConstant: 60),
       rightStackView.widthAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: rightStackViewConstraints)
     
     rightStackView.distribution = .equalCentering
     rightStackView.axis = .vertical
-    rightStackView.alignment = .center
+    rightStackView.alignment = .fill
   }
   
   func setupSeparatorView() {
     addSubview(separatorView)
     let separatorViewConstraints = [
-      separatorView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 20),
+      separatorView.topAnchor.constraint(equalTo: cityNameLabel.bottomAnchor, constant: 30),
       separatorView.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
       separatorView.widthAnchor.constraint(equalToConstant: 2),
       separatorView.heightAnchor.constraint(equalTo: leftStackView.heightAnchor)
@@ -315,7 +317,7 @@ private extension HomeView {
     addSubview(bottomStackView)
     let bottomStackViewConstraints = [
 //      bottomStackView.topAnchor.constraint(equalTo: leftStackView.bottomAnchor, constant: 50),
-      bottomStackView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -40),
+      bottomStackView.bottomAnchor.constraint(equalTo: textField.topAnchor, constant: -50),
       bottomStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
       bottomStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
       bottomStackView.heightAnchor.constraint(equalToConstant: 75)
@@ -361,7 +363,7 @@ private extension HomeView {
     bottomLeftStackView.addArrangedSubview(humidityLabel)
     
     humidityLabel.textColor = .white
-    humidityLabel.font = UIFont.systemFont(ofSize: 20)
+    humidityLabel.font = .getGothamFont(size: 20, weight: .light)
   }
   
   func setupWindIcon() {
@@ -374,7 +376,7 @@ private extension HomeView {
     bottomMiddleStackView.addArrangedSubview(windLabel)
     
     windLabel.textColor = .white
-    windLabel.font = UIFont.systemFont(ofSize: 20)
+    windLabel.font = .getGothamFont(size: 20, weight: .light)
   }
   
   func setupPressureIcon() {
@@ -387,7 +389,7 @@ private extension HomeView {
     bottomRightStackView.addArrangedSubview(pressureLabel)
     
     pressureLabel.textColor = .white
-    pressureLabel.font = UIFont.systemFont(ofSize: 20)
+    pressureLabel.font = .getGothamFont(size: 20, weight: .light)
   }
   
   func setupSettingsButton() {

@@ -46,8 +46,8 @@
             filePath = "Weatherly/Scenes/Home scene/View/HomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "417"
-            endingLineNumber = "417"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "setupTextField()"
             landmarkType = "7">
          </BreakpointContent>
