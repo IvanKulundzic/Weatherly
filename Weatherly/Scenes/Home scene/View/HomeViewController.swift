@@ -37,6 +37,18 @@ extension HomeViewController: SearchViewControllerDelegate {
   }
 }
 
+// MARK: - conform to SettingsViewControllerDelegate
+extension HomeViewController: SettingsViewControllerDelegate {
+  var cityVar: City? {
+    get {
+      return self.city
+    }
+    set {
+      homeViewModel.city = newValue
+    }
+  }
+}
+
 // MARK: - update UI with model data
 private extension HomeViewController {
   func updateUI() {
@@ -74,6 +86,7 @@ private extension HomeViewController {
   func homeViewSettingsButtonTapped () {
     homeView.settingsButtonActionHandler = { [weak self] in
       let vc = SettingsViewController()
+      vc.delegate = self
       self?.present(vc, animated: true)
     }
   }
