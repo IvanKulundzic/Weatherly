@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// MARK: - get the Gotham font, with desired size and weight (based on Gotham font family)
 extension UIFont {
   enum GothamRoundedWeight: String {
     case light = "GothamRounded-Light"

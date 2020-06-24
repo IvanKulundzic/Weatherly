@@ -1,16 +1,16 @@
 //
-//  SearchTableViewCell.swift
+//  SettingsTableViewCell.swift
 //  Weatherly
 //
-//  Created by Ivan Kulundzic on 15/06/2020.
+//  Created by Ivan Kulundzic on 24/06/2020.
 //  Copyright © 2020 Ivan Kulundzic. All rights reserved.
 //
 
 import UIKit
 
-final class SearchTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
   private(set) lazy var locationNameLabel = UILabel()
-  private(set) lazy var locationFirstLetterLabel = UILabel()
+  private(set) lazy var removeButton = UIButton()
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -27,42 +27,42 @@ final class SearchTableViewCell: UITableViewCell {
 }
 
 // MARK: - setup cell and subviews
-private extension SearchTableViewCell {
+private extension SettingsTableViewCell {
   func setupCell() {
     backgroundColor = .clear
-    setupLocationFirstLetterLabel()
+    setupRemoveButton()
     setupLocationNameLabel()
   }
   
-  func setupLocationFirstLetterLabel() {
-    addSubview(locationFirstLetterLabel)
+  func setupRemoveButton() {
+    addSubview(removeButton)
     let locationFirstLetterLabelConstraints = [
-      locationFirstLetterLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-      locationFirstLetterLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-      locationFirstLetterLabel.heightAnchor.constraint(equalToConstant: 30),
-      locationFirstLetterLabel.widthAnchor.constraint(equalToConstant: 30)
+      removeButton.topAnchor.constraint(equalTo: topAnchor),
+      removeButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+      removeButton.heightAnchor.constraint(equalToConstant: 30),
+      removeButton.widthAnchor.constraint(equalToConstant: 30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationFirstLetterLabelConstraints)
     
-    locationFirstLetterLabel.backgroundColor = .gray
-    locationFirstLetterLabel.textColor = .white
-    locationFirstLetterLabel.textAlignment = .center
-    locationFirstLetterLabel.font = .getGothamFont(size: 20, weight: .light)
+    removeButton.backgroundColor = .gray
+    removeButton.setTitle("x", for: .normal)
+    removeButton.setTitleColor(.white, for: .normal)
+    removeButton.titleLabel?.font = .getGothamFont(size: 20, weight: .book)
+    removeButton.titleLabel?.textAlignment = .center
   }
   
   func setupLocationNameLabel() {
     addSubview(locationNameLabel)
     let locationNameLabelConstraints = [
-      locationNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-      locationNameLabel.leadingAnchor.constraint(equalTo: locationFirstLetterLabel.trailingAnchor, constant: 5),
+      locationNameLabel.topAnchor.constraint(equalTo: topAnchor),
+      locationNameLabel.leadingAnchor.constraint(equalTo: removeButton.trailingAnchor, constant: 5),
       locationNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
       locationNameLabel.heightAnchor.constraint(equalToConstant: 30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationNameLabelConstraints)
     
-    locationNameLabel.backgroundColor = .clear
     locationNameLabel.textColor = .white
     locationNameLabel.textAlignment = .left
-    locationNameLabel.font = .getGothamFont(size: 20, weight: .light)
+    locationNameLabel.font = .getGothamFont(size: 20, weight: .book)
   }
 }

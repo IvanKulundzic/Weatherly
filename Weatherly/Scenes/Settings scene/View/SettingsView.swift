@@ -10,8 +10,9 @@ import UIKit
 
 final class SettingsView: UIView {
   var doneButtonActionHandler: Action?
+  let cellId = "settingsCell"
   private lazy var locationsLabel = UILabel()
-  private lazy var locationsListTableView = UITableView()
+  private(set) lazy var locationsListTableView = UITableView()
   private lazy var unitsLabel = UILabel()
   private lazy var metricUnitsLabel = UILabel()
   private lazy var imperialUnitsLabel = UILabel()
@@ -34,11 +35,11 @@ final class SettingsView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupView()
+    
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    setupView()
   }
 }
 
@@ -77,17 +78,17 @@ private extension SettingsView {
   func setupLocationsLabel() {
     addSubview(locationsLabel)
     let locationsLabelConstraints = [
-      locationsLabel.topAnchor.constraint(equalTo: topAnchor),
+      locationsLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
       locationsLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-      locationsLabel.heightAnchor.constraint(equalToConstant: 75),
+      locationsLabel.heightAnchor.constraint(equalToConstant: 50),
       locationsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationsLabelConstraints)
-
+    
     locationsLabel.text = "Location"
     locationsLabel.textAlignment = .center
     locationsLabel.textColor = .white
-    locationsLabel.font = UIFont.systemFont(ofSize: 20)
+    locationsLabel.font = .getGothamFont(size: 20, weight: .book)
   }
   
   func setupLocationsListTableView() {
@@ -96,12 +97,15 @@ private extension SettingsView {
       locationsListTableView.topAnchor.constraint(equalTo: locationsLabel.bottomAnchor, constant: 5),
       locationsListTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
       locationsListTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
-      locationsListTableView.heightAnchor.constraint(equalToConstant: 75),
-      unitsLabel.widthAnchor.constraint(equalToConstant: 100)
+      locationsListTableView.heightAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationsListTableViewConstraints)
     
-    locationsListTableView.backgroundColor = .red
+    locationsListTableView.backgroundColor = .clear
+    locationsListTableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: cellId)
+    locationsListTableView.rowHeight = 30.0
+//    locationsListTableView.separatorStyle = .singleLine
+//    locationsListTableView.separatorInset = .init(top: 1, left: 0, bottom: 1, right: 0)
   }
   
   func setupUnitsLabel() {
@@ -109,24 +113,24 @@ private extension SettingsView {
     let unitsLabelConstraints = [
       unitsLabel.topAnchor.constraint(equalTo: locationsListTableView.bottomAnchor, constant: 10),
       unitsLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-      unitsLabel.heightAnchor.constraint(equalToConstant: 75)
+      unitsLabel.heightAnchor.constraint(equalToConstant: 50),
+      unitsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: unitsLabelConstraints)
     
-    unitsLabel.backgroundColor = .red
     unitsLabel.text = "Units"
     unitsLabel.textAlignment = .center
     unitsLabel.textColor = .white
-    unitsLabel.font = UIFont.systemFont(ofSize: 20)
+    unitsLabel.font = .getGothamFont(size: 20, weight: .book)
   }
   
   func setupMetricUnitsButton() {
     addSubview(metricUnitsButton)
     let metricUnitsButtonConstraints = [
       metricUnitsButton.topAnchor.constraint(equalTo: unitsLabel.bottomAnchor, constant: 10),
-      metricUnitsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
-      metricUnitsButton.heightAnchor.constraint(equalToConstant: 50),
-      metricUnitsButton.widthAnchor.constraint(equalToConstant: 50)
+      metricUnitsButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+      metricUnitsButton.heightAnchor.constraint(equalToConstant: 40),
+      metricUnitsButton.widthAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: metricUnitsButtonConstraints)
     
@@ -139,7 +143,7 @@ private extension SettingsView {
     let metricUnitsLabelConstraints = [
       metricUnitsLabel.topAnchor.constraint(equalTo: unitsLabel.bottomAnchor, constant: 10),
       metricUnitsLabel.leadingAnchor.constraint(equalTo: metricUnitsButton.trailingAnchor, constant: 10),
-      metricUnitsLabel.heightAnchor.constraint(equalToConstant: 50),
+      metricUnitsLabel.heightAnchor.constraint(equalToConstant: 40),
       metricUnitsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: metricUnitsLabelConstraints)
@@ -147,16 +151,16 @@ private extension SettingsView {
     metricUnitsLabel.text = "Metric"
     metricUnitsLabel.textColor = .white
     metricUnitsLabel.textAlignment = .left
-    metricUnitsLabel.font = UIFont.systemFont(ofSize: 20)
+    metricUnitsLabel.font = .getGothamFont(size: 20, weight: .book)
   }
   
   func setupImperialUnitsButton() {
     addSubview(imperialUnitsButton)
     let imperialUnitsButtonConstraints = [
-      imperialUnitsButton.topAnchor.constraint(equalTo: metricUnitsButton.bottomAnchor, constant: 5),
-      imperialUnitsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
-      imperialUnitsButton.heightAnchor.constraint(equalToConstant: 50),
-      imperialUnitsButton.widthAnchor.constraint(equalToConstant: 50)
+      imperialUnitsButton.topAnchor.constraint(equalTo: metricUnitsButton.bottomAnchor),
+      imperialUnitsButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+      imperialUnitsButton.heightAnchor.constraint(equalToConstant: 40),
+      imperialUnitsButton.widthAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: imperialUnitsButtonConstraints)
     
@@ -167,9 +171,9 @@ private extension SettingsView {
   func setupImperialUnitsLabel() {
     addSubview(imperialUnitsLabel)
     let imperialUnitsLabelConstraints = [
-      imperialUnitsLabel.topAnchor.constraint(equalTo: metricUnitsLabel.bottomAnchor, constant: 5),
+      imperialUnitsLabel.topAnchor.constraint(equalTo: metricUnitsLabel.bottomAnchor, constant: 1),
       imperialUnitsLabel.leadingAnchor.constraint(equalTo: imperialUnitsButton.trailingAnchor, constant: 10),
-      imperialUnitsLabel.heightAnchor.constraint(equalToConstant: 50),
+      imperialUnitsLabel.heightAnchor.constraint(equalToConstant: 40),
       imperialUnitsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: imperialUnitsLabelConstraints)
@@ -177,7 +181,7 @@ private extension SettingsView {
     imperialUnitsLabel.text = "Imperial"
     imperialUnitsLabel.textColor = .white
     imperialUnitsLabel.textAlignment = .left
-    imperialUnitsLabel.font = UIFont.systemFont(ofSize: 20)
+    imperialUnitsLabel.font = .getGothamFont(size: 20, weight: .book)
   }
   
   func setupConditionsLabel() {
@@ -185,21 +189,21 @@ private extension SettingsView {
     let conditionsLabelConstraints = [
       conditionsLabel.topAnchor.constraint(equalTo: imperialUnitsLabel.bottomAnchor, constant: 10),
       conditionsLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-      conditionsLabel.heightAnchor.constraint(equalToConstant: 75)
+      conditionsLabel.heightAnchor.constraint(equalToConstant: 50),
+      conditionsLabel.widthAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: conditionsLabelConstraints)
     
-    conditionsLabel.backgroundColor = .red
     conditionsLabel.text = "Conditions"
     conditionsLabel.textAlignment = .center
     conditionsLabel.textColor = .white
-    conditionsLabel.font = UIFont.systemFont(ofSize: 20)
+    conditionsLabel.font = .getGothamFont(size: 20, weight: .book)
   }
   
   func setupBottomStackView() {
     addSubview(bottomStackView)
     let bottomStackViewConstraints = [
-      bottomStackView.topAnchor.constraint(equalTo: conditionsLabel.bottomAnchor, constant: 10),
+      bottomStackView.topAnchor.constraint(equalTo: conditionsLabel.bottomAnchor, constant: 15),
       bottomStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
       bottomStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
       bottomStackView.heightAnchor.constraint(equalToConstant: 75)
@@ -207,7 +211,6 @@ private extension SettingsView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: bottomStackViewConstraints)
     
-    bottomStackView.backgroundColor = .black
     bottomStackView.distribution = .fillEqually
     bottomStackView.axis = .horizontal
     bottomStackView.alignment = .center
@@ -263,7 +266,7 @@ private extension SettingsView {
     bottomMiddleStackView.addArrangedSubview(windButton)
     
     let image = UIImage(named: "checkmark_check")
-    (windButton).setImage(image, for: .normal)
+    windButton.setImage(image, for: .normal)
   }
   
   func setupPressureIcon() {
@@ -282,7 +285,6 @@ private extension SettingsView {
   func setupDoneButton() {
     addSubview(doneButton)
     let doneButtonConstraints = [
-//      doneButton.topAnchor.constraint(equalTo: bottomStackView.bottomAnchor, constant: 50),
       doneButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
       doneButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
       doneButton.widthAnchor.constraint(equalToConstant: 100),
@@ -292,7 +294,7 @@ private extension SettingsView {
     
     doneButton.setTitle("Done", for: .normal)
     doneButton.setTitleColor(.systemGreen, for: .normal)
-    doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+    doneButton.titleLabel?.font = .getGothamFont(size: 20, weight: .book)
     doneButton.backgroundColor = .white
     doneButton.layer.cornerRadius = 25
     

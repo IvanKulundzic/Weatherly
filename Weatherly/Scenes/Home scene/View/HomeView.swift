@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Hue
 
 final class HomeView: UIView {
   var settingsButtonActionHandler: Action?
@@ -38,7 +37,7 @@ final class HomeView: UIView {
   private lazy var pressureIcon = UIImageView()
   private lazy var pressureLabel = UILabel()
   private lazy var settingsButton = UIButton()
-  private lazy var textField = CustomTextField()
+  lazy var textField = CustomTextField()
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -396,9 +395,9 @@ private extension HomeView {
     addSubview(settingsButton)
     let settingsButtonConstraints = [
       settingsButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
-      settingsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
-      settingsButton.heightAnchor.constraint(equalToConstant: 75),
-      settingsButton.widthAnchor.constraint(equalToConstant: 75)
+      settingsButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
+      settingsButton.heightAnchor.constraint(equalToConstant: 40),
+      settingsButton.widthAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: settingsButtonConstraints)
     
@@ -410,10 +409,16 @@ private extension HomeView {
   func setupTextField() {
     addSubview(textField)
     let textFieldConstraints = [
-      textField.topAnchor.constraint(equalTo: settingsButton.topAnchor, constant: 15),
+//      textField.topAnchor.constraint(equalTo: settingsButton.topAnchor, constant: 15),
+      textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
       textField.leadingAnchor.constraint(equalTo: settingsButton.trailingAnchor, constant: 5),
       textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
       textField.heightAnchor.constraint(equalToConstant: 40)
+      
+//      textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
+//      textField.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
+//      textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
+//      textField.heightAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
 

@@ -12,7 +12,7 @@ final class SearchViewModel: NSObject {
   var searchActionHandler: Action?
   var location: Location? {
     didSet {
-      searchActionHandler?()      
+      searchActionHandler?()
     }
   }
   var city: City? {
@@ -29,18 +29,15 @@ final class SearchViewModel: NSObject {
 
 extension SearchViewModel {
   func searchLocation(input: String) {
-    let input = input
     let userName = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"    
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (location: Location) in
       self?.location = location
-      
     }
   }
   
   func getCityWeatherData(long: String, lat: String) {
-    //var city: City
     let longitude = long
     let latitude = lat
     let key = "4b208159f61d43a3a3505ce608eb359d"
@@ -57,7 +54,6 @@ extension SearchViewModel {
     let longitude = long
     let latitude = lat
     let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=ivanKulundzic"
-    print(urlToUse)
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
         self?.city?.name = geoName.geoname[0].name
@@ -65,4 +61,3 @@ extension SearchViewModel {
     }
   }
 }
-

@@ -13,7 +13,6 @@
 		EB8CF097243672E70070EC54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB8CF095243672E70070EC54 /* LaunchScreen.storyboard */; };
 		EB8CF0A5246B2D930070EC54 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0A4246B2D930070EC54 /* HomeView.swift */; };
 		EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0A7247C63710070EC54 /* Helpers.swift */; };
-		EB8CF0AA247C665D0070EC54 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0A9247C665D0070EC54 /* Extensions.swift */; };
 		EB8CF0AD247ED4CF0070EC54 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0AC247ED4CF0070EC54 /* TypeAlias.swift */; };
 		EB8CF0B1247ED5860070EC54 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0B0247ED5860070EC54 /* SettingsView.swift */; };
 		EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */; };
@@ -31,12 +30,12 @@
 		EBE61F9724A20AE50021E8AC /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */; };
 		EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */; };
 		EBE69D2A249CAF05001BD576 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */; };
-		EBE69D2D249CBB81001BD576 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D2C249CBB81001BD576 /* Icon.swift */; };
-		EBE69D2F249CD340001BD576 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D2E249CD340001BD576 /* CustomButton.swift */; };
 		EBE69D31249CEAAF001BD576 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D30249CEAAF001BD576 /* CustomTextField.swift */; };
 		EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE8AC71249A94D600F0491D /* Geoname.swift */; };
 		EBE8AC75249B974E00F0491D /* Hue in Frameworks */ = {isa = PBXBuildFile; productRef = EBE8AC74249B974E00F0491D /* Hue */; };
 		EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */; };
+		EBEB24B924A350AD00EE8808 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB24B824A350AD00EE8808 /* NSLayoutConstraint+Extension.swift */; };
+		EBEB24DE24A35D9200EE8808 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB24DD24A35D9200EE8808 /* SettingsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +47,6 @@
 		EB8CF098243672E70070EC54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB8CF0A4246B2D930070EC54 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EB8CF0A7247C63710070EC54 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		EB8CF0A9247C665D0070EC54 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EB8CF0AC247ED4CF0070EC54 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		EB8CF0B0247ED5860070EC54 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -66,11 +64,11 @@
 		EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		EBE69D2C249CBB81001BD576 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
-		EBE69D2E249CD340001BD576 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EBE69D30249CEAAF001BD576 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EBE8AC71249A94D600F0491D /* Geoname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geoname.swift; sourceTree = "<group>"; };
 		EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		EBEB24B824A350AD00EE8808 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
+		EBEB24DD24A35D9200EE8808 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +106,6 @@
 			children = (
 				EB8CF08A243672E60070EC54 /* AppDelegate.swift */,
 				EB8CF09E246B2C790070EC54 /* Scenes */,
-				EBE69D2B249CBB5D001BD576 /* Enums */,
 				EBE69D26249BE24C001BD576 /* Extensions */,
 				EBE61F69249E525A0021E8AC /* Common */,
 				EBE61F9124A209BE0021E8AC /* Fonts */,
@@ -169,11 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				EB8CF0A7247C63710070EC54 /* Helpers.swift */,
-				EB8CF0A9247C665D0070EC54 /* Extensions.swift */,
 				EB8CF0AC247ED4CF0070EC54 /* TypeAlias.swift */,
 				EB8CF0C024841C4F0070EC54 /* NetworkingManager.swift */,
 				EB8CF0C224841C8B0070EC54 /* JSONParser.swift */,
-				EBE69D2E249CD340001BD576 /* CustomButton.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -200,6 +195,7 @@
 			children = (
 				EB8CF0B2247ED6E40070EC54 /* SettingsViewController.swift */,
 				EB8CF0B0247ED5860070EC54 /* SettingsView.swift */,
+				EBEB24DD24A35D9200EE8808 /* SettingsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -280,16 +276,9 @@
 				EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */,
 				EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */,
 				EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */,
+				EBEB24B824A350AD00EE8808 /* NSLayoutConstraint+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		EBE69D2B249CBB5D001BD576 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				EBE69D2C249CBB81001BD576 /* Icon.swift */,
-			);
-			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,26 +361,25 @@
 			files = (
 				EB8CF0B9248121F60070EC54 /* SearchViewController.swift in Sources */,
 				EB8CF08F243672E60070EC54 /* HomeViewController.swift in Sources */,
+				EBEB24DE24A35D9200EE8808 /* SettingsTableViewCell.swift in Sources */,
 				EB8CF0C824854AEE0070EC54 /* Location.swift in Sources */,
 				EB8CF0B1247ED5860070EC54 /* SettingsView.swift in Sources */,
 				EBE69D31249CEAAF001BD576 /* CustomTextField.swift in Sources */,
-				EB8CF0AA247C665D0070EC54 /* Extensions.swift in Sources */,
 				EB8CF0AD247ED4CF0070EC54 /* TypeAlias.swift in Sources */,
 				EB8CF0A5246B2D930070EC54 /* HomeView.swift in Sources */,
 				EB8CF08B243672E60070EC54 /* AppDelegate.swift in Sources */,
 				EB8CF0BD24841AF10070EC54 /* HomeViewModel.swift in Sources */,
-				EBE69D2D249CBB81001BD576 /* Icon.swift in Sources */,
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
 				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
 				EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */,
 				EBE61F6C249E52A00021E8AC /* GradientView.swift in Sources */,
 				EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */,
 				EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */,
+				EBEB24B924A350AD00EE8808 /* NSLayoutConstraint+Extension.swift in Sources */,
 				EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */,
 				EBE61F9724A20AE50021E8AC /* UIFont+Extension.swift in Sources */,
 				EB8CF0BF24841BC50070EC54 /* City.swift in Sources */,
 				EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */,
-				EBE69D2F249CD340001BD576 /* CustomButton.swift in Sources */,
 				EB8CF0BB248122090070EC54 /* SearchView.swift in Sources */,
 				EB8CF0C124841C4F0070EC54 /* NetworkingManager.swift in Sources */,
 				EBE69D2A249CAF05001BD576 /* UIColor+Extension.swift in Sources */,

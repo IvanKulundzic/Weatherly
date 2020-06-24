@@ -12,11 +12,29 @@ final class SettingsViewController: UIViewController {
   private lazy var settingsView = SettingsView()
   private lazy var blurView = UIVisualEffectView()
   
+  let cellId = "settingsCell"
+  
   override func loadView() {
     view = settingsView
+    settingsView.locationsListTableView.dataSource = self    
+    
     settingsViewDoneButtonTapped()
     addBlurEffect()
   }
+}
+
+extension SettingsViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsTableViewCell
+    let array = ["London", "Osijek", "Zagreb", "Rio"]
+    cell.locationNameLabel.text = array[indexPath.row]
+    return cell  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    4
+  }
+  
+  
 }
 
 // MARK: - settings button tapped

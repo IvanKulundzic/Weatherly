@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// MARK: - create gradient background on a selected view with 2 colors
 extension UIView {
   func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
     let gradientLayer = CAGradientLayer()

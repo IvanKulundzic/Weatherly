@@ -23,13 +23,12 @@ final class SearchViewController: UIViewController {
   
   override func loadView() {
     view = searchView
-    
   }
   
   override func viewDidLoad() {
     searchView.searchTableView.dataSource = self
     searchView.searchTableView.delegate = self
-    searchView.searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: cellId)
+    //searchView.searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: cellId)
     setupBlurView()
     addKeyboardObservers()
     searchViewDismissButtonTapped()
@@ -42,8 +41,6 @@ extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
     guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
-    
-    
     searchViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
     searchViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
     searchViewModel.searchActionHandler = { [weak self] in
@@ -61,8 +58,7 @@ extension SearchViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SearchTableViewCell
-    cell.backgroundColor = .clear
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SearchTableViewCell    
     let array = locations?[indexPath.row].name
     let firstLetter = array.map { $0.prefix(1) }
     if let safeFirstLetter = firstLetter {
