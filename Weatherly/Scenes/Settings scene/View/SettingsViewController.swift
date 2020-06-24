@@ -14,10 +14,12 @@ final class SettingsViewController: UIViewController {
   
   let cellId = "settingsCell"
   
+  let array = ["London", "Osijek", "Zagreb", "Rio"]
+  
   override func loadView() {
     view = settingsView
-    settingsView.locationsListTableView.dataSource = self    
-    
+    settingsView.locationsListTableView.dataSource = self
+    settingsView.locationsListTableView.delegate = self
     settingsViewDoneButtonTapped()
     addBlurEffect()
   }
@@ -26,15 +28,18 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsTableViewCell
-    let array = ["London", "Osijek", "Zagreb", "Rio"]
     cell.locationNameLabel.text = array[indexPath.row]
     return cell  }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     4
   }
-  
-  
+}
+
+extension SettingsViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {    
+    print(array[indexPath.row])
+  }
 }
 
 // MARK: - settings button tapped
