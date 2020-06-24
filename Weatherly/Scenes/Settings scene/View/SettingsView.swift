@@ -11,6 +11,7 @@ import UIKit
 final class SettingsView: UIView {
   var doneButtonActionHandler: Action?
   let cellId = "settingsCell"
+  
   private lazy var locationsLabel = UILabel()
   private(set) lazy var locationsListTableView = UITableView()
   private lazy var unitsLabel = UILabel()
@@ -34,8 +35,7 @@ final class SettingsView: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    setupView()
-    
+    setupView()    
   }
   
   required init?(coder aDecoder: NSCoder) {

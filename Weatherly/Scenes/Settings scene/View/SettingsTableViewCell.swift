@@ -9,6 +9,7 @@
 import UIKit
 
 final class SettingsTableViewCell: UITableViewCell {
+  var removeButtonActionHandler: Action?
   private(set) lazy var locationNameLabel = UILabel()
   private(set) lazy var removeButton = UIButton()
   
@@ -49,6 +50,13 @@ private extension SettingsTableViewCell {
     removeButton.setTitleColor(.white, for: .normal)
     removeButton.titleLabel?.font = .getGothamFont(size: 20, weight: .book)
     removeButton.titleLabel?.textAlignment = .center
+    
+    removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+  }
+  
+  @objc func removeButtonTapped() {
+    print("Remove button tapped")
+    removeButtonActionHandler?()
   }
   
   func setupLocationNameLabel() {

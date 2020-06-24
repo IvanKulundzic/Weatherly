@@ -8,27 +8,31 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 protocol SearchViewControllerDelegate: class {
   var city: City? { get set }
 }
 
 final class SearchViewController: UIViewController {
+  private let path = Realm.Configuration.defaultConfiguration.fileURL
+  
   var locations: [Geonames]?
   let cellId = "cellId"
   var delegate: SearchViewControllerDelegate?
+  
   private lazy var searchView = SearchView()
   private lazy var searchViewModel = SearchViewModel()
   private lazy var blurView = UIVisualEffectView()
   
   override func loadView() {
     view = searchView
+//    print(path)
   }
   
   override func viewDidLoad() {
     searchView.searchTableView.dataSource = self
     searchView.searchTableView.delegate = self
-    //searchView.searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: cellId)
     setupBlurView()
     addKeyboardObservers()
     searchViewDismissButtonTapped()

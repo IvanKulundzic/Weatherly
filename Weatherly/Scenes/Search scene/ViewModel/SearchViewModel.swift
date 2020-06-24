@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class SearchViewModel: NSObject {
   var searchActionHandler: Action?
@@ -57,6 +58,23 @@ extension SearchViewModel {
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
         self?.city?.name = geoName.geoname[0].name
+        
+        let realm = try! Realm()
+        let object = RealmModel(name: geoName.geoname[0].name)
+        
+        let realmArray = realm.objects(RealmModel.self)
+        
+        if realmArray.first(where: { object.name == $0.name }) != nil {
+          return
+        } else {
+          do {
+            try realm.write {
+              realm.add(object)
+            }
+          } catch {
+            print(error)
+          }
+        }
       }
     }
   }

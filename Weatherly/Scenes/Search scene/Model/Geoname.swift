@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import RealmSwift
 
-public struct CityName: Codable {
-  public var geoname: [Geoname]
-  
+struct CityName: Codable {
+  var geoname: [Geoname]
+
   init(geoname: [Geoname]) {
     self.geoname = geoname
   }
@@ -20,12 +21,17 @@ public struct CityName: Codable {
   }
 }
 
-public struct Geoname: Codable {
-  public var name: String
-  
-  init(name: String) {
+@objcMembers class Geoname: Object, Codable {
+  dynamic var name: String = ""
+
+  convenience init(name: String) {
+    self.init()
     self.name = name
   }
+  
+//  required init() {
+//    fatalError("init() has not been implemented")
+//  }
   
   enum CodingKeys: String, CodingKey {
     case name = "name"
