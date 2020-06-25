@@ -39,14 +39,10 @@ extension HomeViewController: SearchViewControllerDelegate {
 
 // MARK: - conform to SettingsViewControllerDelegate
 extension HomeViewController: SettingsViewControllerDelegate {
-  var cityVar: City? {
-    get {
-      return self.city
-    }
-    set {
-      homeViewModel.city = newValue
-    }
-  }
+  
+  
+ 
+  
 }
 
 // MARK: - update UI with model data

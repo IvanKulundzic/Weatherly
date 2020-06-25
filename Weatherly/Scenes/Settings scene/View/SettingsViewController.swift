@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol SettingsViewControllerDelegate: class {
-  var cityVar: City? { get set }
+  var city: City? { get set }
 }
 
 final class SettingsViewController: UIViewController {
@@ -82,12 +82,12 @@ extension SettingsViewController: UITableViewDelegate {
     print("City name: \(cityName)")
     
     
-//    guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
-//    guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
-//    searchVM.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+    guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
+    guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
+    searchVM.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
     searchVM.searchLocation(input: cityName)
     searchVM.searchActionHandler = { [weak self] in
-      self?.delegate?.cityVar = self?.searchVM.city
+      self?.delegate?.city = self?.searchVM.city
       print(self?.searchVM.city)
       self?.dismiss(animated: true, completion: nil)
     }
