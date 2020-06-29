@@ -1,24 +1,26 @@
 //
-//  SearchViewModel.swift
+//  SettingsViewModel.swift
 //  Weatherly
 //
-//  Created by Ivan Kulundzic on 01/06/2020.
+//  Created by Ivan Kulundzic on 29/06/2020.
 //  Copyright © 2020 Ivan Kulundzic. All rights reserved.
 //
 
 import Foundation
 import RealmSwift
 
-final class SearchViewModel {
-  var searchActionHandler: Action?
+final class SettingsViewModel: NSObject {
+  var settingsActionHandler: Action?
   var locations: Locations? {
     didSet {
-      searchActionHandler?()
+      print("Locations set")
+      settingsActionHandler?()
     }
   }
   var city: City? {
     didSet {
-      searchActionHandler?()
+      print("City set")
+      settingsActionHandler?()
     }
   }
   private lazy var networkingManager = NetworkingManager()
@@ -28,17 +30,17 @@ final class SearchViewModel {
   }
 }
 
-extension SearchViewModel {
+extension SettingsViewModel {
   func getLocationsByName(input: String) {
     let userName = "ivanKulundzic"
-    let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"    
+    let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (locations: Locations) in
       print("Locations: ", locations)
       self?.locations = locations
     }
   }
-  
+//
   func getCityWeatherData(long: String, lat: String) {
     let longitude = long
     let latitude = lat
@@ -51,7 +53,7 @@ extension SearchViewModel {
       }
     }
   }
-  
+
   func geoReverse(long: String, lat: String) {
     let longitude = long
     let latitude = lat
@@ -59,15 +61,9 @@ extension SearchViewModel {
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: Locations) in
         self?.city?.name = geoName.geonames[0].name
-          //geoName.geoname[0].name
-        
         let realm = try! Realm()
         let object = Geonames(name: geoName.geonames[0].name, countryCode: geoName.geonames[0].countryCode, longitude: geoName.geonames[0].longitude, latitude: geoName.geonames[0].latitude)
-//          RealmModel(name: geoName.geoname[0].name)
-//        let object = geoName
-//
         let realmArray = realm.objects(Geonames.self)
-//
         if realmArray.first(where: { object.name == $0.name }) != nil {
           return
         } else {

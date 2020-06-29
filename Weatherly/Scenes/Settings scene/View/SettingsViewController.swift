@@ -15,18 +15,19 @@ protocol SettingsViewControllerDelegate: class {
 
 final class SettingsViewController: UIViewController {
   var delegate: SettingsViewControllerDelegate?
-  var searchActionHandler: Action?
+  //var searchActionHandler: Action?
   
   var locations: [Geonames]?
   
+  private let settingsViewModel = SettingsViewModel()
   private lazy var settingsView = SettingsView()
   private lazy var blurView = UIVisualEffectView()
   
-  var location: Locations? {
-    didSet {
-      searchActionHandler?()
-    }
-  }
+//  var location: Locations? {
+//    didSet {
+//      searchActionHandler?()
+//    }
+//  }
   
   let cellId = "settingsCell"
   let realm = try! Realm()
@@ -77,20 +78,41 @@ extension SettingsViewController: UITableViewDataSource {
 extension SettingsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let array = realm.objects(Geonames.self)
+//
+//    let cityName = array[indexPath.row].name
+//    print("City name: \(cityName)")
     
-    let cityName = array[indexPath.row].name
-    print("City name: \(cityName)")
     
     
-    guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
-    guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
-    searchVM.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
-    searchVM.getLocationsByName(input: cityName)
-    searchVM.searchActionHandler = { [weak self] in
-      self?.delegate?.city = self?.searchVM.city
-      print(self?.searchVM.city)
+    let selectedCellLongitude = array[indexPath.row].longitude
+    let selectedCellLatitude = array[indexPath.row].latitude
+    
+      settingsViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+      settingsViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
+      
+    
+      
+      
+//      else { return }    //locations?[indexPath.row].longitude else { return }
+//    if let selectedCellLatitude = array[indexPath.row].latitude else { return }    //locations?[indexPath.row].latitude else { return }
+    
+    //settingsViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+    
+    //settingsViewModel.getLocationsByName(input: cityName)
+    //settingsViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
+    
+    settingsViewModel.settingsActionHandler = { [weak self] in
+      self?.delegate?.city = self?.settingsViewModel.city
       self?.dismiss(animated: true, completion: nil)
     }
+    
+//    searchVM.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+//    searchVM.getLocationsByName(input: cityName)
+//    searchVM.searchActionHandler = { [weak self] in
+//      self?.delegate?.city = self?.searchVM.city
+//      print(self?.searchVM.city)
+//      self?.dismiss(animated: true, completion: nil)
+//    }
   }
 }
 

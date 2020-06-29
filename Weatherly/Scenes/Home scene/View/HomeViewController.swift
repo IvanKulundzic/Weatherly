@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
 }
 
 // MARK: - conform to searchViewControllerDelegate
-extension HomeViewController: SearchViewControllerDelegate {
+extension HomeViewController: SearchViewControllerDelegate, SettingsViewControllerDelegate {
   var city: City? {
     get {
       return self.city
@@ -38,7 +38,7 @@ extension HomeViewController: SearchViewControllerDelegate {
 }
 
 // MARK: - conform to SettingsViewControllerDelegate
-extension HomeViewController: SettingsViewControllerDelegate { }
+//extension HomeViewController: SettingsViewControllerDelegate { }
 
 // MARK: - update UI with model data
 private extension HomeViewController {
