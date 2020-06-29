@@ -57,14 +57,17 @@ extension SearchViewModel {
     let latitude = lat
     let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=ivanKulundzic"
     if let url = URL(string: urlToUse) {
-      networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
-        self?.city?.name = geoName.geoname[0].name
+      networkingManager.getApiData(url: url) { [weak self] (geoName: Locations) in
+        self?.city?.name = geoName.geonames[0].name
+          //geoName.geoname[0].name
         
         let realm = try! Realm()
-        let object = RealmModel(name: geoName.geoname[0].name)
-        
-        let realmArray = realm.objects(RealmModel.self)
-        
+        let object = Geonames(name: geoName.geonames[0].name, countryCode: geoName.geonames[0].countryCode, longitude: geoName.geonames[0].longitude, latitude: geoName.geonames[0].latitude)
+//          RealmModel(name: geoName.geoname[0].name)
+//        let object = geoName
+//
+        let realmArray = realm.objects(Geonames.self)
+//
         if realmArray.first(where: { object.name == $0.name }) != nil {
           return
         } else {

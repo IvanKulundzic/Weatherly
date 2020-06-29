@@ -154,9 +154,9 @@ extension HomeViewModel {
     let username = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=\(username)"
     if let url = URL(string: urlToUse) {
-      networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
+      networkingManager.getApiData(url: url) { [weak self] (geoName: Locations) in
         print("GeoReverse - geoname: ", geoName)
-        self?.city?.name = geoName.geoname[0].name 
+        self?.city?.name = geoName.geonames[0].name 
       }
     }
   }

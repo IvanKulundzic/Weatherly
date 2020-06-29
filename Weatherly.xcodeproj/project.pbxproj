@@ -26,7 +26,6 @@
 		EB8CF0C824854AEE0070EC54 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C724854AEE0070EC54 /* Locations.swift */; };
 		EB8CF0CA24854B4B0070EC54 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */; };
 		EB90CE0324A380C90099BB39 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90CE0224A380C90099BB39 /* RealmService.swift */; };
-		EB90CE0524A3AFD50099BB39 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90CE0424A3AFD50099BB39 /* RealmModel.swift */; };
 		EBE61F6C249E52A00021E8AC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE61F6B249E52A00021E8AC /* GradientView.swift */; };
 		EBE61F9324A209DC0021E8AC /* Gotham Rounded Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBE61F9224A209DC0021E8AC /* Gotham Rounded Book.otf */; };
 		EBE61F9524A209EF0021E8AC /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBE61F9424A209EF0021E8AC /* Gotham Rounded Light.otf */; };
@@ -34,7 +33,6 @@
 		EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */; };
 		EBE69D2A249CAF05001BD576 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */; };
 		EBE69D31249CEAAF001BD576 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D30249CEAAF001BD576 /* CustomTextField.swift */; };
-		EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE8AC71249A94D600F0491D /* Geoname.swift */; };
 		EBE8AC75249B974E00F0491D /* Hue in Frameworks */ = {isa = PBXBuildFile; productRef = EBE8AC74249B974E00F0491D /* Hue */; };
 		EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */; };
 		EBEB24B924A350AD00EE8808 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEB24B824A350AD00EE8808 /* NSLayoutConstraint+Extension.swift */; };
@@ -64,7 +62,6 @@
 		EB8CF0C724854AEE0070EC54 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		EB8CF0C924854B4B0070EC54 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		EB90CE0224A380C90099BB39 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
-		EB90CE0424A3AFD50099BB39 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		EBE61F6B249E52A00021E8AC /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		EBE61F9224A209DC0021E8AC /* Gotham Rounded Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham Rounded Book.otf"; path = "../../../../Downloads/Gotham Rounded Book/Gotham Rounded Book.otf"; sourceTree = "<group>"; };
 		EBE61F9424A209EF0021E8AC /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham Rounded Light.otf"; path = "../../../../Downloads/Gotham Rounded Light/Gotham Rounded Light.otf"; sourceTree = "<group>"; };
@@ -72,7 +69,6 @@
 		EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D30249CEAAF001BD576 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		EBE8AC71249A94D600F0491D /* Geoname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geoname.swift; sourceTree = "<group>"; };
 		EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		EBEB24B824A350AD00EE8808 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
 		EBEB24DD24A35D9200EE8808 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -268,8 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				EB8CF0C724854AEE0070EC54 /* Locations.swift */,
-				EBE8AC71249A94D600F0491D /* Geoname.swift */,
-				EB90CE0424A3AFD50099BB39 /* RealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -444,12 +438,10 @@
 				EB8CF08B243672E60070EC54 /* AppDelegate.swift in Sources */,
 				EB8CF0BD24841AF10070EC54 /* HomeViewModel.swift in Sources */,
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
-				EB90CE0524A3AFD50099BB39 /* RealmModel.swift in Sources */,
 				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
 				EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */,
 				EBE61F6C249E52A00021E8AC /* GradientView.swift in Sources */,
 				EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */,
-				EBE8AC72249A94D600F0491D /* Geoname.swift in Sources */,
 				EBEB24B924A350AD00EE8808 /* NSLayoutConstraint+Extension.swift in Sources */,
 				EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */,
 				EBE61F9724A20AE50021E8AC /* UIFont+Extension.swift in Sources */,

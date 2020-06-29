@@ -52,7 +52,7 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsTableViewCell
-    let array = realm.objects(RealmModel.self)
+    let array = realm.objects(Geonames.self)
     
     cell.locationNameLabel.text = array[indexPath.row].name
     
@@ -69,14 +69,14 @@ extension SettingsViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let array = realm.objects(RealmModel.self)
+    let array = realm.objects(Geonames.self)
     return array.count
   }
 }
 
 extension SettingsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let array = realm.objects(RealmModel.self)
+    let array = realm.objects(Geonames.self)
     
     let cityName = array[indexPath.row].name
     print("City name: \(cityName)")
