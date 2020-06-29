@@ -11,7 +11,7 @@ import RealmSwift
 
 final class SearchViewModel: NSObject {
   var searchActionHandler: Action?
-  var location: Location? {
+  var locations: Locations? {
     didSet {
       searchActionHandler?()
     }
@@ -23,18 +23,19 @@ final class SearchViewModel: NSObject {
   }
   private lazy var networkingManager = NetworkingManager()
   
-  init(location: Location? = nil) {
-    self.location = location
+  init(location: Locations? = nil) {
+    self.locations = location
   }
 }
 
 extension SearchViewModel {
-  func searchLocation(input: String) {
+  func getLocationsByName(input: String) {
     let userName = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"    
     guard let url = URL(string: urlToUse) else { return }
-    networkingManager.getApiData(url: url) { [weak self] (location: Location) in
-      self?.location = location
+    networkingManager.getApiData(url: url) { [weak self] (locations: Locations) in
+      print("Locations: ", locations)
+      self?.locations = locations
     }
   }
   

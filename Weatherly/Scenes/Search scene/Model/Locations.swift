@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Location: Codable {
+struct Locations: Codable {
   var geonames: [Geonames]
   
   init(geonames: [Geonames]) {

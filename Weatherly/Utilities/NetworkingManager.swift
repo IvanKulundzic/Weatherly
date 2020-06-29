@@ -20,6 +20,7 @@ final class NetworkingManager {
         guard let data = data else { return }
         do {
           let object: T = try JsonParser().parseJson(data: data)
+          print("Object1: ", object)
           completion(object)
         } catch {
           print("Error parsing JSON: ", error)

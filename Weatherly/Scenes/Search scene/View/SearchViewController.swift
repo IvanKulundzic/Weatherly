@@ -16,18 +16,14 @@ protocol SearchViewControllerDelegate: class {
 
 final class SearchViewController: UIViewController {
   private let path = Realm.Configuration.defaultConfiguration.fileURL
-  
-  var locations: [Geonames]?
   let cellId = "cellId"
   var delegate: SearchViewControllerDelegate?
-  
   private lazy var searchView = SearchView()
   private lazy var searchViewModel = SearchViewModel()
   private lazy var blurView = UIVisualEffectView()
   
   override func loadView() {
     view = searchView
-//    print(path)
   }
   
   override func viewDidLoad() {
@@ -43,10 +39,16 @@ final class SearchViewController: UIViewController {
 // MARK: - tableView delegate
 extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
-    guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
+    guard let selectedCellLongitude = searchViewModel.locations?.geonames[indexPath.row].longitude else { return }
+    guard let selectedCellLatitude = searchViewModel.locations?.geonames[indexPath.row].latitude else { return }
+    
+    // get city weather data based on selected row
     searchViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+    
+    // geoReverse to get city name
     searchViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
+    
+    // handler is called when searchViewModel city property is set
     searchViewModel.searchActionHandler = { [weak self] in
       self?.delegate?.city = self?.searchViewModel.city
       self?.dismiss(animated: true, completion: nil)
@@ -57,19 +59,19 @@ extension SearchViewController: UITableViewDelegate {
 // MARK: - tableView data source
 extension SearchViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let locationsCount = locations?.count else { return 0 }
+    guard let locationsCount = searchViewModel.locations?.geonames.count else { return 0 }
     return locationsCount
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SearchTableViewCell    
-    let array = locations?[indexPath.row].name
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SearchTableViewCell
+    let array = searchViewModel.locations?.geonames[indexPath.row].name
     let firstLetter = array.map { $0.prefix(1) }
     if let safeFirstLetter = firstLetter {
       cell.locationFirstLetterLabel.text = "\(safeFirstLetter)"
     }
-    if let locationName = locations?[indexPath.row].name,
-      let locationCountry = locations?[indexPath.row].countryCode {
+    if let locationName = searchViewModel.locations?.geonames[indexPath.row].name,
+      let locationCountry = searchViewModel.locations?.geonames[indexPath.row].countryCode {
       cell.locationNameLabel.text = "\(locationName), \(locationCountry)"
     }
     return cell
@@ -111,12 +113,12 @@ private extension SearchViewController {
 private extension SearchViewController {
   func handleTextFieldUserInput() {
     searchView.textFieldActionHandler = { [weak self] output in
-      self?.searchViewModel.searchLocation(input: output)
+      self?.searchViewModel.getLocationsByName(input: output)
       self?.searchView.activityIndicatorView.startAnimating()
     }
     
     searchViewModel.searchActionHandler = { [weak self] in
-      self?.locations = self?.searchViewModel.location?.geonames
+      //self?.locations = self?.searchViewModel.locations?.geonames
       self?.searchView.searchTableView.reloadData()
       self?.searchView.activityIndicatorView.stopAnimating()
     }

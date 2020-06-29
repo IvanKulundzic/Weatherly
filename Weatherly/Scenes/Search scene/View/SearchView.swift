@@ -40,7 +40,7 @@ extension SearchView: UITextFieldDelegate {
   }
   
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    UIView.animate(withDuration: 1.0) { [weak self] in
+    UIView.animate(withDuration: 0.7) { [weak self] in
       self?.setupTextField2()
     }
     return true

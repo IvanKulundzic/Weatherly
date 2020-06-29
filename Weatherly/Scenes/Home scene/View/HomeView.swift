@@ -44,6 +44,7 @@ final class HomeView: UIView {
     super.init(frame: frame)
     setupView()
   }
+  
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
@@ -55,10 +56,12 @@ extension HomeView {
     get { headerImageView.image }
     set { headerImageView.image = newValue }
   }
+  
   var bodyImage: UIImage? {
     get { bodyImageView.image }
     set { bodyImageView.image = newValue }
   }
+  
   var gradient: [UIColor]? {
     get { return [.red, .blue] }
     set {
@@ -67,34 +70,42 @@ extension HomeView {
       gradientView.setupViewAndGradientLayer(colorOne: firstColor, colorTwo: secondColor)      
     }
   }
+  
   var cityName: String? {
     get { cityNameLabel.text }
     set { cityNameLabel.text = newValue }
   }
+  
   var temperature: String? {
     get { temperatureLabel.text }
     set { temperatureLabel.text = newValue }
   }
+  
   var summary: String? {
     get { summaryLabel.text }
     set { summaryLabel.text = newValue }
   }
+  
   var lowTemperatureValue: String? {
     get { lowTemperature.text }
     set { lowTemperature.text = newValue }
   }
+  
   var highTemperatureValue: String? {
     get { highTemperature.text }
     set { highTemperature.text = newValue }
   }
+  
   var humidity: String? {
     get { humidityLabel.text }
     set { humidityLabel.text = newValue }
   }
+  
   var wind: String? {
     get { windLabel.text }
     set { windLabel.text = newValue }
   }
+  
   var pressure: String? {
     get { pressureLabel.text }
     set { pressureLabel.text = newValue }
@@ -146,25 +157,28 @@ private extension HomeView {
     setupPressureLabel()
     setupActivityIndicator()
   }
+  
   func setupHeaderImageView() {
     addSubview(headerImageView)
-    headerImageView.snp.makeConstraints { make in
-      make.top.equalToSuperview()
-      make.left.equalToSuperview()
-      make.right.equalToSuperview()
-      make.height.lessThanOrEqualTo(self.snp.height)
-    }
+//    headerImageView.snp.makeConstraints { make in
+//      make.top.equalTo(self.snp.top)
+//      make.left.equalToSuperview()
+//      make.right.equalToSuperview()
+//      make.height.equalTo(self.snp.height)
+//    }
 //
-//    let headerImageViewConstraints = [
-//      headerImageView.topAnchor.constraint(equalTo: topAnchor),
-//      headerImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-//      headerImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-//      headerImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3, constant: 1)
-//    ]
-//    NSLayoutConstraint.useAndActivateConstraints(constraints: headerImageViewConstraints)
+    let headerImageViewConstraints = [
+      headerImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+      headerImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+      headerImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+      headerImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.3, constant: 1)
+    ]
+    NSLayoutConstraint.useAndActivateConstraints(constraints: headerImageViewConstraints)
+    
     headerImageView.contentMode = .scaleAspectFit
     headerImageView.backgroundColor = .clear
   }
+  
   func setupGradientView() {
     insertSubview(gradientView, at: 0)
     let gradientViewConstraints = [
@@ -175,6 +189,7 @@ private extension HomeView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: gradientViewConstraints)
   }
+  
   func setupBodyImageView() {
     addSubview(bodyImageView)
     bodyImageView.snp.makeConstraints { (make) in
@@ -184,6 +199,7 @@ private extension HomeView {
       make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(40)
     }
   }
+  
   func setupCityNameLabel() {
     addSubview(cityNameLabel)
     let cityNameLabelConstraints = [
@@ -198,6 +214,7 @@ private extension HomeView {
     cityNameLabel.textAlignment = .center
     cityNameLabel.font = .getGothamFont(size: 36, weight: .book)
   }
+  
   func setupTemperatureLabel() {
     addSubview(temperatureLabel)
     let temperatureLabelConstraints = [
@@ -212,6 +229,7 @@ private extension HomeView {
     temperatureLabel.textAlignment = .center
     temperatureLabel.font = .getGothamFont(size: 72, weight: .light)
   }
+  
   func setupSummaryLabel() {
     addSubview(summaryLabel)
     let summaryLabelConstraints = [
@@ -226,6 +244,7 @@ private extension HomeView {
     summaryLabel.textAlignment = .center
     summaryLabel.font = .getGothamFont(size: 24, weight: .light)
   }
+  
   func setupLeftStackView() {
     addSubview(leftStackView)
     let leftStackViewConstraints = [
@@ -241,6 +260,7 @@ private extension HomeView {
     leftStackView.axis = .vertical
     leftStackView.alignment = .fill
   }
+  
   func setupRightStackView() {
     addSubview(rightStackView)
     let rightStackViewConstraints = [
@@ -255,6 +275,7 @@ private extension HomeView {
     rightStackView.axis = .vertical
     rightStackView.alignment = .fill
   }
+  
   func setupSeparatorView() {
     addSubview(separatorView)
     let separatorViewConstraints = [
@@ -267,6 +288,7 @@ private extension HomeView {
     
     separatorView.backgroundColor = .white
   }
+  
   func setupLowTemperature() {
     leftStackView.addArrangedSubview(lowTemperature)
 
@@ -274,6 +296,7 @@ private extension HomeView {
     lowTemperature.font = .getGothamFont(size: 24, weight: .light)
     lowTemperature.textColor = .white
   }
+  
   func setupLowTemperatureLabel() {
     leftStackView.addArrangedSubview(lowTemperatureLabel)
     
@@ -282,6 +305,7 @@ private extension HomeView {
     lowTemperatureLabel.textAlignment = .center
     lowTemperatureLabel.font = .getGothamFont(size: 20, weight: .light)
   }
+  
   func setupHighTemperature() {
     rightStackView.addArrangedSubview(highTemperature)
     
@@ -289,6 +313,7 @@ private extension HomeView {
     highTemperature.textAlignment = .center
     highTemperature.font = .getGothamFont(size: 24, weight: .light)
   }
+  
   func setupHighTemperatureLabel() {
     rightStackView.addArrangedSubview(highTemperatureLabel)
     
@@ -297,6 +322,7 @@ private extension HomeView {
     highTemperatureLabel.textAlignment = .center
     highTemperatureLabel.font = .getGothamFont(size: 20, weight: .light)
   }
+  
   func setupBottomStackView() {
     addSubview(bottomStackView)
     let bottomStackViewConstraints = [
@@ -414,6 +440,7 @@ private extension HomeView {
     
     textField.addTarget(self, action: #selector(textFieldTapped), for: .editingDidBegin)
   }
+  
   func setupActivityIndicator() {
     addSubview(activityIndicatorView)
     let activityIndicatorConstraints = [

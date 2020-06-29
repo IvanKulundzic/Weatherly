@@ -34,27 +34,27 @@ extension HomeViewModel {
   }
   
   var cityName: String? {
-    return city?.name
+    city?.name
   }
   
   var cityTemperature: String? {
-    return "\(String(describing: Int(round(((city?.currentWeather.temperature ?? 0.0) - 32) / 2))))°"
+    "\(String(describing: Int(round(((city?.currentWeather.temperature ?? 0.0) - 32) / 2))))°"
   }
   
   var cityCondition: String? {
-    return city?.currentWeather.summary
+    city?.currentWeather.summary
   }
   
   var cityWindSpeed: String? {
-    return "\(city?.currentWeather.windSpeed ?? 0.0) km/h"
+    "\(city?.currentWeather.windSpeed ?? 0.0) km/h"
   }
   
   var cityHumidity: String? {
-    return "\(city?.currentWeather.humidity ?? 0.0)%"
+    "\(city?.currentWeather.humidity ?? 0.0)%"
   }
   
   var cityPressure: String? {
-    return "\(city?.currentWeather.pressure ?? 0.0) hpa"
+    "\(city?.currentWeather.pressure ?? 0.0) hpa"
   }
   
   var cityMinTemp: String? {
@@ -96,15 +96,15 @@ extension HomeViewModel {
   var gradient: [UIColor]? {
     guard let cityBodyImageString = city?.currentWeather.icon.rawValue else { return nil }
     switch cityBodyImageString {
-    case Icon.clearDay.rawValue, Icon.partlyCloudyDay.rawValue:
+    case Icon.clearDay.rawValue, Icon.partlyCloudyDay.rawValue: // day
       return [UIColor.dayColorOne, UIColor.dayColorTwo]
-    case Icon.clearNight.rawValue, Icon.partlyCloudyNight.rawValue:
+    case Icon.clearNight.rawValue, Icon.partlyCloudyNight.rawValue: // night
       return [UIColor.nightColorOne, UIColor.nightColorTwo]
-    case Icon.rain.rawValue, Icon.wind.rawValue, Icon.thunderstorm.rawValue, Icon.tornado.rawValue, Icon.hail.rawValue:
+    case Icon.rain.rawValue, Icon.wind.rawValue, Icon.thunderstorm.rawValue, Icon.tornado.rawValue, Icon.hail.rawValue: // rain
       return [UIColor.rainColorOne, UIColor.rainColorTwo]
-    case Icon.snow.rawValue, Icon.sleet.rawValue:
+    case Icon.snow.rawValue, Icon.sleet.rawValue: // snow
       return [UIColor.snowColorOne, UIColor.snowColorTwo]
-    case Icon.fog.rawValue, Icon.cloudy.rawValue:
+    case Icon.fog.rawValue, Icon.cloudy.rawValue: // fog
       return [UIColor.fogColorOne, UIColor.fogColorTwo]
     default:
       return [UIColor.defaultColorOne, UIColor.defaultColorTwo]
@@ -126,34 +126,36 @@ extension HomeViewModel: CLLocationManagerDelegate {
     // When horizontal accuracy is over 0, a location has been found so the location manager can stop updating
     if location.horizontalAccuracy > 0 {
       coreLocationManager.stopUpdatingLocation()
-      fetchCity(location: location)
+      getLocationWeatherData(location: location)
+      print("Location: ", location)
     }
   }
 }
 
 // MARK: - fetch city
 extension HomeViewModel {
-  func fetchCity(location: CLLocation) {
+  func getLocationWeatherData(location: CLLocation) {
     let latitude = String(location.coordinate.latitude)
     let longitude = String(location.coordinate.longitude)
     let key = "4b208159f61d43a3a3505ce608eb359d"
     let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)"
-    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (city: City) in
       self?.city = city
-      self?.geoReverse(long: longitude, lat: latitude)
-      self?.cityChangedHandler?()
+      print("City - fetchCity method - set model city = city: ", city)
+      self?.getCityNameWithGeoReverse(long: longitude, lat: latitude)
+      //self?.cityChangedHandler?()
     }
   }
   
-  func geoReverse(long: String, lat: String) {
+  func getCityNameWithGeoReverse(long: String, lat: String) {
     let longitude = long
     let latitude = lat
     let username = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=\(username)"
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: CityName) in
+        print("GeoReverse - geoname: ", geoName)
         self?.city?.name = geoName.geoname[0].name 
       }
     }

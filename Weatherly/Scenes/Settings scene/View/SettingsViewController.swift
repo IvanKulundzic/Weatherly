@@ -22,7 +22,7 @@ final class SettingsViewController: UIViewController {
   private lazy var settingsView = SettingsView()
   private lazy var blurView = UIVisualEffectView()
   
-  var location: Location? {
+  var location: Locations? {
     didSet {
       searchActionHandler?()
     }
@@ -85,7 +85,7 @@ extension SettingsViewController: UITableViewDelegate {
     guard let selectedCellLongitude = locations?[indexPath.row].longitude else { return }
     guard let selectedCellLatitude = locations?[indexPath.row].latitude else { return }
     searchVM.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
-    searchVM.searchLocation(input: cityName)
+    searchVM.getLocationsByName(input: cityName)
     searchVM.searchActionHandler = { [weak self] in
       self?.delegate?.city = self?.searchVM.city
       print(self?.searchVM.city)

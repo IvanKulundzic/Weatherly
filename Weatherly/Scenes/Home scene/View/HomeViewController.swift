@@ -38,12 +38,7 @@ extension HomeViewController: SearchViewControllerDelegate {
 }
 
 // MARK: - conform to SettingsViewControllerDelegate
-extension HomeViewController: SettingsViewControllerDelegate {
-  
-  
- 
-  
-}
+extension HomeViewController: SettingsViewControllerDelegate { }
 
 // MARK: - update UI with model data
 private extension HomeViewController {
