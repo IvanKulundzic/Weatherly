@@ -9,17 +9,35 @@
 import Foundation
 import UIKit
 
-// MARK: - create gradient background on a selected view with 2 colors
-extension UIView {
-  func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
-    let gradientLayer = CAGradientLayer()
-    gradientLayer.frame = bounds
-    gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
-    gradientLayer.locations = [0.0, 1.0]
-    gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
-    gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
-    layer.insertSublayer(gradientLayer, at: 0)
-  }
-}
+// MARK: - setup constraints
+//extension UIView {
+//  func setupAnchorConstraints(top: NSLayoutYAxisAnchor?,
+//                              leading: NSLayoutXAxisAnchor?,
+//                              trailing: NSLayoutXAxisAnchor?,
+//                              bottom: NSLayoutYAxisAnchor?,
+//                              padding: UIEdgeInsets = .zero) {
+//    if let top = top {
+//      topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
+//    }
+//    if let leading = leading {
+//      leadingAnchor.constraint(equalTo: leading, constant: padding.left).isActive = true
+//    }
+//    if let trailing = trailing {
+//      trailingAnchor.constraint(equalTo: trailing, constant: padding.right).isActive = true
+//    }
+//    if let bottom = bottom {
+//      bottomAnchor.constraint(equalTo: bottom, constant: padding.bottom).isActive = true
+//    }
+//    translatesAutoresizingMaskIntoConstraints = false
+//  }
+//  func setupCentreAnchors(centerX: NSLayoutXAxisAnchor?, centerY: NSLayoutYAxisAnchor?, constant: CGFloat) {
+//    if let centerX = centerX {
+//      centerXAnchor.constraint(equalTo: centerX, constant: constant).isActive = true
+//    }
+//    if let centerY = centerY {
+//      centerYAnchor.constraint(equalTo: top, constant: constant).isActive = true
+//    }
+//  }
+//}
 
 

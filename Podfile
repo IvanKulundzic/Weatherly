@@ -7,5 +7,6 @@ target 'Weatherly' do
 
   # Pods for Weatherly
   pod 'RealmSwift'
+  pod 'SnapKit'
 
 end
