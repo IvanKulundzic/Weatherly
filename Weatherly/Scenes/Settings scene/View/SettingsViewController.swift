@@ -11,43 +11,62 @@ import RealmSwift
 
 protocol SettingsViewControllerDelegate: class {
   var city: City? { get set }
+  func getData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool)
 }
 
 final class SettingsViewController: UIViewController {
   var delegate: SettingsViewControllerDelegate?
-  //var searchActionHandler: Action?
-  
   var locations: [Geonames]?
-  
   private let settingsViewModel = SettingsViewModel()
-  private lazy var settingsView = SettingsView()
+  private(set) lazy var settingsView = SettingsView()
   private lazy var blurView = UIVisualEffectView()
-  
-//  var location: Locations? {
-//    didSet {
-//      searchActionHandler?()
-//    }
-//  }
-  
   let cellId = "settingsCell"
   let realm = try! Realm()
-  
   let searchVM = SearchViewModel()
+  
+  var hideHumidity: Bool {
+    get { settingsView.hideHumidity ?? false }
+    set { settingsView.hideHumidity = newValue}
+  }
+  
+  var hideWind: Bool {
+    get { settingsView.hideWind ?? false }
+    set { settingsView.hideHumidity = newValue }
+  }
+  
+  var hidePressure: Bool {
+    get { settingsView.hidePressure ?? false }
+    set { settingsView.hidePressure = newValue }
+  }
   
   override func loadView() {
     view = settingsView
+  }
+  
+  override func viewDidLoad() {
+    getSettingsData(hideHumidity: hideHumidity, hideWind: hideWind, hidePressure: hidePressure)
+    settingsView.reloadInputViews()
     settingsView.locationsListTableView.dataSource = self
     settingsView.locationsListTableView.delegate = self
-    
-    
-//    let realm = try! Realm()
-//    let array = realm.objects(RealmModel.self)
-//    print(Realm.Configuration.defaultConfiguration.fileURL!)
-//    checkIfDatabaseExists()
-    
-    settingsViewDoneButtonTapped()
+    settingsViewDoneButtonTapped()//
     addBlurEffect()
   }
+}
+
+extension SettingsViewController: HomeViewControllerDelegate {
+  func getSettingsData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool) {
+    self.hideHumidity = hideHumidity
+    self.hideWind = hideWind
+    self.hidePressure = hidePressure
+    settingsView.hideHumidity = hideHumidity
+    settingsView.hideWind = hideWind
+    settingsView.hidePressure = hidePressure
+    settingsView.layoutIfNeeded()
+  }
+  
+  
+  
+  
 }
 
 extension SettingsViewController: UITableViewDataSource {
@@ -78,41 +97,15 @@ extension SettingsViewController: UITableViewDataSource {
 extension SettingsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let array = realm.objects(Geonames.self)
-//
-//    let cityName = array[indexPath.row].name
-//    print("City name: \(cityName)")
-    
-    
-    
     let selectedCellLongitude = array[indexPath.row].longitude
     let selectedCellLatitude = array[indexPath.row].latitude
     
-      settingsViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
-      settingsViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
-      
-    
-      
-      
-//      else { return }    //locations?[indexPath.row].longitude else { return }
-//    if let selectedCellLatitude = array[indexPath.row].latitude else { return }    //locations?[indexPath.row].latitude else { return }
-    
-    //settingsViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
-    
-    //settingsViewModel.getLocationsByName(input: cityName)
-    //settingsViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
-    
+    settingsViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
+    settingsViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
     settingsViewModel.settingsActionHandler = { [weak self] in
       self?.delegate?.city = self?.settingsViewModel.city
       self?.dismiss(animated: true, completion: nil)
     }
-    
-//    searchVM.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
-//    searchVM.getLocationsByName(input: cityName)
-//    searchVM.searchActionHandler = { [weak self] in
-//      self?.delegate?.city = self?.searchVM.city
-//      print(self?.searchVM.city)
-//      self?.dismiss(animated: true, completion: nil)
-//    }
   }
 }
 
@@ -120,6 +113,8 @@ extension SettingsViewController: UITableViewDelegate {
 private extension SettingsViewController {
   func settingsViewDoneButtonTapped() {
     settingsView.doneButtonActionHandler = { [weak self] in
+      self?.hideHumidity = self?.settingsView.hideHumidity ?? false
+      self?.delegate?.getData(hideHumidity: self?.hideHumidity ?? false, hideWind: self?.hideWind ?? false, hidePressure: self?.hidePressure ?? false)
       self?.dismiss(animated: true, completion: nil)
     }
   }

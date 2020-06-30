@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		30C2F3C7EDB860AC82C5249B /* Pods_Weatherly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7EC00EF779788BC48BD0936 /* Pods_Weatherly.framework */; };
 		EB17F9D224AA00F8003E05AC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17F9D124AA00F8003E05AC /* SettingsViewModel.swift */; };
+		EB17F9D424AB2AA6003E05AC /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17F9D324AB2AA6003E05AC /* SettingsModel.swift */; };
 		EB8CF08B243672E60070EC54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF08A243672E60070EC54 /* AppDelegate.swift */; };
 		EB8CF08F243672E60070EC54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF08E243672E60070EC54 /* HomeViewController.swift */; };
 		EB8CF094243672E70070EC54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8CF093243672E70070EC54 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		3357BF929B2257842C3F7008 /* Pods-Weatherly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.release.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.release.xcconfig"; sourceTree = "<group>"; };
 		C7EC00EF779788BC48BD0936 /* Pods_Weatherly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weatherly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB17F9D124AA00F8003E05AC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		EB17F9D324AB2AA6003E05AC /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		EB8CF087243672E60070EC54 /* Weatherly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatherly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8CF08A243672E60070EC54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8CF08E243672E60070EC54 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		EB8CF0B62481215D0070EC54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EB17F9D324AB2AA6003E05AC /* SettingsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				EB8CF0BD24841AF10070EC54 /* HomeViewModel.swift in Sources */,
 				EB17F9D224AA00F8003E05AC /* SettingsViewModel.swift in Sources */,
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
+				EB17F9D424AB2AA6003E05AC /* SettingsModel.swift in Sources */,
 				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
 				EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */,
 				EBE61F6C249E52A00021E8AC /* GradientView.swift in Sources */,

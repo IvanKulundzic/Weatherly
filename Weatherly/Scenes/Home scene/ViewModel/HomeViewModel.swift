@@ -1,15 +1,14 @@
 //
 //  HomeViewModel.swift
 //  Weatherly
-//
-//  Created by Ivan Kulundzic on 31/05/2020.
+////  Created by Ivan Kulundzic on 31/05/2020.
 //  Copyright © 2020 Ivan Kulundzic. All rights reserved.
 //
 
 import Foundation
 import CoreLocation
 import UIKit
-import Hue
+//import Hue
 
 final class HomeViewModel: NSObject {
   var cityChangedHandler: Action?
@@ -127,7 +126,7 @@ extension HomeViewModel: CLLocationManagerDelegate {
     if location.horizontalAccuracy > 0 {
       coreLocationManager.stopUpdatingLocation()
       getLocationWeatherData(location: location)
-      print("Location: ", location)
+      //print("Location: ", location)
     }
   }
 }
@@ -142,7 +141,7 @@ extension HomeViewModel {
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (city: City) in
       self?.city = city
-      print("City - fetchCity method - set model city = city: ", city)
+      //print("City - fetchCity method - set model city = city: ", city)
       self?.getCityNameWithGeoReverse(long: longitude, lat: latitude)
       //self?.cityChangedHandler?()
     }
@@ -155,7 +154,7 @@ extension HomeViewModel {
     let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=\(username)"
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: Locations) in
-        print("GeoReverse - geoname: ", geoName)
+        //print("GeoReverse - geoname: ", geoName)
         self?.city?.name = geoName.geonames[0].name 
       }
     }

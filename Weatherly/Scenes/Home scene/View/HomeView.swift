@@ -101,6 +101,27 @@ extension HomeView {
     set { humidityLabel.text = newValue }
   }
   
+  var hideHumidity: Bool? {
+    get { humidityLabel.isHidden }
+    set { humidityLabel.isHidden = newValue ?? false
+      humidityIcon.isHidden = newValue ?? false
+    }
+  }
+  
+  var hideWind: Bool? {
+    get { windLabel.isHidden }
+    set { windLabel.isHidden = newValue ?? false
+      windIcon.isHidden = newValue ?? false
+    }
+  }
+  
+  var hidePressure: Bool? {
+    get { pressureLabel.isHidden }
+    set { pressureLabel.isHidden = newValue ?? false
+      pressureIcon.isHidden = newValue ?? false
+    }
+  }
+
   var wind: String? {
     get { windLabel.text }
     set { windLabel.text = newValue }

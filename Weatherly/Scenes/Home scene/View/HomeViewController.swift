@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol HomeViewControllerDelegate {
+  func getSettingsData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool)
+}
+
 final class HomeViewController: UIViewController {
   private(set) lazy var homeViewModel = HomeViewModel()
   private lazy var homeView = HomeView()
+  
+  var delegate: HomeViewControllerDelegate?
   
   override func loadView() {
     view = homeView
@@ -25,20 +31,25 @@ final class HomeViewController: UIViewController {
   }
 }
 
-// MARK: - conform to searchViewControllerDelegate
+// MARK: - conform to searchViewControllerDelegate and settingsVCDelegate
 extension HomeViewController: SearchViewControllerDelegate, SettingsViewControllerDelegate {
+  
+  
+  func getData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool) {
+    homeView.hideHumidity = hideHumidity
+    homeView.hideWind = hideWind
+    homeView.hidePressure = hidePressure
+  }
+  
   var city: City? {
     get {
-      return self.city
+      homeViewModel.city
     }
     set {
       homeViewModel.city = newValue
     }
   }
 }
-
-// MARK: - conform to SettingsViewControllerDelegate
-//extension HomeViewController: SettingsViewControllerDelegate { }
 
 // MARK: - update UI with model data
 private extension HomeViewController {
@@ -78,6 +89,7 @@ private extension HomeViewController {
     homeView.settingsButtonActionHandler = { [weak self] in
       let vc = SettingsViewController()
       vc.delegate = self
+      vc.getSettingsData(hideHumidity: self?.homeView.hideHumidity ?? false, hideWind: self?.homeView.hideWind ?? false , hidePressure: self?.homeView.hidePressure ?? false)
       self?.present(vc, animated: true)
     }
   }

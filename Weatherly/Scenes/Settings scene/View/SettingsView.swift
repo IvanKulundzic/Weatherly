@@ -11,6 +11,7 @@ import UIKit
 final class SettingsView: UIView {
   var doneButtonActionHandler: Action?
   let cellId = "settingsCell"
+  var units: String = ""
   
   private lazy var locationsLabel = UILabel()
   private(set) lazy var locationsListTableView = UITableView()
@@ -32,6 +33,36 @@ final class SettingsView: UIView {
   private lazy var bottomLeftStackView = UIStackView()
   private lazy var bottomMiddleStackView = UIStackView()
   private lazy var bottomRightStackView = UIStackView()
+  
+  var hideHumidity: Bool? {
+    didSet {
+      if (hideHumidity == true) {
+        humidityButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+      } else {
+        humidityButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+      }
+    }
+  }
+  
+  var hideWind: Bool? {
+    didSet {
+      if (hideWind == true) {
+        windButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+      } else {
+        windButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+      }
+    }
+  }
+  
+  var hidePressure: Bool? {
+    didSet {
+      if (hidePressure == true) {
+        pressureButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+      } else {
+        pressureButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+      }
+    }
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -251,21 +282,26 @@ private extension SettingsView {
   
   func setupHumidityButton() {
     bottomLeftStackView.addArrangedSubview(humidityButton)
-    
-    let image = UIImage(named: "checkmark_check")
-    humidityButton.setImage(image, for: .normal)
+//    print("10")
+//    print("Setting button,", hideHumidity)
+//    if hideHumidity == true {
+//      humidityButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+//    } else {
+//      humidityButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+//    }
+//
+//
     
     humidityButton.addTarget(self, action: #selector(humidityButtonTapped), for: .touchUpInside)
   }
   
   @objc func humidityButtonTapped() {
-    let image = UIImage(named: "checkmark_uncheck")
-    if humidityButton.image(for: .normal) == image {
-      let image = UIImage(named: "checkmark_check")
-      humidityButton.setImage(image, for: .normal)
+    if hideHumidity == true {
+      hideHumidity = false
+      humidityButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
     } else {
-      let image = UIImage(named: "checkmark_uncheck")
-      humidityButton.setImage(image, for: .normal)
+      hideHumidity = true
+      humidityButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
     }
   }
   
@@ -278,21 +314,31 @@ private extension SettingsView {
   func setupWindButton() {
     bottomMiddleStackView.addArrangedSubview(windButton)
     
-    let image = UIImage(named: "checkmark_check")
-    windButton.setImage(image, for: .normal)
+//    let image = UIImage(named: "checkmark_check")
+//    windButton.setImage(image, for: .normal)
     
     windButton.addTarget(self, action: #selector(windButtonTapped), for: .touchUpInside)
   }
   
   @objc func windButtonTapped() {
-    let image = UIImage(named: "checkmark_uncheck")
-    if windButton.image(for: .normal) == image {
-      let image = UIImage(named: "checkmark_check")
-      windButton.setImage(image, for: .normal)
-    } else {
-      let image = UIImage(named: "checkmark_uncheck")
-      windButton.setImage(image, for: .normal)
-    }
+//    let image = UIImage(named: "checkmark_uncheck")
+//    if windButton.image(for: .normal) == image {
+//      let image = UIImage(named: "checkmark_check")
+//      windButton.setImage(image, for: .normal)
+//    } else {
+//      let image = UIImage(named: "checkmark_uncheck")
+//      windButton.setImage(image, for: .normal)
+//    }
+    
+//       let image = UIImage(named: "checkmark_check")
+     
+     if hideWind == true {
+       hideWind = false
+       windButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+     } else {
+       hideWind = true
+       windButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+     }
   }
   
   func setupPressureIcon() {
@@ -304,20 +350,28 @@ private extension SettingsView {
   func setupPressureButton() {
     bottomRightStackView.addArrangedSubview(pressureButton)
     
-    let image = UIImage(named: "checkmark_check")
-    pressureButton.setImage(image, for: .normal)
+//    let image = UIImage(named: "checkmark_check")
+//    pressureButton.setImage(image, for: .normal)
     
     pressureButton.addTarget(self, action: #selector(pressureButtonTapped), for: .touchUpInside)
   }
   
   @objc func pressureButtonTapped() {
-    let image = UIImage(named: "checkmark_uncheck")
-    if pressureButton.image(for: .normal) == image {
-      let image = UIImage(named: "checkmark_check")
-      pressureButton.setImage(image, for: .normal)
+//    let image = UIImage(named: "checkmark_uncheck")
+//    if pressureButton.image(for: .normal) == image {
+//      let image = UIImage(named: "checkmark_check")
+//      pressureButton.setImage(image, for: .normal)
+//    } else {
+//      let image = UIImage(named: "checkmark_uncheck")
+//      pressureButton.setImage(image, for: .normal)
+//    }
+    
+   if hidePressure == true {
+      hidePressure = false
+      pressureButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
     } else {
-      let image = UIImage(named: "checkmark_uncheck")
-      pressureButton.setImage(image, for: .normal)
+      hidePressure = true
+      pressureButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
     }
   }
   

@@ -9,24 +9,21 @@
 import Foundation
 import RealmSwift
 
-final class SettingsViewModel: NSObject {
+final class SettingsViewModel {
   var settingsActionHandler: Action?
-  var locations: Locations? {
-    didSet {
-      print("Locations set")
-      settingsActionHandler?()
-    }
-  }
+  var locations: Locations?
   var city: City? {
     didSet {
-      print("City set")
       settingsActionHandler?()
     }
   }
+  //var settingsModel: SettingsModel?
+  var hideHumidity: Bool?
   private lazy var networkingManager = NetworkingManager()
   
-  init(location: Locations? = nil) {
+  init(location: Locations? = nil, hideHumidtiy: Bool? = nil) {
     self.locations = location
+    self.hideHumidity = hideHumidtiy
   }
 }
 
@@ -36,7 +33,7 @@ extension SettingsViewModel {
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (locations: Locations) in
-      print("Locations: ", locations)
+      //print("Locations: ", locations)
       self?.locations = locations
     }
   }
