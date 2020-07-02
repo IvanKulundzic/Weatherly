@@ -21,6 +21,9 @@ final class HomeViewController: UIViewController {
   override func loadView() {
     view = homeView
     homeView.activityIndicatorView.startAnimating()
+    let userDefaults = UserDefaults.standard
+    let readBack = userDefaults.object(forKey: "units") ?? "wrong units value"
+    print("Defaults : \(readBack)")
   }
   
   override func viewDidLoad() {
@@ -28,14 +31,13 @@ final class HomeViewController: UIViewController {
     homeViewSearchBarTapped()
     homeViewModel.getCurrentLocation()
     viewModelHandler()
-  }
+      
+    }
 }
 
 // MARK: - conform to searchViewControllerDelegate and settingsVCDelegate
 extension HomeViewController: SearchViewControllerDelegate, SettingsViewControllerDelegate {
-  
-  
-  func getData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool) {
+  func getSettings(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool) {
     homeView.hideHumidity = hideHumidity
     homeView.hideWind = hideWind
     homeView.hidePressure = hidePressure

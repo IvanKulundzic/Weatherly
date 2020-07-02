@@ -11,7 +11,7 @@ import RealmSwift
 
 protocol SettingsViewControllerDelegate: class {
   var city: City? { get set }
-  func getData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool)
+  func getSettings(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool)
 }
 
 final class SettingsViewController: UIViewController {
@@ -44,48 +44,33 @@ final class SettingsViewController: UIViewController {
   }
   
   override func viewDidLoad() {
-    getSettingsData(hideHumidity: hideHumidity, hideWind: hideWind, hidePressure: hidePressure)
-    settingsView.reloadInputViews()
     settingsView.locationsListTableView.dataSource = self
     settingsView.locationsListTableView.delegate = self
-    settingsViewDoneButtonTapped()//
+    settingsViewDoneButtonTapped()
     addBlurEffect()
   }
 }
 
 extension SettingsViewController: HomeViewControllerDelegate {
   func getSettingsData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool) {
-    self.hideHumidity = hideHumidity
-    self.hideWind = hideWind
-    self.hidePressure = hidePressure
     settingsView.hideHumidity = hideHumidity
     settingsView.hideWind = hideWind
     settingsView.hidePressure = hidePressure
-    settingsView.layoutIfNeeded()
   }
-  
-  
-  
-  
 }
 
 extension SettingsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsTableViewCell
-    let array = realm.objects(Geonames.self)
-    
+    let array = realm.objects(Geonames.self)    
     cell.locationNameLabel.text = array[indexPath.row].name
-    
     cell.removeButtonActionHandler = {
-      print("We're here, yay!")
       try! self.realm.write {
         self.realm.delete(array[indexPath.row])
       }
-      
       tableView.reloadData()
     }
     return cell
-    
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,13 +84,15 @@ extension SettingsViewController: UITableViewDelegate {
     let array = realm.objects(Geonames.self)
     let selectedCellLongitude = array[indexPath.row].longitude
     let selectedCellLatitude = array[indexPath.row].latitude
-    
     settingsViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
     settingsViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
     settingsViewModel.settingsActionHandler = { [weak self] in
-      self?.delegate?.city = self?.settingsViewModel.city
-      self?.dismiss(animated: true, completion: nil)
+//      self?.delegate?.city = self?.settingsViewModel.city
+      self?.settingsView.city = self?.settingsViewModel.city
+//      self?.dismiss(animated: true, completion: nil)
     }
+//    print("SVM", settingsViewModel.city)
+//    settingsView.city = settingsViewModel.city
   }
 }
 
@@ -114,7 +101,9 @@ private extension SettingsViewController {
   func settingsViewDoneButtonTapped() {
     settingsView.doneButtonActionHandler = { [weak self] in
       self?.hideHumidity = self?.settingsView.hideHumidity ?? false
-      self?.delegate?.getData(hideHumidity: self?.hideHumidity ?? false, hideWind: self?.hideWind ?? false, hidePressure: self?.hidePressure ?? false)
+      self?.delegate?.getSettings(hideHumidity: self?.hideHumidity ?? false, hideWind: self?.hideWind ?? false, hidePressure: self?.hidePressure ?? false)
+      self?.delegate?.city = self?.settingsView.city
+//      print("SV city", self?.settingsView.city)
       self?.dismiss(animated: true, completion: nil)
     }
   }
@@ -129,7 +118,6 @@ private extension SettingsViewController {
       blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: blurViewConstraints)
-    
     blurView.effect = UIBlurEffect(style: .light)
   }
 }

@@ -17,7 +17,6 @@ final class SettingsViewModel {
       settingsActionHandler?()
     }
   }
-  //var settingsModel: SettingsModel?
   var hideHumidity: Bool?
   private lazy var networkingManager = NetworkingManager()
   
@@ -31,9 +30,9 @@ extension SettingsViewModel {
   func getLocationsByName(input: String) {
     let userName = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"
+    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (locations: Locations) in
-      //print("Locations: ", locations)
       self?.locations = locations
     }
   }
@@ -41,8 +40,10 @@ extension SettingsViewModel {
   func getCityWeatherData(long: String, lat: String) {
     let longitude = long
     let latitude = lat
+    let defaults = UserDefaults.standard
+    let units = defaults.object(forKey: "units") ?? "si"
     let key = "4b208159f61d43a3a3505ce608eb359d"
-    let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)"
+    let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)?units=\(units)"
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (city: City) in
         self?.city = city

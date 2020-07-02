@@ -20,6 +20,7 @@ final class HomeViewModel: NSObject {
   private let coreLocationManager = CLLocationManager()
   private let networkingManager = NetworkingManager()
   private let dateFormatter = DateFormatter()
+  let defaults = UserDefaults.standard
   
   init(city: City? = nil) {
     self.city = city    
@@ -37,7 +38,7 @@ extension HomeViewModel {
   }
   
   var cityTemperature: String? {
-    "\(String(describing: Int(round(((city?.currentWeather.temperature ?? 0.0) - 32) / 2))))°"
+    return "\(Int(city?.currentWeather.temperature ?? 0))°"
   }
   
   var cityCondition: String? {
@@ -131,19 +132,21 @@ extension HomeViewModel: CLLocationManagerDelegate {
   }
 }
 
-// MARK: - fetch city
+// MARK: - get weather data
 extension HomeViewModel {
   func getLocationWeatherData(location: CLLocation) {
+    let defaults = UserDefaults.standard
+    let units = defaults.object(forKey: "units") ?? "si"
     let latitude = String(location.coordinate.latitude)
     let longitude = String(location.coordinate.longitude)
     let key = "4b208159f61d43a3a3505ce608eb359d"
-    let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)"
+    print("Units 1", units)
+    let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)?units=\(units)"
+    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (city: City) in
       self?.city = city
-      //print("City - fetchCity method - set model city = city: ", city)
       self?.getCityNameWithGeoReverse(long: longitude, lat: latitude)
-      //self?.cityChangedHandler?()
     }
   }
   
@@ -154,7 +157,6 @@ extension HomeViewModel {
     let urlToUse = "http://api.geonames.org/findNearbyPlaceNameJSON?lat=\(latitude)&lng=\(longitude)&username=\(username)"
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: Locations) in
-        //print("GeoReverse - geoname: ", geoName)
         self?.city?.name = geoName.geonames[0].name 
       }
     }

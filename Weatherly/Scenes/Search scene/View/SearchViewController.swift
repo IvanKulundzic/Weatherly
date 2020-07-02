@@ -41,13 +41,10 @@ extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let selectedCellLongitude = searchViewModel.locations?.geonames[indexPath.row].longitude else { return }
     guard let selectedCellLatitude = searchViewModel.locations?.geonames[indexPath.row].latitude else { return }
-    
     // get city weather data based on selected row
     searchViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
-    
     // geoReverse to get city name
     searchViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
-    
     // handler is called when searchViewModel city property is set
     searchViewModel.searchActionHandler = { [weak self] in
       self?.delegate?.city = self?.searchViewModel.city
@@ -142,8 +139,7 @@ private extension SearchViewController {
       blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
       blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
     ]
-    NSLayoutConstraint.useAndActivateConstraints(constraints: blurViewConstraints)
-    
+    NSLayoutConstraint.useAndActivateConstraints(constraints: blurViewConstraints)    
     blurView.effect = UIBlurEffect(style: .light)
   }
 }

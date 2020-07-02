@@ -44,18 +44,15 @@ private extension SettingsTableViewCell {
       removeButton.widthAnchor.constraint(equalToConstant: 30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationFirstLetterLabelConstraints)
-    
     removeButton.backgroundColor = .gray
     removeButton.setTitle("x", for: .normal)
     removeButton.setTitleColor(.white, for: .normal)
     removeButton.titleLabel?.font = .getGothamFont(size: 20, weight: .book)
     removeButton.titleLabel?.textAlignment = .center
-    
     removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
   }
   
   @objc func removeButtonTapped() {
-    print("Remove button tapped")
     removeButtonActionHandler?()
   }
   
@@ -68,7 +65,6 @@ private extension SettingsTableViewCell {
       locationNameLabel.heightAnchor.constraint(equalToConstant: 30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationNameLabelConstraints)
-    
     locationNameLabel.textColor = .white
     locationNameLabel.textAlignment = .left
     locationNameLabel.font = .getGothamFont(size: 20, weight: .book)

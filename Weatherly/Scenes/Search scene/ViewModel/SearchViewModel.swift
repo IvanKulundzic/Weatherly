@@ -34,7 +34,6 @@ extension SearchViewModel {
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"    
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (locations: Locations) in
-      print("Locations: ", locations)
       self?.locations = locations
     }
   }
@@ -59,15 +58,9 @@ extension SearchViewModel {
     if let url = URL(string: urlToUse) {
       networkingManager.getApiData(url: url) { [weak self] (geoName: Locations) in
         self?.city?.name = geoName.geonames[0].name
-          //geoName.geoname[0].name
-        
         let realm = try! Realm()
         let object = Geonames(name: geoName.geonames[0].name, countryCode: geoName.geonames[0].countryCode, longitude: geoName.geonames[0].longitude, latitude: geoName.geonames[0].latitude)
-//          RealmModel(name: geoName.geoname[0].name)
-//        let object = geoName
-//
         let realmArray = realm.objects(Geonames.self)
-//
         if realmArray.first(where: { object.name == $0.name }) != nil {
           return
         } else {

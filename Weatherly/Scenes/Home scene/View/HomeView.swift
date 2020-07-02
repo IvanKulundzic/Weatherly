@@ -181,13 +181,6 @@ private extension HomeView {
   
   func setupHeaderImageView() {
     addSubview(headerImageView)
-//    headerImageView.snp.makeConstraints { make in
-//      make.top.equalTo(self.snp.top)
-//      make.left.equalToSuperview()
-//      make.right.equalToSuperview()
-//      make.height.equalTo(self.snp.height)
-//    }
-//
     let headerImageViewConstraints = [
       headerImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
       headerImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -245,7 +238,6 @@ private extension HomeView {
       temperatureLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: temperatureLabelConstraints)
-    
     temperatureLabel.textColor = .white
     temperatureLabel.textAlignment = .center
     temperatureLabel.font = .getGothamFont(size: 72, weight: .light)
@@ -260,7 +252,6 @@ private extension HomeView {
       summaryLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: summaryLabelConstraints)
-    
     summaryLabel.textColor = .white
     summaryLabel.textAlignment = .center
     summaryLabel.font = .getGothamFont(size: 24, weight: .light)
@@ -276,7 +267,6 @@ private extension HomeView {
       leftStackView.widthAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: leftStackViewConstraints)
-    
     leftStackView.distribution = .equalCentering
     leftStackView.axis = .vertical
     leftStackView.alignment = .fill
@@ -291,7 +281,6 @@ private extension HomeView {
       rightStackView.widthAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: rightStackViewConstraints)
-    
     rightStackView.distribution = .equalCentering
     rightStackView.axis = .vertical
     rightStackView.alignment = .fill
@@ -306,13 +295,11 @@ private extension HomeView {
       separatorView.heightAnchor.constraint(equalTo: leftStackView.heightAnchor)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: separatorViewConstraints)
-    
     separatorView.backgroundColor = .white
   }
   
   func setupLowTemperature() {
     leftStackView.addArrangedSubview(lowTemperature)
-
     lowTemperature.textAlignment = .center
     lowTemperature.font = .getGothamFont(size: 24, weight: .light)
     lowTemperature.textColor = .white
@@ -320,7 +307,6 @@ private extension HomeView {
   
   func setupLowTemperatureLabel() {
     leftStackView.addArrangedSubview(lowTemperatureLabel)
-    
     lowTemperatureLabel.text = "Low"
     lowTemperatureLabel.textColor = .white
     lowTemperatureLabel.textAlignment = .center
@@ -329,7 +315,6 @@ private extension HomeView {
   
   func setupHighTemperature() {
     rightStackView.addArrangedSubview(highTemperature)
-    
     highTemperature.textColor = .white
     highTemperature.textAlignment = .center
     highTemperature.font = .getGothamFont(size: 24, weight: .light)
@@ -337,7 +322,6 @@ private extension HomeView {
   
   func setupHighTemperatureLabel() {
     rightStackView.addArrangedSubview(highTemperatureLabel)
-    
     highTemperatureLabel.text = "High"
     highTemperatureLabel.textColor = .white
     highTemperatureLabel.textAlignment = .center
@@ -353,7 +337,6 @@ private extension HomeView {
       bottomStackView.heightAnchor.constraint(equalToConstant: 75)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: bottomStackViewConstraints)
-    
     bottomStackView.distribution = .fillEqually
     bottomStackView.axis = .horizontal
     bottomStackView.alignment = .fill
@@ -361,7 +344,6 @@ private extension HomeView {
   
   func setupBottomLeftStackView() {
     bottomStackView.addArrangedSubview(bottomLeftStackView)
-    
     bottomLeftStackView.distribution = .equalCentering
     bottomLeftStackView.axis = .vertical
     bottomLeftStackView.alignment = .center
@@ -369,7 +351,6 @@ private extension HomeView {
   
   func setupBottomMiddleStackView() {
     bottomStackView.addArrangedSubview(bottomMiddleStackView)
-    
     bottomMiddleStackView.axis = .vertical
     bottomMiddleStackView.alignment = .center
     bottomMiddleStackView.distribution = .equalCentering
@@ -377,7 +358,6 @@ private extension HomeView {
   
   func setupBottomRightStackView() {
     bottomStackView.addArrangedSubview(bottomRightStackView)
-    
     bottomRightStackView.distribution = .equalCentering
     bottomRightStackView.axis = .vertical
     bottomRightStackView.alignment = .center
@@ -385,39 +365,33 @@ private extension HomeView {
   
   func setupHumidityIcon() {
     bottomLeftStackView.addArrangedSubview(humidityIcon)
-    
     humidityIcon.image = UIImage(named: "humidity_icon")
   }
   
   func setupHumidityLabel() {
     bottomLeftStackView.addArrangedSubview(humidityLabel)
-    
     humidityLabel.textColor = .white
     humidityLabel.font = .getGothamFont(size: 20, weight: .light)
   }
   
   func setupWindIcon() {
     bottomMiddleStackView.addArrangedSubview(windIcon)
-    
     windIcon.image = UIImage(named: "wind_icon")
   }
   
   func setupWindLabel() {
     bottomMiddleStackView.addArrangedSubview(windLabel)
-    
     windLabel.textColor = .white
     windLabel.font = .getGothamFont(size: 20, weight: .light)
   }
   
   func setupPressureIcon() {
     bottomRightStackView.addArrangedSubview(pressureIcon)
-    
     pressureIcon.image = UIImage(named: "pressure_icon")
   }
   
   func setupPressureLabel() {
     bottomRightStackView.addArrangedSubview(pressureLabel)
-    
     pressureLabel.textColor = .white
     pressureLabel.font = .getGothamFont(size: 20, weight: .light)
   }
@@ -431,9 +405,7 @@ private extension HomeView {
       settingsButton.widthAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: settingsButtonConstraints)
-    
-    let image = UIImage(named: "settings_icon")
-    settingsButton.setImage(image, for: .normal)
+    settingsButton.setImage(UIImage(named: "settings_icon"), for: .normal)
     settingsButton.addTarget(self, action: #selector(settingButtonTapped), for: .touchUpInside)
   }
   
@@ -445,20 +417,12 @@ private extension HomeView {
       textField.leadingAnchor.constraint(equalTo: settingsButton.trailingAnchor, constant: 5),
       textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
       textField.heightAnchor.constraint(equalToConstant: 40)
-      
-//      textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
-//      textField.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
-//      textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
-//      textField.heightAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
-
     textField.placeholder = "Search"
-    
     textField.backgroundColor = .white
     textField.layer.cornerRadius = 20.0
-    textField.layer.masksToBounds = true
-    
+    textField.layer.masksToBounds = true    
     textField.addTarget(self, action: #selector(textFieldTapped), for: .editingDidBegin)
   }
   

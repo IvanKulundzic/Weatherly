@@ -41,7 +41,8 @@ extension SearchView: UITextFieldDelegate {
   
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     UIView.animate(withDuration: 0.7) { [weak self] in
-      self?.setupTextField2()
+      let newFrame = CGRect(x: 10.0, y: 758.0, width: 324.0, height: 40.0)
+      self?.textField.frame = newFrame
     }
     return true
   }
@@ -52,12 +53,10 @@ extension SearchView {
   func setupView() {
     textField.delegate = self
     backgroundColor = .clear
-    
     setupSearchTableView()
     setupTextField()
     setupDismissButton()
     setupActivityIndicatorView()
-    //setupTapGesture()
   }
   
   func setupSearchTableView() {
@@ -69,30 +68,9 @@ extension SearchView {
       searchTableView.heightAnchor.constraint(equalToConstant: 500)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: searchTableViewConstraints)
-    
     searchTableView.backgroundColor = .clear
     searchTableView.estimatedRowHeight = 30
     searchTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: cellId)
-  }
-  
-  func setupTextField2() {
-//    addSubview(textField)
-//    let textFieldConstraints = [
-////      textField.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -10),
-//      textField.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 10),
-////      textField.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor, constant: -10),
-////      textField.heightAnchor.constraint(equalToConstant: 40)
-//    ]
-//    NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
-//
-//    let textFieldFrame = textField.frame
-//    print(textFieldFrame)
-////    textField.frame.origin.x = 10.0
-    let newFrame = CGRect(x: 10.0, y: 758.0, width: 324.0, height: 40.0)
-    textField.frame = newFrame
-//    let newConstraint = textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20)
-//    newConstraint.isActive = true
-    
   }
   
   func setupTextField() {
@@ -106,12 +84,10 @@ extension SearchView {
       textField.heightAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: textFieldConstraints)
-    
     textField.placeholder = "Search"
     textField.backgroundColor = .white
     textField.layer.cornerRadius = 20.0
     textField.layer.masksToBounds = true
-    print("1", textField.frame)
     textField.becomeFirstResponder()
   }
   
@@ -124,12 +100,10 @@ extension SearchView {
       dismissButton.widthAnchor.constraint(equalToConstant: 30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: dismissButtonConstraints)
-    
     dismissButton.backgroundColor = .gray
     dismissButton.setTitle("X", for: .normal)
     dismissButton.setTitleColor(.darkGray, for: .normal)
     dismissButton.layer.cornerRadius = 15
-    
     dismissButton.addTarget(self, action: #selector(dismissButtonTapped), for: .touchUpInside)
   }
   
@@ -141,8 +115,7 @@ extension SearchView {
       activityIndicatorView.heightAnchor.constraint(equalToConstant: 40),
       activityIndicatorView.widthAnchor.constraint(equalToConstant: 40)
     ]
-    NSLayoutConstraint.useAndActivateConstraints(constraints: activityIndicatorConstraints)
-    
+    NSLayoutConstraint.useAndActivateConstraints(constraints: activityIndicatorConstraints)    
     activityIndicatorView.style = .whiteLarge
   }
   

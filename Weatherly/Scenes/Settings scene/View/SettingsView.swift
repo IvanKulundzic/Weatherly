@@ -11,29 +11,7 @@ import UIKit
 final class SettingsView: UIView {
   var doneButtonActionHandler: Action?
   let cellId = "settingsCell"
-  var units: String = ""
-  
-  private lazy var locationsLabel = UILabel()
-  private(set) lazy var locationsListTableView = UITableView()
-  private lazy var unitsLabel = UILabel()
-  private lazy var metricUnitsLabel = UILabel()
-  private lazy var imperialUnitsLabel = UILabel()
-  private lazy var metricUnitsButton = UIButton()
-  private lazy var imperialUnitsButton = UIButton()
-  private lazy var conditionsLabel = UILabel()
-  private lazy var humidityIcon = UIImageView()
-  private lazy var humidityButton = UIButton()
-  private lazy var windIcon = UIImageView()
-  private lazy var windButton = UIButton()
-  private lazy var pressureIcon = UIImageView()
-  private lazy var pressureButton = UIButton()
-  private lazy var doneButton = UIButton()
-  private lazy var closeButton = UIButton()
-  private lazy var bottomStackView = UIStackView()
-  private lazy var bottomLeftStackView = UIStackView()
-  private lazy var bottomMiddleStackView = UIStackView()
-  private lazy var bottomRightStackView = UIStackView()
-  
+  var units: String = "si"
   var hideHumidity: Bool? {
     didSet {
       if (hideHumidity == true) {
@@ -64,6 +42,29 @@ final class SettingsView: UIView {
     }
   }
   
+  var city: City?
+  
+  private(set) lazy var locationsListTableView = UITableView()
+  private lazy var locationsLabel = UILabel()
+  private lazy var unitsLabel = UILabel()
+  private lazy var metricUnitsLabel = UILabel()
+  private lazy var imperialUnitsLabel = UILabel()
+  private lazy var metricUnitsButton = UIButton()
+  private lazy var imperialUnitsButton = UIButton()
+  private lazy var conditionsLabel = UILabel()
+  private lazy var humidityIcon = UIImageView()
+  private lazy var humidityButton = UIButton()
+  private lazy var windIcon = UIImageView()
+  private lazy var windButton = UIButton()
+  private lazy var pressureIcon = UIImageView()
+  private lazy var pressureButton = UIButton()
+  private lazy var doneButton = UIButton()
+  private lazy var closeButton = UIButton()
+  private lazy var bottomStackView = UIStackView()
+  private lazy var bottomLeftStackView = UIStackView()
+  private lazy var bottomMiddleStackView = UIStackView()
+  private lazy var bottomRightStackView = UIStackView()
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     setupView()    
@@ -77,6 +78,8 @@ final class SettingsView: UIView {
 // MARK: - doneButton tapped
 extension SettingsView {
   @objc func doneButtonTapped() {
+    let userDefaults = UserDefaults.standard
+    userDefaults.set(units, forKey: "units")
     doneButtonActionHandler?()
   }
 }
@@ -105,7 +108,7 @@ private extension SettingsView {
     setupPressureButton()
     setupDoneButton()
   }
-
+  
   func setupLocationsLabel() {
     addSubview(locationsLabel)
     let locationsLabelConstraints = [
@@ -115,7 +118,6 @@ private extension SettingsView {
       locationsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationsLabelConstraints)
-    
     locationsLabel.text = "Location"
     locationsLabel.textAlignment = .center
     locationsLabel.textColor = .white
@@ -131,12 +133,9 @@ private extension SettingsView {
       locationsListTableView.heightAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationsListTableViewConstraints)
-    
     locationsListTableView.backgroundColor = .clear
     locationsListTableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: cellId)
     locationsListTableView.rowHeight = 30.0
-//    locationsListTableView.separatorStyle = .singleLine
-//    locationsListTableView.separatorInset = .init(top: 1, left: 0, bottom: 1, right: 0)
   }
   
   func setupUnitsLabel() {
@@ -148,7 +147,6 @@ private extension SettingsView {
       unitsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: unitsLabelConstraints)
-    
     unitsLabel.text = "Units"
     unitsLabel.textAlignment = .center
     unitsLabel.textColor = .white
@@ -164,9 +162,22 @@ private extension SettingsView {
       metricUnitsButton.widthAnchor.constraint(equalToConstant: 40)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: metricUnitsButtonConstraints)
+    let defaults = UserDefaults.standard
+    if defaults.object(forKey: "units") as! String == "us" {
+      print("Checking units", defaults.object(forKey: "units") as! String)
+      metricUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
+    } else {
+      metricUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
+    }
     
-    let image = UIImage(named: "square_checkmark_uncheck")
-    metricUnitsButton.setImage(image, for: .normal)
+//    metricUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
+    metricUnitsButton.addTarget(self, action: #selector(metricsButtonTapped), for: .touchUpInside)
+  }
+  
+  @objc func metricsButtonTapped() {
+    metricUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
+    imperialUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
+    units = "si"
   }
   
   func setupMetricUnitsLabel() {
@@ -178,7 +189,6 @@ private extension SettingsView {
       metricUnitsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: metricUnitsLabelConstraints)
-    
     metricUnitsLabel.text = "Metric"
     metricUnitsLabel.textColor = .white
     metricUnitsLabel.textAlignment = .left
@@ -195,8 +205,20 @@ private extension SettingsView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: imperialUnitsButtonConstraints)
     
-    let image = UIImage(named: "square_checkmark_uncheck")
-    imperialUnitsButton.setImage(image, for: .normal)
+    let defaults = UserDefaults.standard
+    if defaults.object(forKey: "units") as! String == "us" {
+      print("Checking units in imperial", defaults.object(forKey: "units") as! String)
+      imperialUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
+    } else {
+      imperialUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
+    }
+    imperialUnitsButton.addTarget(self, action: #selector(imperialButtonTapped), for: .touchUpInside)
+  }
+  
+  @objc func imperialButtonTapped() {
+    metricUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
+    imperialUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
+    units = "us"
   }
   
   func setupImperialUnitsLabel() {
@@ -208,7 +230,6 @@ private extension SettingsView {
       imperialUnitsLabel.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: imperialUnitsLabelConstraints)
-    
     imperialUnitsLabel.text = "Imperial"
     imperialUnitsLabel.textColor = .white
     imperialUnitsLabel.textAlignment = .left
@@ -224,7 +245,6 @@ private extension SettingsView {
       conditionsLabel.widthAnchor.constraint(equalToConstant: 150)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: conditionsLabelConstraints)
-    
     conditionsLabel.text = "Conditions"
     conditionsLabel.textAlignment = .center
     conditionsLabel.textColor = .white
@@ -238,10 +258,8 @@ private extension SettingsView {
       bottomStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
       bottomStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
       bottomStackView.heightAnchor.constraint(equalToConstant: 75)
-//      bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: bottomStackViewConstraints)
-    
     bottomStackView.distribution = .fillEqually
     bottomStackView.axis = .horizontal
     bottomStackView.alignment = .center
@@ -249,7 +267,6 @@ private extension SettingsView {
   
   func setupBottomLeftStackView() {
     bottomStackView.addArrangedSubview(bottomLeftStackView)
-    
     bottomLeftStackView.distribution = .equalCentering
     bottomLeftStackView.spacing = 10.0
     bottomLeftStackView.axis = .vertical
@@ -258,7 +275,6 @@ private extension SettingsView {
   
   func setupBottomMiddleStackView() {
     bottomStackView.addArrangedSubview(bottomMiddleStackView)
-    
     bottomMiddleStackView.distribution = .equalCentering
     bottomMiddleStackView.spacing = 10.0
     bottomMiddleStackView.axis = .vertical
@@ -267,7 +283,6 @@ private extension SettingsView {
   
   func setupBottomRightStackView() {
     bottomStackView.addArrangedSubview(bottomRightStackView)
-    
     bottomRightStackView.distribution = .equalCentering
     bottomRightStackView.spacing = 10.0
     bottomRightStackView.axis = .vertical
@@ -276,22 +291,11 @@ private extension SettingsView {
   
   func setupHumidityIcon() {
     bottomLeftStackView.addArrangedSubview(humidityIcon)
-    
     humidityIcon.image = UIImage(named: "humidity_icon")
   }
   
   func setupHumidityButton() {
     bottomLeftStackView.addArrangedSubview(humidityButton)
-//    print("10")
-//    print("Setting button,", hideHumidity)
-//    if hideHumidity == true {
-//      humidityButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
-//    } else {
-//      humidityButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
-//    }
-//
-//
-    
     humidityButton.addTarget(self, action: #selector(humidityButtonTapped), for: .touchUpInside)
   }
   
@@ -307,66 +311,36 @@ private extension SettingsView {
   
   func setupWindIcon() {
     bottomMiddleStackView.addArrangedSubview(windIcon)
-    
     windIcon.image = UIImage(named: "wind_icon")
   }
   
   func setupWindButton() {
     bottomMiddleStackView.addArrangedSubview(windButton)
-    
-//    let image = UIImage(named: "checkmark_check")
-//    windButton.setImage(image, for: .normal)
-    
     windButton.addTarget(self, action: #selector(windButtonTapped), for: .touchUpInside)
   }
   
   @objc func windButtonTapped() {
-//    let image = UIImage(named: "checkmark_uncheck")
-//    if windButton.image(for: .normal) == image {
-//      let image = UIImage(named: "checkmark_check")
-//      windButton.setImage(image, for: .normal)
-//    } else {
-//      let image = UIImage(named: "checkmark_uncheck")
-//      windButton.setImage(image, for: .normal)
-//    }
-    
-//       let image = UIImage(named: "checkmark_check")
-     
-     if hideWind == true {
-       hideWind = false
-       windButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
-     } else {
-       hideWind = true
-       windButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
-     }
+    if hideWind == true {
+      hideWind = false
+      windButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+    } else {
+      hideWind = true
+      windButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+    }
   }
   
   func setupPressureIcon() {
     bottomRightStackView.addArrangedSubview(pressureIcon)
-    
     pressureIcon.image = UIImage(named: "pressure_icon")
   }
   
   func setupPressureButton() {
     bottomRightStackView.addArrangedSubview(pressureButton)
-    
-//    let image = UIImage(named: "checkmark_check")
-//    pressureButton.setImage(image, for: .normal)
-    
     pressureButton.addTarget(self, action: #selector(pressureButtonTapped), for: .touchUpInside)
   }
   
   @objc func pressureButtonTapped() {
-//    let image = UIImage(named: "checkmark_uncheck")
-//    if pressureButton.image(for: .normal) == image {
-//      let image = UIImage(named: "checkmark_check")
-//      pressureButton.setImage(image, for: .normal)
-//    } else {
-//      let image = UIImage(named: "checkmark_uncheck")
-//      pressureButton.setImage(image, for: .normal)
-//    }
-    
-   if hidePressure == true {
+    if hidePressure == true {
       hidePressure = false
       pressureButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
     } else {
@@ -384,13 +358,11 @@ private extension SettingsView {
       doneButton.heightAnchor.constraint(equalToConstant: 50)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: doneButtonConstraints)
-    
     doneButton.setTitle("Done", for: .normal)
     doneButton.setTitleColor(.systemGreen, for: .normal)
     doneButton.titleLabel?.font = .getGothamFont(size: 20, weight: .book)
     doneButton.backgroundColor = .white
-    doneButton.layer.cornerRadius = 25
-    
+    doneButton.layer.cornerRadius = 25    
     doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
   }
 }

@@ -42,8 +42,7 @@ private extension SearchTableViewCell {
       locationFirstLetterLabel.heightAnchor.constraint(equalToConstant: 30),
       locationFirstLetterLabel.widthAnchor.constraint(equalToConstant: 30)
     ]
-    NSLayoutConstraint.useAndActivateConstraints(constraints: locationFirstLetterLabelConstraints)
-    
+    NSLayoutConstraint.useAndActivateConstraints(constraints: locationFirstLetterLabelConstraints)    
     locationFirstLetterLabel.backgroundColor = .gray
     locationFirstLetterLabel.textColor = .white
     locationFirstLetterLabel.textAlignment = .center
@@ -59,7 +58,6 @@ private extension SearchTableViewCell {
       locationNameLabel.heightAnchor.constraint(equalToConstant: 30)
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: locationNameLabelConstraints)
-    
     locationNameLabel.backgroundColor = .clear
     locationNameLabel.textColor = .white
     locationNameLabel.textAlignment = .left
