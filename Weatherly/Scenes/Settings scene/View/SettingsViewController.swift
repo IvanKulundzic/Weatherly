@@ -17,27 +17,23 @@ protocol SettingsViewControllerDelegate: class {
 final class SettingsViewController: UIViewController {
   var delegate: SettingsViewControllerDelegate?
   var locations: [Geonames]?
-  private let settingsViewModel = SettingsViewModel()
-  private(set) lazy var settingsView = SettingsView()
-  private lazy var blurView = UIVisualEffectView()
   let cellId = "settingsCell"
   let realm = try! Realm()
-  let searchVM = SearchViewModel()
-  
   var hideHumidity: Bool {
     get { settingsView.hideHumidity ?? false }
     set { settingsView.hideHumidity = newValue}
   }
-  
   var hideWind: Bool {
     get { settingsView.hideWind ?? false }
     set { settingsView.hideHumidity = newValue }
   }
-  
   var hidePressure: Bool {
     get { settingsView.hidePressure ?? false }
     set { settingsView.hidePressure = newValue }
   }
+  private let settingsViewModel = SettingsViewModel()
+  private(set) lazy var settingsView = SettingsView()
+  private lazy var blurView = UIVisualEffectView()
   
   override func loadView() {
     view = settingsView
@@ -51,6 +47,7 @@ final class SettingsViewController: UIViewController {
   }
 }
 
+// MARK: - conforming to homeVC delegate
 extension SettingsViewController: HomeViewControllerDelegate {
   func getSettingsData(hideHumidity: Bool, hideWind: Bool, hidePressure: Bool) {
     settingsView.hideHumidity = hideHumidity
@@ -59,6 +56,7 @@ extension SettingsViewController: HomeViewControllerDelegate {
   }
 }
 
+// MARK: - tableView data source methods
 extension SettingsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SettingsTableViewCell
@@ -79,6 +77,7 @@ extension SettingsViewController: UITableViewDataSource {
   }
 }
 
+// MARK: - tableView delegate methods
 extension SettingsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let array = realm.objects(Geonames.self)
@@ -87,12 +86,8 @@ extension SettingsViewController: UITableViewDelegate {
     settingsViewModel.getCityWeatherData(long: selectedCellLongitude, lat: selectedCellLatitude)
     settingsViewModel.geoReverse(long: selectedCellLongitude, lat: selectedCellLatitude)
     settingsViewModel.settingsActionHandler = { [weak self] in
-//      self?.delegate?.city = self?.settingsViewModel.city
       self?.settingsView.city = self?.settingsViewModel.city
-//      self?.dismiss(animated: true, completion: nil)
     }
-//    print("SVM", settingsViewModel.city)
-//    settingsView.city = settingsViewModel.city
   }
 }
 
@@ -103,13 +98,12 @@ private extension SettingsViewController {
       self?.hideHumidity = self?.settingsView.hideHumidity ?? false
       self?.delegate?.getSettings(hideHumidity: self?.hideHumidity ?? false, hideWind: self?.hideWind ?? false, hidePressure: self?.hidePressure ?? false)
       self?.delegate?.city = self?.settingsView.city
-//      print("SV city", self?.settingsView.city)
       self?.dismiss(animated: true, completion: nil)
     }
   }
 }
 
-// MARK: - blur effect
+// MARK: - add blur effect
 private extension SettingsViewController {
   func addBlurEffect() {
     view.insertSubview(blurView, at: 0)

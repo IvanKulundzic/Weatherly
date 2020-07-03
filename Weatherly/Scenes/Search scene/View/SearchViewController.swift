@@ -15,9 +15,9 @@ protocol SearchViewControllerDelegate: class {
 }
 
 final class SearchViewController: UIViewController {
-  private let path = Realm.Configuration.defaultConfiguration.fileURL
   let cellId = "cellId"
   var delegate: SearchViewControllerDelegate?
+  private let path = Realm.Configuration.defaultConfiguration.fileURL
   private lazy var searchView = SearchView()
   private lazy var searchViewModel = SearchViewModel()
   private lazy var blurView = UIVisualEffectView()
@@ -36,7 +36,7 @@ final class SearchViewController: UIViewController {
   }
 }
 
-// MARK: - tableView delegate
+// MARK: - tableView delegate methods
 extension SearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let selectedCellLongitude = searchViewModel.locations?.geonames[indexPath.row].longitude else { return }
@@ -53,7 +53,7 @@ extension SearchViewController: UITableViewDelegate {
   }
 }
 
-// MARK: - tableView data source
+// MARK: - tableView data source methods
 extension SearchViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let locationsCount = searchViewModel.locations?.geonames.count else { return 0 }
@@ -115,7 +115,6 @@ private extension SearchViewController {
     }
     
     searchViewModel.searchActionHandler = { [weak self] in
-      //self?.locations = self?.searchViewModel.locations?.geonames
       self?.searchView.searchTableView.reloadData()
       self?.searchView.activityIndicatorView.stopAnimating()
     }

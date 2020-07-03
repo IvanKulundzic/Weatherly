@@ -28,7 +28,9 @@ final class SearchViewModel {
   }
 }
 
+// MARK: - get weather data
 extension SearchViewModel {
+  /// do an API call to get locations by name
   func getLocationsByName(input: String) {
     let userName = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"    
@@ -37,7 +39,7 @@ extension SearchViewModel {
       self?.locations = locations
     }
   }
-  
+  /// get city weather data
   func getCityWeatherData(long: String, lat: String) {
     let longitude = long
     let latitude = lat
@@ -50,7 +52,7 @@ extension SearchViewModel {
       }
     }
   }
-  
+  /// use geoReversing to grab city name when doing a search
   func geoReverse(long: String, lat: String) {
     let longitude = long
     let latitude = lat

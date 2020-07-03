@@ -13,20 +13,17 @@ protocol HomeViewControllerDelegate {
 }
 
 final class HomeViewController: UIViewController {
+  var delegate: HomeViewControllerDelegate?
   private(set) lazy var homeViewModel = HomeViewModel()
   private lazy var homeView = HomeView()
   
-  var delegate: HomeViewControllerDelegate?
-  
   override func loadView() {
     view = homeView
-    homeView.activityIndicatorView.startAnimating()
-    let userDefaults = UserDefaults.standard
-    let readBack = userDefaults.object(forKey: "units") ?? "wrong units value"
-    print("Defaults : \(readBack)")
   }
   
   override func viewDidLoad() {
+    homeView.activityIndicatorView.startAnimating()
+    checkUnits()
     homeViewSettingsButtonTapped()
     homeViewSearchBarTapped()
     homeViewModel.getCurrentLocation()
@@ -49,6 +46,18 @@ extension HomeViewController: SearchViewControllerDelegate, SettingsViewControll
     }
     set {
       homeViewModel.city = newValue
+    }
+  }
+}
+
+// MARK: - check if there is a value for units
+private extension HomeViewController {
+  func checkUnits() {
+    let defaults = UserDefaults.standard
+    if defaults.object(forKey: "units") as? String == "" && defaults.object(forKey: "units") == nil {
+      defaults.set("si", forKey: "units")
+    } else {
+      print("Got a default units set: \(defaults.object(forKey: "units") ?? "No value set for units")")
     }
   }
 }

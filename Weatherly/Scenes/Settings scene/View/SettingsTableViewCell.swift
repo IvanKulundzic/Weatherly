@@ -52,10 +52,6 @@ private extension SettingsTableViewCell {
     removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
   }
   
-  @objc func removeButtonTapped() {
-    removeButtonActionHandler?()
-  }
-  
   func setupLocationNameLabel() {
     addSubview(locationNameLabel)
     let locationNameLabelConstraints = [
@@ -68,5 +64,12 @@ private extension SettingsTableViewCell {
     locationNameLabel.textColor = .white
     locationNameLabel.textAlignment = .left
     locationNameLabel.font = .getGothamFont(size: 20, weight: .book)
+  }
+}
+
+// MARK: - remove button tapped
+private extension SettingsTableViewCell {
+  @objc func removeButtonTapped() {
+    removeButtonActionHandler?()
   }
 }

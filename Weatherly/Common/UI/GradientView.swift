@@ -26,8 +26,6 @@ extension GradientView {
       return;
     }
     theLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
-    //theLayer.locations = [0.0, 0.4]
-    //theLayer.frame = self.bounds
   }
   override class var layerClass: AnyClass {
     return CAGradientLayer.self

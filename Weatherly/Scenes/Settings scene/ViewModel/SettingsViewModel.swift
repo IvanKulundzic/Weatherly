@@ -17,26 +17,25 @@ final class SettingsViewModel {
       settingsActionHandler?()
     }
   }
-  var hideHumidity: Bool?
   private lazy var networkingManager = NetworkingManager()
   
-  init(location: Locations? = nil, hideHumidtiy: Bool? = nil) {
+  init(location: Locations? = nil) {
     self.locations = location
-    self.hideHumidity = hideHumidtiy
   }
 }
 
+// MARK: - get weather data
 extension SettingsViewModel {
+  /// grab locations by name
   func getLocationsByName(input: String) {
     let userName = "ivanKulundzic"
     let urlToUse = "http://api.geonames.org/searchJSON?q=\(input)&maxRows=10&username=\(userName)"
-    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (locations: Locations) in
       self?.locations = locations
     }
   }
-//
+  /// get weather data for specific city
   func getCityWeatherData(long: String, lat: String) {
     let longitude = long
     let latitude = lat
@@ -51,7 +50,7 @@ extension SettingsViewModel {
       }
     }
   }
-
+  /// use geoReversing to get city name
   func geoReverse(long: String, lat: String) {
     let longitude = long
     let latitude = lat

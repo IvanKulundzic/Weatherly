@@ -36,9 +36,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationUsageDescription</key>
-	<string>We need your location to provide you you current weather conditions.</string>
+	<string>We need your location to provide you with your current weather conditions.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to provide you you current weather conditions.</string>
+	<string>We need your location to provide you with your current weather conditions.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		30C2F3C7EDB860AC82C5249B /* Pods_Weatherly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7EC00EF779788BC48BD0936 /* Pods_Weatherly.framework */; };
 		EB17F9D224AA00F8003E05AC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17F9D124AA00F8003E05AC /* SettingsViewModel.swift */; };
-		EB17F9D424AB2AA6003E05AC /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB17F9D324AB2AA6003E05AC /* SettingsModel.swift */; };
 		EB8CF08B243672E60070EC54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF08A243672E60070EC54 /* AppDelegate.swift */; };
 		EB8CF08F243672E60070EC54 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8CF08E243672E60070EC54 /* HomeViewController.swift */; };
 		EB8CF094243672E70070EC54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8CF093243672E70070EC54 /* Assets.xcassets */; };
@@ -32,7 +31,6 @@
 		EBE61F9324A209DC0021E8AC /* Gotham Rounded Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBE61F9224A209DC0021E8AC /* Gotham Rounded Book.otf */; };
 		EBE61F9524A209EF0021E8AC /* Gotham Rounded Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBE61F9424A209EF0021E8AC /* Gotham Rounded Light.otf */; };
 		EBE61F9724A20AE50021E8AC /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */; };
-		EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */; };
 		EBE69D2A249CAF05001BD576 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */; };
 		EBE69D31249CEAAF001BD576 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE69D30249CEAAF001BD576 /* CustomTextField.swift */; };
 		EBE8AC75249B974E00F0491D /* Hue in Frameworks */ = {isa = PBXBuildFile; productRef = EBE8AC74249B974E00F0491D /* Hue */; };
@@ -45,7 +43,6 @@
 		3357BF929B2257842C3F7008 /* Pods-Weatherly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.release.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.release.xcconfig"; sourceTree = "<group>"; };
 		C7EC00EF779788BC48BD0936 /* Pods_Weatherly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weatherly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB17F9D124AA00F8003E05AC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		EB17F9D324AB2AA6003E05AC /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		EB8CF087243672E60070EC54 /* Weatherly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatherly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8CF08A243672E60070EC54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8CF08E243672E60070EC54 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +67,6 @@
 		EBE61F9224A209DC0021E8AC /* Gotham Rounded Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham Rounded Book.otf"; path = "../../../../Downloads/Gotham Rounded Book/Gotham Rounded Book.otf"; sourceTree = "<group>"; };
 		EBE61F9424A209EF0021E8AC /* Gotham Rounded Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gotham Rounded Light.otf"; path = "../../../../Downloads/Gotham Rounded Light/Gotham Rounded Light.otf"; sourceTree = "<group>"; };
 		EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
-		EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		EBE69D30249CEAAF001BD576 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		EBE93CBA2498026E00423320 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -120,6 +116,7 @@
 			indentWidth = 2;
 			sourceTree = "<group>";
 			tabWidth = 2;
+			usesTabs = 0;
 		};
 		EB8CF088243672E60070EC54 /* Products */ = {
 			isa = PBXGroup;
@@ -133,14 +130,15 @@
 			isa = PBXGroup;
 			children = (
 				EB8CF08A243672E60070EC54 /* AppDelegate.swift */,
+				EB8CF093243672E70070EC54 /* Assets.xcassets */,
+				EB8CF098243672E70070EC54 /* Info.plist */,
 				EB8CF09E246B2C790070EC54 /* Scenes */,
 				EBE69D26249BE24C001BD576 /* Extensions */,
 				EBE61F69249E525A0021E8AC /* Common */,
 				EBE61F9124A209BE0021E8AC /* Fonts */,
 				EB8CF0A6247C63420070EC54 /* Utilities */,
-				EB8CF093243672E70070EC54 /* Assets.xcassets */,
 				EB8CF095243672E70070EC54 /* LaunchScreen.storyboard */,
-				EB8CF098243672E70070EC54 /* Info.plist */,
+				EBEC231424AF49CB000A950F /* Resources */,
 			);
 			path = Weatherly;
 			sourceTree = "<group>";
@@ -233,7 +231,6 @@
 		EB8CF0B62481215D0070EC54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EB17F9D324AB2AA6003E05AC /* SettingsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,12 +300,18 @@
 		EBE69D26249BE24C001BD576 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				EBE69D27249BE2A3001BD576 /* UIView+Extension.swift */,
 				EBE69D29249CAF05001BD576 /* UIColor+Extension.swift */,
 				EBE61F9624A20AE50021E8AC /* UIFont+Extension.swift */,
 				EBEB24B824A350AD00EE8808 /* NSLayoutConstraint+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EBEC231424AF49CB000A950F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,11 +448,9 @@
 				EB8CF0BD24841AF10070EC54 /* HomeViewModel.swift in Sources */,
 				EB17F9D224AA00F8003E05AC /* SettingsViewModel.swift in Sources */,
 				EB8CF0A8247C63710070EC54 /* Helpers.swift in Sources */,
-				EB17F9D424AB2AA6003E05AC /* SettingsModel.swift in Sources */,
 				EB8CF0B3247ED6E40070EC54 /* SettingsViewController.swift in Sources */,
 				EBE93CBB2498026E00423320 /* SearchTableViewCell.swift in Sources */,
 				EBE61F6C249E52A00021E8AC /* GradientView.swift in Sources */,
-				EBE69D28249BE2A3001BD576 /* UIView+Extension.swift in Sources */,
 				EBEB24B924A350AD00EE8808 /* NSLayoutConstraint+Extension.swift in Sources */,
 				EB8CF0C324841C8B0070EC54 /* JSONParser.swift in Sources */,
 				EBE61F9724A20AE50021E8AC /* UIFont+Extension.swift in Sources */,

@@ -8,7 +8,6 @@
 import Foundation
 import CoreLocation
 import UIKit
-//import Hue
 
 final class HomeViewModel: NSObject {
   var cityChangedHandler: Action?
@@ -20,7 +19,7 @@ final class HomeViewModel: NSObject {
   private let coreLocationManager = CLLocationManager()
   private let networkingManager = NetworkingManager()
   private let dateFormatter = DateFormatter()
-  let defaults = UserDefaults.standard
+  private let defaults = UserDefaults.standard
   
   init(city: City? = nil) {
     self.city = city    
@@ -134,22 +133,21 @@ extension HomeViewModel: CLLocationManagerDelegate {
 
 // MARK: - get weather data
 extension HomeViewModel {
+  /// get current location weather data
   func getLocationWeatherData(location: CLLocation) {
     let defaults = UserDefaults.standard
     let units = defaults.object(forKey: "units") ?? "si"
     let latitude = String(location.coordinate.latitude)
     let longitude = String(location.coordinate.longitude)
     let key = "4b208159f61d43a3a3505ce608eb359d"
-    print("Units 1", units)
     let urlToUse = "https://api.darksky.net/forecast/\(key)/\(latitude),\(longitude)?units=\(units)"
-    print(urlToUse)
     guard let url = URL(string: urlToUse) else { return }
     networkingManager.getApiData(url: url) { [weak self] (city: City) in
       self?.city = city
       self?.getCityNameWithGeoReverse(long: longitude, lat: latitude)
     }
   }
-  
+  /// get current location city nam via geoReverse
   func getCityNameWithGeoReverse(long: String, lat: String) {
     let longitude = long
     let latitude = lat

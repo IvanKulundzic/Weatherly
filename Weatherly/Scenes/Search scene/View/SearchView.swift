@@ -118,7 +118,10 @@ extension SearchView {
     NSLayoutConstraint.useAndActivateConstraints(constraints: activityIndicatorConstraints)    
     activityIndicatorView.style = .whiteLarge
   }
-  
+}
+
+// MARK: - buttton tapped
+private extension SearchView {
   @objc func dismissButtonTapped() {
     dismissButtonActionHandler?()
   }

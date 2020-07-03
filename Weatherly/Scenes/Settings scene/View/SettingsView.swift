@@ -21,7 +21,6 @@ final class SettingsView: UIView {
       }
     }
   }
-  
   var hideWind: Bool? {
     didSet {
       if (hideWind == true) {
@@ -31,7 +30,6 @@ final class SettingsView: UIView {
       }
     }
   }
-  
   var hidePressure: Bool? {
     didSet {
       if (hidePressure == true) {
@@ -41,9 +39,7 @@ final class SettingsView: UIView {
       }
     }
   }
-  
   var city: City?
-  
   private(set) lazy var locationsListTableView = UITableView()
   private lazy var locationsLabel = UILabel()
   private lazy var unitsLabel = UILabel()
@@ -72,15 +68,6 @@ final class SettingsView: UIView {
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-  }
-}
-
-// MARK: - doneButton tapped
-extension SettingsView {
-  @objc func doneButtonTapped() {
-    let userDefaults = UserDefaults.standard
-    userDefaults.set(units, forKey: "units")
-    doneButtonActionHandler?()
   }
 }
 
@@ -169,15 +156,7 @@ private extension SettingsView {
     } else {
       metricUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
     }
-    
-//    metricUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
     metricUnitsButton.addTarget(self, action: #selector(metricsButtonTapped), for: .touchUpInside)
-  }
-  
-  @objc func metricsButtonTapped() {
-    metricUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
-    imperialUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
-    units = "si"
   }
   
   func setupMetricUnitsLabel() {
@@ -213,12 +192,6 @@ private extension SettingsView {
       imperialUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
     }
     imperialUnitsButton.addTarget(self, action: #selector(imperialButtonTapped), for: .touchUpInside)
-  }
-  
-  @objc func imperialButtonTapped() {
-    metricUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
-    imperialUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
-    units = "us"
   }
   
   func setupImperialUnitsLabel() {
@@ -299,16 +272,6 @@ private extension SettingsView {
     humidityButton.addTarget(self, action: #selector(humidityButtonTapped), for: .touchUpInside)
   }
   
-  @objc func humidityButtonTapped() {
-    if hideHumidity == true {
-      hideHumidity = false
-      humidityButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
-    } else {
-      hideHumidity = true
-      humidityButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
-    }
-  }
-  
   func setupWindIcon() {
     bottomMiddleStackView.addArrangedSubview(windIcon)
     windIcon.image = UIImage(named: "wind_icon")
@@ -319,16 +282,6 @@ private extension SettingsView {
     windButton.addTarget(self, action: #selector(windButtonTapped), for: .touchUpInside)
   }
   
-  @objc func windButtonTapped() {
-    if hideWind == true {
-      hideWind = false
-      windButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
-    } else {
-      hideWind = true
-      windButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
-    }
-  }
-  
   func setupPressureIcon() {
     bottomRightStackView.addArrangedSubview(pressureIcon)
     pressureIcon.image = UIImage(named: "pressure_icon")
@@ -337,16 +290,6 @@ private extension SettingsView {
   func setupPressureButton() {
     bottomRightStackView.addArrangedSubview(pressureButton)
     pressureButton.addTarget(self, action: #selector(pressureButtonTapped), for: .touchUpInside)
-  }
-  
-  @objc func pressureButtonTapped() {
-    if hidePressure == true {
-      hidePressure = false
-      pressureButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
-    } else {
-      hidePressure = true
-      pressureButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
-    }
   }
   
   func setupDoneButton() {
@@ -364,5 +307,56 @@ private extension SettingsView {
     doneButton.backgroundColor = .white
     doneButton.layer.cornerRadius = 25    
     doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+  }
+}
+
+// MARK: - buttons tapped
+private extension SettingsView {
+  @objc func metricsButtonTapped() {
+    metricUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
+    imperialUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
+    units = "si"
+  }
+  
+  @objc func imperialButtonTapped() {
+    metricUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
+    imperialUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
+    units = "us"
+  }
+  
+  @objc func humidityButtonTapped() {
+    if hideHumidity == true {
+      hideHumidity = false
+      humidityButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+    } else {
+      hideHumidity = true
+      humidityButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+    }
+  }
+  
+  @objc func windButtonTapped() {
+    if hideWind == true {
+      hideWind = false
+      windButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+    } else {
+      hideWind = true
+      windButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+    }
+  }
+  
+  @objc func pressureButtonTapped() {
+    if hidePressure == true {
+      hidePressure = false
+      pressureButton.setImage(UIImage(named: "checkmark_check"), for: .normal)
+    } else {
+      hidePressure = true
+      pressureButton.setImage(UIImage(named: "checkmark_uncheck"), for: .normal)
+    }
+  }
+  
+  @objc func doneButtonTapped() {
+    let userDefaults = UserDefaults.standard
+    userDefaults.set(units, forKey: "units")
+    doneButtonActionHandler?()
   }
 }
