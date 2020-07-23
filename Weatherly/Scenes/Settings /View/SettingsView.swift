@@ -150,8 +150,8 @@ private extension SettingsView {
     ]
     NSLayoutConstraint.useAndActivateConstraints(constraints: metricUnitsButtonConstraints)
     let defaults = UserDefaults.standard
-    if defaults.object(forKey: "units") as! String == "us" {
-      print("Checking units", defaults.object(forKey: "units") as! String)
+    if defaults.object(forKey: "units") as? String == "us" {
+      print("Checking units", defaults.object(forKey: "units") as? String)
       metricUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)
     } else {
       metricUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
@@ -185,8 +185,8 @@ private extension SettingsView {
     NSLayoutConstraint.useAndActivateConstraints(constraints: imperialUnitsButtonConstraints)
     
     let defaults = UserDefaults.standard
-    if defaults.object(forKey: "units") as! String == "us" {
-      print("Checking units in imperial", defaults.object(forKey: "units") as! String)
+    if defaults.object(forKey: "units") as? String == "us" {
+      print("Checking units in imperial", defaults.object(forKey: "units") as? String)
       imperialUnitsButton.setImage(UIImage(named: "square_checkmark_check"), for: .normal)
     } else {
       imperialUnitsButton.setImage(UIImage(named: "square_checkmark_uncheck"), for: .normal)

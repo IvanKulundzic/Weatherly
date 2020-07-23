@@ -90,9 +90,12 @@ private extension HomeViewController {
 private extension HomeViewController {
   func homeViewSearchBarTapped() {
     homeView.textFieldActionHandler = { [weak self] in
-      let vc = SearchViewController()
-      vc.delegate = self
-      self?.present(vc, animated: true)
+      DispatchQueue.main.async {
+        let vc = SearchViewController()
+        vc.delegate = self
+        self?.present(vc, animated: true)
+      }
+      
     }
   }
   
